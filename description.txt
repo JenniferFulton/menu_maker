@@ -1,0 +1,22 @@
+Menu Maker:
+- Will interact with an API to allow users access to recipes.
+
+- They can create a weekly menu by searching through recipes and adding them to a 
+day and specify which meal (breakfast, lunch or dinner) they want that recipe in.
+
+- The user will be able to go back and look at previous menus.
+
+- The user will also have the option to add their own recipe.
+
+- When the user clicks on a recipe it will take them to that specific page with
+a picture of the recipe (if availble), ingredients and instructions. 
+
+- The user can favorite a recipe. All favorite recipes will be on the page where
+a recipe can be added.
+
+- The user will be able to do a reverse look up where they can list their
+ingredients and get a list of recipes they can make with the ingreidents they 
+listed.
+
+- The user will be able to make a grocery list that will be sorted by departments
+in the store. They will be able to add them when on a recipe or add them manually. 
