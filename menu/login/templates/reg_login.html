@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration and Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/reg_log.css' %}"> 
+</head>
+<body>
+    <div id=wrapper>
+        
+        <div class='register'>
+            {% if messages %}
+            <ul class='messages'>
+                {% for message in messages %}
+                    <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+                {% endfor %}    
+            </ul>
+            {% endif %}
+
+            <h2>Registration</h2>
+            <form action='/register' method='POST'>
+                {% csrf_token %}
+                <label for='first_name'>First Name:</label>
+                <input type='text' id='first_name' name='first_name'>
+
+                <label for='last_name'>Last Name:</label>
+                <input type='text' id='last_name' name='last_name'>
+
+                <label for='email'>Email:</label>
+                <input type='email' id='email' name='email'>
+
+                <label for='password'>Password:</label>
+                <input type='password' id='password' name='password'>
+
+                <label for='confirm_pw'>Confirm PW:</label>
+                <input type='password' id='confirm_pw' name='confirm_pw'>
+
+                <input type='submit' value='Register'>
+            </form>
+        </div>
+
+        <div class='login'>
+            <h2>Login</h2>
+            <form action='/login' method='POST'>
+                {% csrf_token %}
+                <label for='logemail'>Email:</label>
+                <input type='email' id='logemail' name='logemail'>
+
+                <label for='logpassword'>Password:</label>
+                <input type='password' id='logpassword' name='logpassword'>
+
+                <input type='submit' value='Log In'>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
