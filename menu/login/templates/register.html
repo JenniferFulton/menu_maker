@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <div id=wrapper>
         <div class='register'>
+            <!-- will display messages if user does not meet registration requirements -->
             {% if messages %}
             <ul class='messages'>
                 {% for message in messages %}
@@ -18,6 +20,11 @@
             {% endif %}
         
             <h2>Registration</h2>
+
+            <!-- take user back to login page -->
+            <button onclick='location.href="/"'>Back</button>
+
+            <!-- registration form -->
             <form action='/register' method='POST'>
                 {% csrf_token %}
                 <label for='first_name'>First Name:</label>

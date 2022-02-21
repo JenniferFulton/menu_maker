@@ -7,6 +7,9 @@
     <title>Menu Maker</title>
 </head>
 <body>
-    <h2>Welcome!</h2>
+    <h2>Welcome {{user.first_name}}!</h2>
+    
+    <!-- logout route clears session and returns to login page (functioning) -->
+    <button onclick='location.href="/logout"'>Logout</button>
 </body>
 </html>

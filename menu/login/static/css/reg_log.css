@@ -1,9 +1,9 @@
-/* #wrapper{
+#wrapper{
     padding: 40px;
     display: flex;
 } */
 
-/* .register{
+.register{
     width: 15%;
     text-align: left;
     margin-left: 10%;
@@ -13,4 +13,4 @@
     width: 15%;
     text-align: left;
     margin-left: 100px;
-} */
+}
