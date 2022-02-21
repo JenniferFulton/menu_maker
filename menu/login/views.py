@@ -4,17 +4,21 @@ from django.contrib import messages
 import bcrypt
 
 def registration_login(request):
-    #root route will have a form for registration and form for logging in
+    #root route will have a form for logging in
     return render(request, 'reg_login.html')
 
+def registration(request):
+    #/registration will have a form for registration 
+    return render(request, 'register.html')
+
 def register(request):
-    #'/register' will create a new user and redirect back to login page
+    #'/register' will create a new user, login the user, and redirect to home page
     if request.method == "POST":
         errors = User.objects.register_validator(request.POST)
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect('/')
+            return redirect('/registration')
         
         else:
             hashed_pw = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
