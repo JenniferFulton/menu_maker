@@ -9,6 +9,6 @@ def home_page(request):
     #will be redirected to home page once logged in or registered
     active_user = User.objects.get(id = request.session['user'])
     context = {
-        
+        'user': active_user
     }
-    return render(request,'home_page.html')
+    return render(request,'home_page.html', context)

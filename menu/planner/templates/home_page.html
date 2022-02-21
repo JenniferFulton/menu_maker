@@ -8,8 +8,48 @@
 </head>
 <body>
     <h2>Welcome {{user.first_name}}!</h2>
+    <p>Let's get planning!</p>
     
     <!-- logout route clears session and returns to login page (functioning) -->
     <button onclick='location.href="/logout"'>Logout</button>
+
+    <div class="week">
+        <!-- this will display the week a looks view with the menu the user has select -->
+        <h3>Week of: DATE</h3>
+        <table>
+            <thead>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+                <th>Sunday</th>
+            </thead>
+            <tbody>
+                <td>Mon Recipe
+                    <button>Add</button>
+                </td>
+                <td>Tues Recipe
+                    <button>Add</button>
+                </td>
+                <td>Wed Recipe
+                    <button>Add</button>
+                </td>
+                <td>Thurs Recipe
+                    <button>Add</button>
+                </td>
+                <td>Fri Recipe
+                    <button>Add</button>
+                </td>
+                <td>Sat Recipe
+                    <button>Add</button>
+                </td>
+                <td>Sun Recipe
+                    <button>Add</button>
+                </td>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
