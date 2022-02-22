@@ -24,4 +24,4 @@ def groceries(request):
         'user' : active_user
         # all ingredients for the week will be here
     }
-    return redirect(request,'grocery_list.html', context)
+    return render(request,'grocery_list.html', context)
