@@ -80,7 +80,7 @@ def edit_account(request,id):
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect('account/'+str(id))
+            return redirect('/account/'+str(id))
 
         # If no errors, edit user
         else:
@@ -89,7 +89,7 @@ def edit_account(request,id):
             to_edit.email = request.POST['new_email']
             to_edit.save()
             messages.success(request, 'Successfully updated your profile!')
-        return redirect('account/'+str(id))
+        return redirect('/account/'+str(id))
 
 def logout(request):
     request.session.clear()
