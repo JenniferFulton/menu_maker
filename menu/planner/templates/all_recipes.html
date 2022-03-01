@@ -7,23 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>{{user.first_name}}'s Recipes</h2>
+    <h2>All Recipes</h2>
     <!-- Button will take user back to the home page -->
     <button onclick='location.href="/planner"'>Back</button>
 
     <!-- all_recipes will take you to all the recipes added by all users -->
-    <a href="/planner/all_recipes">All Recipes</a>
+    <a href="/planner/user_recipes">Your Recipes</a>
     <!-- favorite_recipes will take the user to the recipes they have favorited -->
     <a href="/planner/favorite_recipes">Favorite Recipes</a>
 
     <div class = 'add_recipe'>
         <h3>Add Recipe</h3>
         <form action='/planner/add_recipe' method="POST">
-
+            
         </form>
     </div>
 
-    <p>List of User's Recipes</p>
-    
+    <p>List of All Recipes</p>
 </body>
 </html>
