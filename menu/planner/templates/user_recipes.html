@@ -19,7 +19,17 @@
     <div class = 'add_recipe'>
         <h3>Add Recipe</h3>
         <form action='/planner/add_recipe' method="POST">
+            {% csrf_token %}
+            <label for='title'>Title of Recipe:</label>
+            <input type='text' id='title' name='title' placeholder='Recipe Name'>
 
+            <label for='ingredient'>Ingredients</label>
+            <input type='text' id='ingredient' name='ingredient' placeholder='Ex:1 tbsp Olive Oil'>
+
+            <label for='directions'>Directions:</label>
+            <input type='text' id='directions' name='directions' placeholder='Ex:Preheat oven to 400'>
+
+            <input type='submit' value = "Add Recipe">
         </form>
     </div>
 
