@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from login.models import *
+from .models import *
 
 def home_page(request):
     #Checks if user is logged in
@@ -63,8 +64,38 @@ def favorite_recipes(request):
     return render(request,'favorite_recipes.html',context)
 
 def add_recipe(request):
-    #Checks if user is logged in
-    if 'user' not in request.session:
-        return redirect('/')
-    
-    return redirect('planner/user_recipes')
+    if request.method == "POST":
+        #Checks if user is logged in
+        if 'user' not in request.session:
+            return redirect('/')
+
+        # will need to go through a validator first
+        
+        # will create an array of the ingredients by seperating the commas
+        all_ingredients = []
+        for i in request.POST['ingredients']:
+            ingredient = ''
+            if i != ',':
+                ingredient = ingredient + i
+            else:
+                all_ingredients.append(ingredient)
+
+        all_directions = []
+        for i in request.POST['directions']:
+            direction = ''
+            if i != ',':
+                direction = direction + i
+            else:
+                all_directions.append(direction)
+
+        # create a new recipe
+            Recipe.objects.create(
+                title = request.POST['title'],
+                description = request.POST['description'],
+                prep = request.POST['prep'],
+                cook = request.POST['cook'],
+                ingredients = all_ingredients,
+                directions = all_directions,
+
+            )
+        return redirect('planner/user_recipes')
