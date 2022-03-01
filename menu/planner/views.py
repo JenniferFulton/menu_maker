@@ -14,7 +14,7 @@ def home_page(request):
     return render(request,'home_page.html', context)
 
 def groceries(request):
-        #Checks if user is logged in
+    #Checks if user is logged in
     if 'user' not in request.session:
         return redirect('/')
     
@@ -25,3 +25,15 @@ def groceries(request):
         # all ingredients for the week will be here
     }
     return render(request,'grocery_list.html', context)
+
+def user_recipes(request):
+    #Checks if user is logged in
+    if 'user' not in request.session:
+        return redirect('/')
+    
+    #will redirect to a page to all the recipes they have added, with a form to add another recipe
+    active_user = User.objects.get(id = request.session['user'])
+    context = {
+        'user' : active_user
+    }
+    return render(request,'user_recipes.html',context)
