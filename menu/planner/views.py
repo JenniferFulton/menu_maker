@@ -33,9 +33,9 @@ def user_recipes(request, id):
         return redirect('/')
     
     #will redirect to a page to all the recipes they have added, with a form to add another recipe
-    active_user = User.objects.get(id = id)
+    user_info = User.objects.get(id = id)
     context = {
-        'user' : active_user
+        'user' : user_info,
     }
     return render(request,'user_recipes.html',context)
 

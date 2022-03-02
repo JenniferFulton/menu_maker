@@ -18,7 +18,7 @@
 
     <div class = 'add_recipe'>
         <h3>Add Recipe</h3>
-        <form action='/planner/add_recipe' method="POST">
+        <form action='/planner/add_recipe/{{user.id}}' method="POST">
             {% csrf_token %}
             <label for='title'>Title of Recipe:</label>
             <input type='text' id='title' name='title' placeholder='Recipe Name'>
@@ -45,10 +45,10 @@
 
     <p>List of User's Recipes</p>
     {% for recipe in user.recipes.all %}
-    <h3>{{recipe.title}}</h3>
-    <p>{{recipe.description}}</p>
+        <h3>{{recipe.title}}</h3>
+        <p>{{recipe.description}}</p>
 
-    <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a>
+        <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a>
     {% endfor %}
 </body>
 </html>

@@ -18,7 +18,7 @@
 
     <div class = 'add_recipe'>
         <h2>Add Recipe</h2>
-        <form action='/planner/add_recipe' method="POST">
+        <form action='/planner/add_recipe/{{user.id}}' method="POST">
             {% csrf_token %}
             <label for='title'>Title of Recipe:</label>
             <input type='text' id='title' name='title' placeholder='Recipe Name'>
