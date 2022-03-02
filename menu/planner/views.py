@@ -27,13 +27,13 @@ def groceries(request):
     }
     return render(request,'grocery_list.html', context)
 
-def user_recipes(request):
+def user_recipes(request, id):
     #Checks if user is logged in
     if 'user' not in request.session:
         return redirect('/')
     
     #will redirect to a page to all the recipes they have added, with a form to add another recipe
-    active_user = User.objects.get(id = request.session['user'])
+    active_user = User.objects.get(id = id)
     context = {
         'user' : active_user
     }
@@ -82,7 +82,7 @@ def add_recipe(request):
             else:
                 all_ingredients.append(ingredient)
                 ingredient = ''
-    # will create an array of the directions by seperating the commas
+        # will create an array of the directions by seperating the commas
         all_directions = []
         direction = ''
         for i in (request.POST['directions']+ ','):
@@ -100,7 +100,6 @@ def add_recipe(request):
             cook = request.POST['cook'],
             ingredients = all_ingredients,
             directions = all_directions,
-
         )
         return redirect('/planner/user_recipes')
 
