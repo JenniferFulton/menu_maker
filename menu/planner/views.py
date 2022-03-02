@@ -65,7 +65,7 @@ def favorite_recipes(request):
     }
     return render(request,'favorite_recipes.html',context)
     
-def add_recipe(request):
+def add_recipe(request, id):
     if request.method == "POST":
         #Checks if user is logged in
         if 'user' not in request.session:
@@ -93,6 +93,7 @@ def add_recipe(request):
                 direction = ''
 
         # create a new recipe
+        active_user = User.objects.get(id = request.session['user'])
         Recipe.objects.create(
             title = request.POST['title'],
             description = request.POST['description'],
@@ -101,7 +102,9 @@ def add_recipe(request):
             ingredients = all_ingredients,
             directions = all_directions,
         )
-        return redirect('/planner/user_recipes')
+        recipe_added = Recipe.objects.last()
+        active_user.recipes.add(recipe_added)
+        return redirect('/planner/user_recipes/'+ str(id))
 
 def delete_recipe(request, id):
     #Checks if user is logged in

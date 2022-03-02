@@ -45,10 +45,10 @@
 
     <h2>List of All Recipes</h2>
     {% for recipe in all_recipes %}
-    <h3>{{recipe.title}}</h3>
-    <p>{{recipe.description}}</p>
+        <h3>{{recipe.title}}</h3>
+        <p>{{recipe.description}}</p>
 
-    <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a>
+        <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a>
     {% endfor %}
     
 </body>

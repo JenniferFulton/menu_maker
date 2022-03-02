@@ -8,7 +8,7 @@ class Recipe(models.Model):
     cook = models.CharField(max_length=30, null=True)
     ingredients = models.TextField()
     directions = models.TextField()
-    entry = models.ManyToManyField(User, related_name= "recipes")
+    entry = models.ManyToManyField(User,related_name= "recipes")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = RecipeManager()
