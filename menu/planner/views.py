@@ -46,8 +46,10 @@ def all_recipes(request):
     
     #will redirect to a page to all the recipes added by all users, with a form to add another recipe
     active_user = User.objects.get(id = request.session['user'])
+    all_recipes = Recipe.objects.all()
     context = {
-        'user' : active_user
+        'user' : active_user,
+        'all_recipes': all_recipes
     }
     return render(request,'all_recipes.html',context)
 
@@ -101,3 +103,13 @@ def add_recipe(request):
 
             )
         return redirect('/planner/user_recipes')
+
+def delete_recipe(request, id):
+    #Checks if user is logged in
+    if 'user' not in request.session:
+        return redirect('/')
+
+    #will delete a user's quote (can only delete their own)
+    to_delete = Recipe.objects.get(id=id)
+    to_delete.delete()
+    return redirect('/planner/all_recipes')
