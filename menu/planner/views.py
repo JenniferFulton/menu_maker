@@ -62,7 +62,7 @@ def favorite_recipes(request):
         'user' : active_user
     }
     return render(request,'favorite_recipes.html',context)
-
+    
 def add_recipe(request):
     if request.method == "POST":
         #Checks if user is logged in
@@ -73,20 +73,22 @@ def add_recipe(request):
         
         # will create an array of the ingredients by seperating the commas
         all_ingredients = []
-        for i in request.POST['ingredients']:
-            ingredient = ''
+        ingredient = ''
+        for i in (request.POST['ingredients']+ ','):
             if i != ',':
                 ingredient = ingredient + i
             else:
                 all_ingredients.append(ingredient)
+                ingredient = ''
 
         all_directions = []
-        for i in request.POST['directions']:
-            direction = ''
+        direction = ''
+        for i in (request.POST['directions']+ ','):
             if i != ',':
                 direction = direction + i
             else:
                 all_directions.append(direction)
+                direction = ''
 
         # create a new recipe
             Recipe.objects.create(
@@ -98,4 +100,4 @@ def add_recipe(request):
                 directions = all_directions,
 
             )
-        return redirect('planner/user_recipes')
+        return redirect('/planner/user_recipes')
