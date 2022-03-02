@@ -44,5 +44,11 @@
     </div>
 
     <p>List of User's Recipes</p>
+    {% for recipe in user.recipes.all %}
+    <h3>{{recipe.title}}</h3>
+    <p>{{recipe.description}}</p>
+
+    <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a>
+    {% endfor %}
 </body>
 </html>

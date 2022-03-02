@@ -12,14 +12,34 @@
     <button onclick='location.href="/planner"'>Back</button>
 
     <!-- all_recipes will take you to all the recipes added by all users -->
-    <a href="/planner/user_recipes">Your Recipes</a>
+    <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a>
     <!-- favorite_recipes will take the user to the recipes they have favorited -->
     <a href="/planner/all_recipes">All Recipes</a>
 
     <div class = 'add_recipe'>
         <h3>Add Recipe</h3>
         <form action='/planner/add_recipe' method="POST">
-            
+            {% csrf_token %}
+            <label for='title'>Title of Recipe:</label>
+            <input type='text' id='title' name='title' placeholder='Recipe Name'>
+
+            <label for='description'>Title of Recipe:</label>
+            <input type='text' id='description' name='description' placeholder='Describe your recipe'>
+
+            <label for='prep'>Prep Time:</label>
+            <input type='text' id='prep' name='prep' placeholder='20 minutes'>
+
+            <label for='cook'>Cook Time:</label>
+            <input type='text' id='cook' name='cook' placeholder='1 hour'>
+
+
+            <label for='ingredients'>Ingredients:</label>
+            <input type='text' id='ingredients' name='ingredients' placeholder='Ex:1 tbsp Olive Oil'>
+
+            <label for='directions'>Directions:</label>
+            <input type='text' id='directions' name='directions' placeholder='Ex:Preheat oven to 400'>
+
+            <input type='submit' value = "Add Recipe">
         </form>
     </div>
 
