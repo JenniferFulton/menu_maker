@@ -7,6 +7,26 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- logout route clears session and returns to login page (functioning) -->
+    <button onclick='location.href="/logout"'>Logout</button>
+
+    <!-- Button will take user back to the home page -->
+    <button onclick='location.href="/planner/all_recipes"'>Back to Recipes</button>
+    
     <h1>{{recipe.title}}</h1>
+    <h4>{{recipe.description}}</h4>
+    <p>Prep Time: {{recipe.prep}}</p>
+    <p>Cook Time: {{recipe.cook}}</p>
+    <ul>Ingredients:
+        <li>{{recipe.ingredients}}</li>
+    </ul>
+    <ol>Directions:
+        <li>{{recipe.directions}}</li>
+    </ol>
+    {% for user in user_recipes %}
+        {% if user.id == recipe.id %}
+            <a href="/planner/delete/{{recipe.id}}">Delete</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit</a>
+        {% endif %}
+    {% endfor %}
 </body>
 </html>

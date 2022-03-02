@@ -47,8 +47,13 @@
     {% for recipe in all_recipes %}
         <h3>{{recipe.title}}</h3>
         <p>{{recipe.description}}</p>
-
-        <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a>
+        <!-- Link to view recipe (functioning) -->
+        <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a>  
+        {% for user in user_recipes %}
+            {% if user.id == recipe.id %}
+                | <a href="/planner/delete/{{recipe.id}}">Delete</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit</a>
+            {% endif %}
+        {% endfor %}
     {% endfor %}
     
 </body>

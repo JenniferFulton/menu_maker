@@ -47,9 +47,11 @@ def all_recipes(request):
     #will redirect to a page to all the recipes added by all users, with a form to add another recipe
     active_user = User.objects.get(id = request.session['user'])
     all_recipes = Recipe.objects.all()
+    user_recipes = active_user.recipes.all()
     context = {
         'user' : active_user,
-        'all_recipes': all_recipes
+        'all_recipes': all_recipes,
+        'user_recipes' : user_recipes
     }
     return render(request,'all_recipes.html',context)
 
@@ -123,8 +125,17 @@ def recipe_info(request, id):
     
     active_user = User.objects.get(id = request.session['user'])
     current_recipe = Recipe.objects.get(id=id)
+    user_recipes = active_user.recipes.all()
     context = {
         'user' : active_user,
         'recipe' : current_recipe,
+        'user_recipes': user_recipes,
     }
     return render(request, 'recipe_info.html', context)
+
+
+    # {% for author in user_quotes %}
+    #     {% if quote.id == author.id %}
+    #     <a href="/quotes/delete/{{quote.id}}">Delete</a>
+    #     {% endif %}
+    # {% endfor %}
