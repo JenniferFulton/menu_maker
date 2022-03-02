@@ -82,7 +82,7 @@ def add_recipe(request):
             else:
                 all_ingredients.append(ingredient)
                 ingredient = ''
-
+    # will create an array of the directions by seperating the commas
         all_directions = []
         direction = ''
         for i in (request.POST['directions']+ ','):
@@ -93,15 +93,15 @@ def add_recipe(request):
                 direction = ''
 
         # create a new recipe
-            Recipe.objects.create(
-                title = request.POST['title'],
-                description = request.POST['description'],
-                prep = request.POST['prep'],
-                cook = request.POST['cook'],
-                ingredients = all_ingredients,
-                directions = all_directions,
+        Recipe.objects.create(
+            title = request.POST['title'],
+            description = request.POST['description'],
+            prep = request.POST['prep'],
+            cook = request.POST['cook'],
+            ingredients = all_ingredients,
+            directions = all_directions,
 
-            )
+        )
         return redirect('/planner/user_recipes')
 
 def delete_recipe(request, id):
