@@ -115,3 +115,16 @@ def delete_recipe(request, id):
     to_delete = Recipe.objects.get(id=id)
     to_delete.delete()
     return redirect('/planner/all_recipes')
+
+def recipe_info(request, id):
+    #Checks if user is logged in
+    if 'user' not in request.session:
+        return redirect('/')
+    
+    active_user = User.objects.get(id = request.session['user'])
+    current_recipe = Recipe.objects.get(id=id)
+    context = {
+        'user' : active_user,
+        'recipe' : current_recipe,
+    }
+    return render(request, 'recipe_info.html', context)
