@@ -4,45 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit a Recipe</title>
 </head>
 <body>
-    <!-- Button will take user back to the home page -->
-    <button onclick='location.href="/planner/all_recipes"'>Back</button>
+    <div id="wrapper">
+        <div class="nav_bar">
+            <h3>Menu Maker</h3>
+            <!-- Button will take user back to the home page -->
+            <button onclick='location.href="/planner"'>Home</button>
 
-    <!-- error messages will appear here (functioning)-->
-    {% if messages %}
-    <ul class='messages'>
-        {% for message in messages %}
-            <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-        {% endfor %}    
-    </ul>
-    {% endif %}
+            <!-- favorite_recipes will take the user to the recipes they have favorited -->
+            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- all_recipes will take you to all the recipes added by all users -->
+            <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
+            <!-- favorite_recipes will take the user to the recipes they have favorited -->
+            <a href="/planner/favorite_recipes">Favorite Recipes</a>
+        </div>
 
-    <div class = 'add_recipe'>
-        <h2>Edit Recipe</h2>
-        <form action='/planner/update/{{recipe.id}}' method="POST">
-            {% csrf_token %}
-            <label for='new_title'>Title of Recipe:</label>
-            <input type='text' id='new_title' name='new_title' placeholder={{recipe.title}}>
+        <!-- error messages will appear here (functioning)-->
+        {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+            {% endfor %}    
+        </ul>
+        {% endif %}
 
-            <label for='new_description'>Description of Recipe:</label>
-            <input type='text' id='new_description' name='new_description' placeholder={{recipe.description}}>
+        <div class = 'add_recipe'>
+            <h2>Edit Your Recipe -</h2>
+            <p>{{recipe.title}}</p>
+            <form action='/planner/update/{{recipe.id}}' method="POST">
+                {% csrf_token %}
+                <label for='new_title'>Title of Recipe:</label>
+                <input type='text' id='new_title' name='new_title' placeholder={{recipe.title}}>
 
-            <label for='new_prep'>Prep Time:</label>
-            <input type='text' id='new_prep' name='new_prep' placeholder={{recipe.prep}}>
+                <label for='new_description'>Description of Recipe:</label>
+                <input type='text' id='new_description' name='new_description' placeholder={{recipe.description}}>
 
-            <label for='new_cook'>Cook Time:</label>
-            <input type='text' id='new_cook' name='new_cook' placeholder={{recipe.cook}}>
+                <label for='new_prep'>Prep Time:</label>
+                <input type='text' id='new_prep' name='new_prep' placeholder={{recipe.prep}}>
 
-            <!-- ***instruction and direction placeholders are arrays*** -->
-            <label for='new_ingredients'>Ingredients:</label>
-            <input type='text' id='new_ingredients' name='new_ingredients' placeholder={{recipe.ingredients}}>
-            <label for='new_directions'>Directions:</label>
-            <input type='text' id='new_directions' name='new_directions' placeholder={{recipe.directions}}>
+                <label for='new_cook'>Cook Time:</label>
+                <input type='text' id='new_cook' name='new_cook' placeholder={{recipe.cook}}>
 
-            <input type='submit' value = "Update">
-        </form>
+                <!-- ***instruction and direction placeholders are arrays*** -->
+                <label for='new_ingredients'>Ingredients:</label>
+                <input type='text' id='new_ingredients' name='new_ingredients' placeholder={{recipe.ingredients}}>
+                <label for='new_directions'>Directions:</label>
+                <input type='text' id='new_directions' name='new_directions' placeholder={{recipe.directions}}>
+
+                <input type='submit' value = "Update">
+            </form>
+        </div>
     </div>
 </body>
 </html>
