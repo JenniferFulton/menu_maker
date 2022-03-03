@@ -33,7 +33,11 @@
 
         <div class="week">
             <!-- this will display the week a looks view with the menu the user has select -->
-            <h3>Week of: DATE</h3>
+            <h3>Week of:<select>
+                {% for menu in all_menus %}
+                    <option>{{menu.date}}</option>
+                {% endfor %}
+            </select></h3>
             <table>
                 <thead>
                     <th>Monday</th>
@@ -45,27 +49,13 @@
                     <th>Sunday</th>
                 </thead>
                 <tbody>
-                    <td>Mon Recipe HERE
-                        <button onclick='location.href=""'>Add</button>
-                    </td>
-                    <td>Tues Recipe HERE
-                        <button>Add</button>
-                    </td>
-                    <td>Wed Recipe HERE
-                        <button>Add</button>
-                    </td>
-                    <td>Thurs Recipe HERE
-                        <button>Add</button>
-                    </td>
-                    <td>Fri Recipe HERE
-                        <button>Add</button>
-                    </td>
-                    <td>Sat Recipe HERE
-                        <button>Add</button>
-                    </td>
-                    <td>Sun Recipe HERE
-                        <button>Add</button>
-                    </td>
+                    <td>Mon Recipe HERE</td>
+                    <td>Tues Recipe HERE</td>
+                    <td>Wed Recipe HERE</td>
+                    <td>Thurs Recipe HERE</td>
+                    <td>Fri Recipe HERE</td>
+                    <td>Sat Recipe HERE</td>
+                    <td>Sun Recipe HERE</td>
                 </tbody>
             </table>
         </div>
