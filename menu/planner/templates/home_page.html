@@ -4,18 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Maker</title>
+    <title>Home Page</title>
 </head>
 <body>
     <div id="wrapper">
-        <h2>Welcome {{user.first_name}}!</h2>
-        <p>Let's get planning!</p>
-        
-        <!-- logout route clears session and returns to login page (functioning) -->
-        <button onclick='location.href="/logout"'>Logout</button>
+        <div class="nav_bar">
+            <h3>Menu Maker</h3>
+            <!-- Button will take user back to the home page -->
+            <button onclick='location.href="/planner"'>Home</button>
+            <!-- account route takes user to page to edit their account (functioning) -->
+            <a href='/account/{{user.id}}'>Edit Profile</a>
 
-        <!-- account route takes user to page to edit their account (functioning) -->
-        <a href='/account/{{user.id}}'>Edit Profile</a>
+            <!-- favorite_recipes will take the user to the recipes they have favorited -->
+            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- all_recipes will take you to all the recipes added by all users -->
+            <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
+            <!-- favorite_recipes will take the user to the recipes they have favorited -->
+            <a href="/planner/favorite_recipes">Favorite Recipes</a>
+
+            <!-- logout route clears session and returns to login page (functioning) -->
+            <button onclick='location.href="/logout"'>Logout</button>
+        </div>
+        
+        <div class="title">
+            <h2>Welcome {{user.first_name}}!</h2>
+            <p>Let's get planning</p>
+        </div>
 
         <div class="week">
             <!-- this will display the week a looks view with the menu the user has select -->
@@ -32,7 +46,7 @@
                 </thead>
                 <tbody>
                     <td>Mon Recipe HERE
-                        <button onclick='location.href="/logout"'>Add</button>
+                        <button onclick='location.href=""'>Add</button>
                     </td>
                     <td>Tues Recipe HERE
                         <button>Add</button>
@@ -56,7 +70,7 @@
             </table>
         </div>
 
-        <button onclick='location.href="/planner/user_recipes/{{user.id}}"'>Browse and Add Recipes</button>
+        <button onclick='location.href="/planner/user_recipes/{{user.id}}"'>Browse Recipes</button>
 
         <div class="grocery_list">
             <h3>Grocery List:</h3>
