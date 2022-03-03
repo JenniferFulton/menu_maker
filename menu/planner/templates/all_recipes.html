@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>All Recipes in Menu maker</title>
 </head>
 <body>
-    <h2>All Recipes</h2>
-    <!-- Button will take user back to the home page -->
-    <button onclick='location.href="/planner"'>Back</button>
+    <div class="nav_bar">
+        <h3>Menu Maker</h3>
+        <!-- Button will take user back to the home page -->
+        <button onclick='location.href="/planner"'>Home</button>
 
-    <!-- all_recipes will take you to all the recipes added by all users -->
-    <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a>
-    <!-- favorite_recipes will take the user to the recipes they have favorited -->
-    <a href="/planner/favorite_recipes">Favorite Recipes</a>
+        <!-- all_recipes will take you to all the recipes added by all users -->
+        <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
+        <!-- favorite_recipes will take the user to the recipes they have favorited -->
+        <a href="/planner/favorite_recipes">Favorite Recipes</a>
+    </div>
 
     <div class = 'add_recipe'>
-        <h2>Add Recipe</h2>
+        <h2>Add a Recipe</h2>
         <form action='/planner/add_recipe/{{user.id}}' method="POST">
             {% csrf_token %}
             <label for='title'>Title of Recipe:</label>
@@ -43,8 +45,9 @@
         </form>
     </div>
 
-    <h2>List of All Recipes</h2>
+    <h2>All Recipes on Menu Maker</h2>
     {% for recipe in all_recipes %}
+    <div class="recipe">
         <h3>{{recipe.title}}</h3>
         <p>{{recipe.description}}</p>
         <!-- Link to view recipe (functioning) -->
@@ -54,7 +57,7 @@
                 | <a href="/planner/delete/{{recipe.id}}">Delete</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit</a>
             {% endif %}
         {% endfor %}
+    </div>
     {% endfor %}
-    
 </body>
 </html>
