@@ -4,12 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Grocery List</title>
 </head>
 <body>
     <div id="wrapper">
+        <div class="nav_bar">
+            <h3>Menu Maker</h3>
+            <!-- Button will take user back to the home page -->
+            <button onclick='location.href="/planner"'>Home</button>
+
+            <!-- favorite_recipes will take the user to the recipes they have favorited -->
+            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- all_recipes will take you to all the recipes added by all users -->
+            <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
+            <!-- favorite_recipes will take the user to the recipes they have favorited -->
+            <a href="/planner/favorite_recipes">Favorite Recipes</a>
+        </div>
+        
         <h1>{{user.first_name}}'s Grocery List</h1>
-        <button onclick='location.href="/planner"'>Back</button>
+        <div class="list">
+            <!-- grocery list will go here -->
+        </div>
+
     </div>
 </body>
 </html>
