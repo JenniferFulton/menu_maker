@@ -29,11 +29,20 @@
             <h4>{{recipe.description}}</h4>
             <p>Prep Time: {{recipe.prep}}</p>
             <p>Cook Time: {{recipe.cook}}</p>
-            <ul>Ingredients:
-                <li>{{recipe.ingredients}}</li>
+            <h5>Ingredients:</h5>
+            <ul>
+                <li>{% for character in recipe.ingredients %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}
+                </li>
+                <li>{% else %}{{character}}{% endif %}{% endif %}{% endfor %}
+                </li>
+
             </ul>
-            <ol>Directions:
-                <li>{{recipe.directions}}</li>
+            <h5>Directions:</h5>
+            <ol>
+                <li>{% for character in recipe.directions %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}
+                </li>
+                <li>{% else %}{{character}}{% endif %}{% endif %}{% endfor %}
+                </li>
             </ol>
             {% for user in user_recipes %}
                 {% if user.id == recipe.id %}
