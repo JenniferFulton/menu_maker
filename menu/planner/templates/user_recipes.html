@@ -7,57 +7,66 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>{{user.first_name}}'s Recipes</h2>
-    <!-- Button will take user back to the home page -->
-    <button onclick='location.href="/planner"'>Back</button>
+    <div id="wrapper">
+        <div class="nav_bar">
+            <h3>Menu Maker</h3>
+            <!-- Button will take user back to the home page -->
+            <button onclick='location.href="/planner"'>Home</button>
 
-    <!-- all_recipes will take you to all the recipes added by all users -->
-    <a href="/planner/all_recipes">All Recipes</a>
-    <!-- favorite_recipes will take the user to the recipes they have favorited -->
-    <a href="/planner/favorite_recipes">Favorite Recipes</a>
+            <!-- all_recipes will take you to all the recipes added by all users -->
+            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- favorite_recipes will take the user to the recipes they have favorited -->
+            <a href="/planner/favorite_recipes">Favorite Recipes</a>
 
-    <!-- error messages will appear here (functioning)-->
-    {% if messages %}
-    <ul class='messages'>
-        {% for message in messages %}
-            <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-        {% endfor %}    
-    </ul>
-    {% endif %}
-    
-    <div class = 'add_recipe'>
-        <h3>Add Recipe</h3>
-        <form action='/planner/add_recipe/{{user.id}}' method="POST">
-            {% csrf_token %}
-            <label for='title'>Title of Recipe:</label>
-            <input type='text' id='title' name='title' placeholder='Recipe Name'>
+            <!-- logout route clears session and returns to login page (functioning) -->
+            <button onclick='location.href="/logout"'>Logout</button>
+        </div>
 
-            <label for='description'>Description of Recipe:</label>
-            <input type='text' id='description' name='description' placeholder='Describe your recipe'>
+        <!-- error messages will appear here-->
+        {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+            {% endfor %}    
+        </ul>
+        {% endif %}
+        
+        <div class = 'add_recipe'>
+            <h2>Add a Recipe</h2>
+            <form action='/planner/add_recipe/{{user.id}}' method="POST">
+                {% csrf_token %}
+                <label for='title'>Title of Recipe:</label>
+                <input type='text' id='title' name='title' placeholder='Recipe Name'>
 
-            <label for='prep'>Prep Time:</label>
-            <input type='text' id='prep' name='prep' placeholder='20 minutes'>
+                <label for='description'>Description of Recipe:</label>
+                <input type='text' id='description' name='description' placeholder='Describe your recipe'>
 
-            <label for='cook'>Cook Time:</label>
-            <input type='text' id='cook' name='cook' placeholder='1 hour'>
+                <label for='prep'>Prep Time:</label>
+                <input type='text' id='prep' name='prep' placeholder='20 minutes'>
+
+                <label for='cook'>Cook Time:</label>
+                <input type='text' id='cook' name='cook' placeholder='1 hour'>
 
 
-            <label for='ingredients'>Ingredients:</label>
-            <input type='text' id='ingredients' name='ingredients' placeholder='Ex:1 tbsp Olive Oil'>
+                <label for='ingredients'>Ingredients:</label>
+                <input type='text' id='ingredients' name='ingredients' placeholder='Ex:1 tbsp Olive Oil'>
 
-            <label for='directions'>Directions:</label>
-            <input type='text' id='directions' name='directions' placeholder='Ex:Preheat oven to 400'>
+                <label for='directions'>Directions:</label>
+                <input type='text' id='directions' name='directions' placeholder='Ex:Preheat oven to 400'>
 
-            <input type='submit' value = "Add Recipe">
-        </form>
-    </div>
+                <input type='submit' value = "Add Recipe">
+            </form>
+        </div>
 
-    <p>List of User's Recipes</p>
-    {% for recipe in user.recipes.all %}
-        <h3>{{recipe.title}}</h3>
-        <p>{{recipe.description}}</p>
+        <div class="recipe">
+            <h2>{{user.first_name}}'s Recipes</h2>
+            {% for recipe in user.recipes.all %}
+                <h3>{{recipe.title}}</h3>
+                <p>{{recipe.description}}</p>
 
-        <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit Recipe</a> | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a>
-    {% endfor %}
+                <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit Recipe</a> | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a>
+            {% endfor %}
+        </div>
+</div>
 </body>
 </html>

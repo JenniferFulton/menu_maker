@@ -23,7 +23,7 @@
         </div>
 
         <div class = 'add_recipe'>
-            <h3>Add a Recipe</h3>
+            <h2>Add a Recipe</h2>
             <form action='/planner/add_recipe/{{user.id}}' method="POST">
                 {% csrf_token %}
                 <label for='title'>Title of Recipe:</label>
