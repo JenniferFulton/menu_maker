@@ -153,4 +153,48 @@ def edit_recipe(request, id):
     }
     return render(request, 'edit_recipe.html', context)
 
+def update_recipe(request, id):
+    #Checks if user is logged in
+    if 'user' not in request.session:
+        return redirect('/')
 
+# will run recipe through validator before creation 
+    errors = Recipe.objects.newRecipe_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/planner/user_recipes/'+ str(id))
+
+    else:
+        # if there are no errors, a new recipe will be created
+        # will create an array of the ingredients by seperating the commas
+        all_ingredients = []
+        ingredient = ''
+        for i in (request.POST['new_ingredients']+ ','):
+            if i != ',':
+                ingredient = ingredient + i
+            else:
+                all_ingredients.append(ingredient)
+                ingredient = ''
+        # will create an array of the directions by seperating the commas
+        all_directions = []
+        direction = ''
+        for i in (request.POST['new_directions']+ ','):
+            if i != ',':
+                direction = direction + i
+            else:
+                all_directions.append(direction)
+                direction = ''
+        # create a new recipe
+        to_edit = Recipe.objects.get(id=id)
+        
+        to_edit.title = request.POST['new_title'],
+        to_edit.description = request.POST['new_description'],
+        to_edit.prep = request.POST['new_prep'],
+        to_edit.cook = request.POST['new_cook'],
+        to_edit.ingredients = all_ingredients,
+        to_edit.directions = all_directions,
+        to_edit.save()
+        messages.success(request, 'Recipe successfully updated!')
+        
+        return redirect('/planner/user_recipes/'+ str(id))

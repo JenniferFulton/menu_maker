@@ -7,30 +7,38 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- error messages will appear here (functioning)-->
+    {% if messages %}
+    <ul class='messages'>
+        {% for message in messages %}
+            <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+        {% endfor %}    
+    </ul>
+    {% endif %}
+
     <div class = 'add_recipe'>
-        <h2>Add Recipe</h2>
-        <form action='/planner/add_recipe/{{user.id}}' method="POST">
+        <h2>Edit Recipe</h2>
+        <form action='/planner/update/{{recipe.id}}' method="POST">
             {% csrf_token %}
-            <label for='title'>Title of Recipe:</label>
-            <input type='text' id='title' name='title' placeholder={{recipe.title}}>
+            <label for='new_title'>Title of Recipe:</label>
+            <input type='text' id='new_title' name='new_title' placeholder={{recipe.title}}>
 
-            <label for='description'>Description of Recipe:</label>
-            <input type='text' id='description' name='description' placeholder='Describe your recipe'>
+            <label for='new_description'>Description of Recipe:</label>
+            <input type='text' id='new_description' name='new_description' placeholder={{recipe.}}>
 
-            <label for='prep'>Prep Time:</label>
-            <input type='text' id='prep' name='prep' placeholder='20 minutes'>
+            <label for='new_prep'>Prep Time:</label>
+            <input type='text' id='new_prep' name='new_prep' placeholder={{recipe.prep}}>
 
-            <label for='cook'>Cook Time:</label>
-            <input type='text' id='cook' name='cook' placeholder='1 hour'>
+            <label for='new_cook'>Cook Time:</label>
+            <input type='text' id='new_cook' name='new_cook' placeholder={{recipe.cook}}>
 
+            <!-- ***instruction and direction placeholders are arrays*** -->
+            <label for='new_ingredients'>Ingredients:</label>
+            <input type='text' id='new_ingredients' name='new_ingredients' placeholder={{recipe.ingredients}}>
+            <label for='new_directions'>Directions:</label>
+            <input type='text' id='new_directions' name='new_directions' placeholder={{recipe.directions}}>
 
-            <label for='ingredients'>Ingredients:</label>
-            <input type='text' id='ingredients' name='ingredients' placeholder='Ex:1 tbsp Olive Oil'>
-
-            <label for='directions'>Directions:</label>
-            <input type='text' id='directions' name='directions' placeholder='Ex:Preheat oven to 400'>
-
-            <input type='submit' value = "Add Recipe">
+            <input type='submit' value = "Update">
         </form>
     </div>
 </body>
