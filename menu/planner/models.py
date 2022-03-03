@@ -12,8 +12,11 @@ class RecipeManager(models.Manager):
         if len(postData['description']) <= 10:
             errors['description'] = "Recipe's description must have more than 10 characters"
         
-        # if postData['prep']
-        # if postData['cook']
+        if postData['prep'].isnumeric() == True or postData['prep'].isalpha() == True:
+            errors['prep'] = 'Please include number and units in your Prep Time, Ex: 10 minutes'
+        
+        if postData['cook'].isnumeric() == True or postData['cook'].isalpha() == True:
+            errors['cook'] = 'Please include number and units in your Cook Time, Ex: 20 minutes'
 
         commas_inIngredients = []
         for i in postData['ingredients']:
@@ -32,6 +35,7 @@ class RecipeManager(models.Manager):
         return errors
 
     def updateRecipe_validator(self, postData):
+        #validates a recipe that a user is updating
         errors = {}
 
         if len(postData['new_title']) <= 3:
@@ -40,8 +44,11 @@ class RecipeManager(models.Manager):
         if len(postData['new_description']) <= 10:
             errors['new_description'] = "Recipe's description must have more than 10 characters"
         
-        # if postData['new_prep']
-        # if postData['new_cook']
+        if postData['new_prep'].isnumeric() == True or postData['new_prep'].isalpha() == True:
+            errors['new_prep'] = 'Please include number and units in your Prep Time, Ex: 10 minutes'
+        
+        if postData['new_cook'].isnumeric() == True or postData['new_cook'].isalpha() == True:
+            errors['new_cook'] = 'Please include number and units in your Cook Time, Ex: 20 minutes'
 
         commas_inIngredients = []
         for i in postData['new_ingredients']:
