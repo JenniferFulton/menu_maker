@@ -16,6 +16,15 @@
     <!-- favorite_recipes will take the user to the recipes they have favorited -->
     <a href="/planner/favorite_recipes">Favorite Recipes</a>
 
+    <!-- error messages will appear here (functioning)-->
+    {% if messages %}
+    <ul class='messages'>
+        {% for message in messages %}
+            <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+        {% endfor %}    
+    </ul>
+    {% endif %}
+    
     <div class = 'add_recipe'>
         <h3>Add Recipe</h3>
         <form action='/planner/add_recipe/{{user.id}}' method="POST">
