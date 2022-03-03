@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class = 'add_recipe'>
+        <h2>Add Recipe</h2>
+        <form action='/planner/add_recipe/{{user.id}}' method="POST">
+            {% csrf_token %}
+            <label for='title'>Title of Recipe:</label>
+            <input type='text' id='title' name='title' placeholder={{recipe.title}}>
+
+            <label for='description'>Description of Recipe:</label>
+            <input type='text' id='description' name='description' placeholder='Describe your recipe'>
+
+            <label for='prep'>Prep Time:</label>
+            <input type='text' id='prep' name='prep' placeholder='20 minutes'>
+
+            <label for='cook'>Cook Time:</label>
+            <input type='text' id='cook' name='cook' placeholder='1 hour'>
+
+
+            <label for='ingredients'>Ingredients:</label>
+            <input type='text' id='ingredients' name='ingredients' placeholder='Ex:1 tbsp Olive Oil'>
+
+            <label for='directions'>Directions:</label>
+            <input type='text' id='directions' name='directions' placeholder='Ex:Preheat oven to 400'>
+
+            <input type='submit' value = "Add Recipe">
+        </form>
+    </div>
+</body>
+</html>

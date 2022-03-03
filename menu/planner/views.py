@@ -140,3 +140,17 @@ def recipe_info(request, id):
     }
     return render(request, 'recipe_info.html', context)
 
+def edit_recipe(request, id):
+    #Checks if user is logged in
+    if 'user' not in request.session:
+        return redirect('/')
+
+    active_user = User.objects.get(id = request.session['user'])
+    current_recipe = Recipe.objects.get(id=id)
+    context = {
+        'user' : active_user,
+        'recipe' : current_recipe,
+    }
+    return render(request, 'edit_recipe.html', context)
+
+
