@@ -133,9 +133,3 @@ def recipe_info(request, id):
     }
     return render(request, 'recipe_info.html', context)
 
-
-    # {% for author in user_quotes %}
-    #     {% if quote.id == author.id %}
-    #     <a href="/quotes/delete/{{quote.id}}">Delete</a>
-    #     {% endif %}
-    # {% endfor %}
