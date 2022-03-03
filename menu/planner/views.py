@@ -159,14 +159,14 @@ def update_recipe(request, id):
         return redirect('/')
 
 # will run recipe through validator before creation 
-    errors = Recipe.objects.newRecipe_validator(request.POST)
+    errors = Recipe.objects.updateRecipe_validator(request.POST)
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
         return redirect('/planner/user_recipes/'+ str(id))
 
     else:
-        # if there are no errors, a new recipe will be created
+        # if there are no errors, recipe will be updated
         # will create an array of the ingredients by seperating the commas
         all_ingredients = []
         ingredient = ''
@@ -196,5 +196,5 @@ def update_recipe(request, id):
         to_edit.directions = all_directions,
         to_edit.save()
         messages.success(request, 'Recipe successfully updated!')
-        
-        return redirect('/planner/user_recipes/'+ str(id))
+
+        return redirect('/planner/all_recipes')

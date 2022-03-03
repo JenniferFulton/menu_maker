@@ -31,6 +31,34 @@ class RecipeManager(models.Manager):
         
         return errors
 
+    def updateRecipe_validator(self, postData):
+        errors = {}
+
+        if len(postData['new_title']) <= 3:
+            errors['new_title'] = 'Recipe title must be atleast 3 characters'
+        
+        if len(postData['new_description']) <= 10:
+            errors['new_description'] = "Recipe's description must have more than 10 characters"
+        
+        # if postData['new_prep']
+        # if postData['new_cook']
+
+        commas_inIngredients = []
+        for i in postData['new_ingredients']:
+            if i == ',':
+                commas_inIngredients.append(i)
+        if len(commas_inIngredients) == 0:
+            errors['new_ingredients'] = 'Please add commas between each ingredient'
+
+        commas_inDirections = []
+        for i in postData['new_directions']:
+            if i == ',':
+                commas_inDirections.append(i)
+        if len(commas_inDirections) == 0:
+            errors['new_directions'] = 'Please add commas between each direction'
+        
+        return errors
+
 class Recipe(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
