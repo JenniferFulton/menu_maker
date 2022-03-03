@@ -163,7 +163,7 @@ def update_recipe(request, id):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('/planner/user_recipes/'+ str(id))
+        return redirect('/planner/edit_recipe/' + str(id))
 
     else:
         # if there are no errors, recipe will be updated
@@ -188,13 +188,13 @@ def update_recipe(request, id):
         # create a new recipe
         to_edit = Recipe.objects.get(id=id)
         
-        to_edit.title = request.POST['new_title'],
-        to_edit.description = request.POST['new_description'],
-        to_edit.prep = request.POST['new_prep'],
-        to_edit.cook = request.POST['new_cook'],
-        to_edit.ingredients = all_ingredients,
-        to_edit.directions = all_directions,
+        to_edit.title = request.POST['new_title']
+        to_edit.description = request.POST['new_description']
+        to_edit.prep = request.POST['new_prep']
+        to_edit.cook = request.POST['new_cook']
+        to_edit.ingredients = all_ingredients
+        to_edit.directions = all_directions
         to_edit.save()
         messages.success(request, 'Recipe successfully updated!')
 
-        return redirect('/planner/all_recipes')
+        return redirect('/planner/edit_recipe/' + str(id))
