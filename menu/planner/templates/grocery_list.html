@@ -19,6 +19,9 @@
             <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
             <a href="/planner/favorite_recipes">Favorite Recipes</a>
+
+            <!-- logout route clears session and returns to login page (functioning) -->
+            <button onclick='location.href="/logout"'>Logout</button>
         </div>
         
         <h1>{{user.first_name}}'s Grocery List</h1>
