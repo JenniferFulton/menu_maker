@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Menu</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="nav_bar">
+            <h3>Menu Maker</h3>
+            <!-- Button will take user back to the home page -->
+            <button onclick='location.href="/planner"'>Home</button>
+
+            <!-- favorite_recipes will take the user to the recipes they have favorited -->
+            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- all_recipes will take you to all the recipes added by all users -->
+            <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
+            <!-- favorite_recipes will take the user to the recipes they have favorited -->
+            <a href="/planner/favorite_recipes">Favorite Recipes</a>
+
+            <!-- logout route clears session and returns to login page (functioning) -->
+            <button onclick='location.href="/logout"'>Logout</button>
+        </div>
+
+        <div class="menu">
+            <h2>Create a Menu For The Week</h2>
+            <form action="/planner/add_menu" method="POST">
+                {% csrf_token %}
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date">
+
+                <label for="mon">Monday:</label>
+                <select>
+                    {% for recipe in all_recipes %}
+                    <option>{{recipe.title}}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="mon">Tuesday:</label>
+                <select>
+                    {% for recipe in all_recipes %}
+                    <option>{{recipe.title}}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="mon">Wednesday:</label>
+                <select>
+                    {% for recipe in all_recipes %}
+                    <option>{{recipe.title}}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="mon">Thursday:</label>
+                <select>
+                    {% for recipe in all_recipes %}
+                    <option>{{recipe.title}}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="mon">Friday:</label>
+                <select>
+                    {% for recipe in all_recipes %}
+                    <option>{{recipe.title}}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="mon">Saturday:</label>
+                <select>
+                    {% for recipe in all_recipes %}
+                    <option>{{recipe.title}}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="mon">Sunday:</label>
+                <select>
+                    {% for recipe in all_recipes %}
+                    <option>{{recipe.title}}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

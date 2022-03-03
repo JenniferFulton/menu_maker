@@ -198,3 +198,25 @@ def update_recipe(request, id):
             messages.success(request, 'Recipe successfully updated!')
 
             return redirect('/planner/edit_recipe/' + str(id))
+
+def create_menu(request):
+    #planner/create_menu will render a page that has a form to make a new menu for the week
+    #Checks if user is logged in first
+    if 'user' not in request.session:
+        return redirect('/')
+    
+    active_user = User.objects.get(id = request.session['user'])
+    all_recipes = Recipe.objects.all()
+    context = {
+        'user': active_user,
+        'all_recipes': all_recipes
+    }
+    return render(request, 'create_menu.html', context)
+
+
+
+def add_menu(request, id):
+    #planne/add_menu Will add a menu
+    #Checks if user is logged in first
+    if 'user' not in request.session:
+        return redirect('/')
