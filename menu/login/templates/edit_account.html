@@ -13,14 +13,14 @@
         <h2>Edit My Account</h2>
 
         <div class = 'navigate'>
-            <!-- takes user back to their home page (functioning)-->
+            <!-- takes user back to their home page -->
             <a href="/planner">Back</a>
 
-            <!-- logout route clears session and returns to login page (functioning) -->
+            <!-- logout route clears session and returns to login page -->
             <button type="button"><a href="/logout">Logout</a></button>
         </div>
 
-        <!-- error messages will appear here (functioning)-->
+        <!-- error messages will appear here is user does not meet user requirements -->
         {% if messages %}
         <ul class='messages'>
             {% for message in messages %}
@@ -29,7 +29,7 @@
         </ul>
         {% endif %}  
         
-        <!-- Form where user can edit their account (functioning) -->
+        <!-- Form where user can edit their account -->
         <div class='edit_form'>
             <form action='/edit/{{user.id}}' method='POST'>
                 {% csrf_token %}

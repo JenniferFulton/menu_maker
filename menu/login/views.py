@@ -8,7 +8,7 @@ def registration_login(request):
     return render(request, 'reg_login.html')
 
 def registration(request):
-    #/registration will have a form for registration 
+    #/registration will have a form for user registration 
     return render(request, 'register.html')
 
 def register(request):
@@ -50,7 +50,7 @@ def login(request):
             return redirect('/success')
 
 def success(request):
-    #'/success' will redirect to examone app where the home page of the user will be with quotes
+    #'/success' will redirect to menu where the home page of the user will be with their menu for the week
     if 'user' not in request.session:
         return redirect('/')
     else:
@@ -61,7 +61,7 @@ def my_account(request,id):
     if 'user' not in request.session:
         return redirect('/')
 
-    #Takes users to page where they can edit, name and email
+    #Takes users to page where they can edit their profile
     logged_user = User.objects.get(id=id)
     context = {
         'user' : logged_user

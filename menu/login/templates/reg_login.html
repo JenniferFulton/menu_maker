@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration and Login</title>
+    <title>Login to Menu Maker</title>
     <!-- {% load static %}
     <link rel="stylesheet" href="{% static 'css/reg_log.css' %}">  -->
 </head>
-
 <body>
     <div id=wrapper>
-        <!-- will display any error messages if the user doesn't match username and password, or if they have not registered -->
+        <div class="title">
+            <h1>Welcome Back to Menu Maker</h1>
+            <h3>Lets get planning!</h3>
+        </div>
+
+        <!-- error messages will appear here if email and password don't match or user is not registered -->
         {% if messages %}
         <ul class='messages'>
             {% for message in messages %}
@@ -33,12 +37,13 @@
 
                 <input type='submit' value='Log In'>
             </form>
-
-            <!-- for new users to register -->
+        </div>
+            
+        <!-- for new users to register -->
+        <div class="register">
             <h3>New to Menu Maker?</h3>
             <button onclick='location.href="/registration"'>Register Here!</button>
         </div>
-
     </div>
 </body>
 </html>

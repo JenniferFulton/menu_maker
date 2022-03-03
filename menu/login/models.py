@@ -49,7 +49,7 @@ class UserManager(models.Manager):
         return errors
     
     def update_validator(self, postData):
-        #Validates user entry when they update their profile 
+    #Validates user entry when they update their profile 
         errors = {}
         check_user = User.objects.filter(email = postData['new_email'])
 
