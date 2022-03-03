@@ -4,11 +4,11 @@ from .models import *
 from django.contrib import messages
 
 def home_page(request):
-    #Checks if user is logged in
+    #planner/ route will redirect user to home page once logged in or registered
+    #Checks if user is logged in first 
     if 'user' not in request.session:
         return redirect('/')
     
-    #will be redirected to home page once logged in or registered
     active_user = User.objects.get(id = request.session['user'])
     context = {
         'user': active_user
@@ -16,11 +16,11 @@ def home_page(request):
     return render(request,'home_page.html', context)
 
 def groceries(request):
-    #Checks if user is logged in
+    # planner/grocery_list will redirect to page with grocery list on it
+    #Checks if user is logged in first
     if 'user' not in request.session:
         return redirect('/')
     
-    # will redirect to page with grocery list on it
     active_user = User.objects.get(id = request.session['user'])
     context = {
         'user' : active_user
@@ -29,11 +29,11 @@ def groceries(request):
     return render(request,'grocery_list.html', context)
 
 def user_recipes(request, id):
-    #Checks if user is logged in
+    #planner/user_recipes/id will redirect to a page, with a form to add another recipe, and display recipes user has added 
+    #Checks if user is logged in first
     if 'user' not in request.session:
         return redirect('/')
     
-    #will redirect to a page to all the recipes they have added, with a form to add another recipe
     user_info = User.objects.get(id = id)
     context = {
         'user' : user_info,
@@ -41,11 +41,11 @@ def user_recipes(request, id):
     return render(request,'user_recipes.html',context)
 
 def all_recipes(request):
-    #Checks if user is logged in
+    #planner/all_recipes will redirect to a page to all the recipes added by all users, with a form to add another recipe
+    #Checks if user is logged in first
     if 'user' not in request.session:
         return redirect('/')
     
-    #will redirect to a page to all the recipes added by all users, with a form to add another recipe
     active_user = User.objects.get(id = request.session['user'])
     all_recipes = Recipe.objects.all()
     user_recipes = active_user.recipes.all()
@@ -57,11 +57,11 @@ def all_recipes(request):
     return render(request,'all_recipes.html',context)
 
 def favorite_recipes(request):
-    #Checks if user is logged in
+    #planner/favorite_recipes will redirect to a page to all the recipes a user has favorited, with a form to add another recipe
+    #Checks if user is logged in first
     if 'user' not in request.session:
         return redirect('/')
     
-    #will redirect to a page to all the recipes they have favorited, with a form to add another recipe
     active_user = User.objects.get(id = request.session['user'])
     context = {
         'user' : active_user
@@ -69,12 +69,12 @@ def favorite_recipes(request):
     return render(request,'favorite_recipes.html',context)
     
 def add_recipe(request, id):
-    if request.method == "POST":
-        #Checks if user is logged in
-        if 'user' not in request.session:
-            return redirect('/')
+    #planner/add_recipe/id will add recipe after validations and redirect user to their recipes 
+    #Checks if user is logged in first 
+    if 'user' not in request.session:
+        return redirect('/')
 
-        # will run recipe through validator before creation 
+    if request.method == "POST":
         errors = Recipe.objects.newRecipe_validator(request.POST)
         if len(errors) > 0:
             for key, value in errors.items():
@@ -82,7 +82,6 @@ def add_recipe(request, id):
             return redirect('/planner/user_recipes/'+ str(id))
 
         else:
-            # if there are no errors, a new recipe will be created
             # will create an array of the ingredients by seperating the commas
             all_ingredients = []
             ingredient = ''
@@ -101,8 +100,7 @@ def add_recipe(request, id):
                 else:
                     all_directions.append(direction)
                     direction = ''
-            # create a new recipe
-            active_user = User.objects.get(id = request.session['user'])
+
             Recipe.objects.create(
                 title = request.POST['title'],
                 description = request.POST['description'],
@@ -111,22 +109,24 @@ def add_recipe(request, id):
                 ingredients = all_ingredients,
                 directions = all_directions,
             )
+            active_user = User.objects.get(id = request.session['user'])
             recipe_added = Recipe.objects.last()
             active_user.recipes.add(recipe_added)
             return redirect('/planner/user_recipes/'+ str(id))
 
 def delete_recipe(request, id):
-    #Checks if user is logged in
+    #planner/delete_recipe/id will delete a user's recipe (can only delete their own)
+    #Checks if user is logged in frist
     if 'user' not in request.session:
         return redirect('/')
 
-    #will delete a user's quote (can only delete their own)
     to_delete = Recipe.objects.get(id=id)
     to_delete.delete()
     return redirect('/planner/all_recipes')
 
 def recipe_info(request, id):
-    #Checks if user is logged in
+    #planner/recipe_info will diaply all info about a recipe
+    #Checks if user is logged in first
     if 'user' not in request.session:
         return redirect('/')
     
@@ -141,7 +141,8 @@ def recipe_info(request, id):
     return render(request, 'recipe_info.html', context)
 
 def edit_recipe(request, id):
-    #Checks if user is logged in
+    #planner/edit_recipe will render a page that has a form to edit a recipe (can only edit a recipe if they are the creator)
+    #Checks if user is logged in first
     if 'user' not in request.session:
         return redirect('/')
 
@@ -154,47 +155,46 @@ def edit_recipe(request, id):
     return render(request, 'edit_recipe.html', context)
 
 def update_recipe(request, id):
-    #Checks if user is logged in
+    #planner/update_recipe/id will update a recipe that is trying to be edited after running it thorugh validations
+    #Checks if user is logged in first
     if 'user' not in request.session:
         return redirect('/')
+    
+    if request.method == "POST":
+        errors = Recipe.objects.updateRecipe_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/planner/edit_recipe/' + str(id))
 
-# will run recipe through validator before creation 
-    errors = Recipe.objects.updateRecipe_validator(request.POST)
-    if len(errors) > 0:
-        for key, value in errors.items():
-            messages.error(request, value)
-        return redirect('/planner/edit_recipe/' + str(id))
+        else:
+            # will create an array of the ingredients by seperating the commas
+            all_ingredients = []
+            ingredient = ''
+            for i in (request.POST['new_ingredients']+ ','):
+                if i != ',':
+                    ingredient = ingredient + i
+                else:
+                    all_ingredients.append(ingredient)
+                    ingredient = ''
+            # will create an array of the directions by seperating the commas
+            all_directions = []
+            direction = ''
+            for i in (request.POST['new_directions']+ ','):
+                if i != ',':
+                    direction = direction + i
+                else:
+                    all_directions.append(direction)
+                    direction = ''
 
-    else:
-        # if there are no errors, recipe will be updated
-        # will create an array of the ingredients by seperating the commas
-        all_ingredients = []
-        ingredient = ''
-        for i in (request.POST['new_ingredients']+ ','):
-            if i != ',':
-                ingredient = ingredient + i
-            else:
-                all_ingredients.append(ingredient)
-                ingredient = ''
-        # will create an array of the directions by seperating the commas
-        all_directions = []
-        direction = ''
-        for i in (request.POST['new_directions']+ ','):
-            if i != ',':
-                direction = direction + i
-            else:
-                all_directions.append(direction)
-                direction = ''
-        # create a new recipe
-        to_edit = Recipe.objects.get(id=id)
-        
-        to_edit.title = request.POST['new_title']
-        to_edit.description = request.POST['new_description']
-        to_edit.prep = request.POST['new_prep']
-        to_edit.cook = request.POST['new_cook']
-        to_edit.ingredients = all_ingredients
-        to_edit.directions = all_directions
-        to_edit.save()
-        messages.success(request, 'Recipe successfully updated!')
+            to_edit = Recipe.objects.get(id=id)
+            to_edit.title = request.POST['new_title']
+            to_edit.description = request.POST['new_description']
+            to_edit.prep = request.POST['new_prep']
+            to_edit.cook = request.POST['new_cook']
+            to_edit.ingredients = all_ingredients
+            to_edit.directions = all_directions
+            to_edit.save()
+            messages.success(request, 'Recipe successfully updated!')
 
-        return redirect('/planner/edit_recipe/' + str(id))
+            return redirect('/planner/edit_recipe/' + str(id))
