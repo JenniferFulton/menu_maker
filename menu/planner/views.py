@@ -222,13 +222,13 @@ def add_menu(request, id):
     if request.method == "POST":
         Menu.objects.create(
             week_date = request.POST['week_date'],
-            mon = request.POST['mon'],
-            tues = request.POST['tues'],
-            wed = request.POST['wed'],
-            thrus = request.POST['thurs'],
-            fri = request.POST['fri'],
-            sat = request.POST['sat'],
-            sun = request.POST['sun'],
+            # mon = request.POST[],
+            # tues = request.POST[],
+            # wed = request.POST[],
+            # thrus = request.POST[],
+            # fri = request.POST[],
+            # sat = request.POST[],
+            # sun = request.POST[],
         )
 
         return redirect('/planner')
