@@ -1,16 +1,43 @@
+*{ 
+    margin: 0px;
+    padding: 0px;
+}
+
 #wrapper{
     padding: 40px;
-    display: flex;
-} */
+    width: auto;
+    height: auto;
+    background-color: rgba(196, 223, 247, 0.568);
+}
 
-.register{
-    width: 15%;
-    text-align: left;
-    margin-left: 10%;
+.title{
+    display: block;
+    margin-left: 35%;
+
 }
 
 .login{
-    width: 15%;
-    text-align: left;
-    margin-left: 100px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    margin-left: 40%;
+    width: 250px;
+    padding: 20px
+}
+
+h2{
+    margin-left: 60px;
+}
+
+input{
+    padding: 5px;
+    margin: 5px;
+}
+
+.register{
+    margin-left: 40%;
+    width: 250px;
+}
+
+button{
+    margin-left: 45px;
 }
