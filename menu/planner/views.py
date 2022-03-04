@@ -214,7 +214,7 @@ def create_menu(request):
     return render(request, 'create_menu.html', context)
 
 def add_menu(request, id):
-    #planne/add_menu Will add a menu
+    #planner/add_menu Will add a menu
     #Checks if user is logged in first
     if 'user' not in request.session:
         return redirect('/')
@@ -222,13 +222,13 @@ def add_menu(request, id):
     if request.method == "POST":
         Menu.objects.create(
             week_date = request.POST['week_date'],
-            # mon = request.POST[],
-            # tues = request.POST[],
-            # wed = request.POST[],
-            # thrus = request.POST[],
-            # fri = request.POST[],
-            # sat = request.POST[],
-            # sun = request.POST[],
-        )
+            mon = Recipe.objects.get(id=request.POST['mon']),
+            tues = Recipe.objects.get(id=request.POST['tues']),
+            wed = Recipe.objects.get(id=request.POST['wed']),
+            thrus = Recipe.objects.get(id=request.POST['thurs']),
+            fri = Recipe.objects.get(id=request.POST['fri']),
+            sat = Recipe.objects.get(id=request.POST['sat']),
+            sun = Recipe.objects.get(id=request.POST['sun']),
+            )
 
         return redirect('/planner')
