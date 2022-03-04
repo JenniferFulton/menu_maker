@@ -26,11 +26,11 @@
 
         <div class="menu">
             <h2>Create a Menu For The Week</h2>
-            <form action="/planner/add_menu" method="POST">
+            <form action="/planner/add_menu/{{user.id}}" method="POST">
                 {% csrf_token %}
 
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date">
+                <label for="week_date">Date:</label>
+                <input type="date" id="week_date" name="week_date">
 
                 <label for="mon">Monday:</label>
                 <select>
@@ -39,48 +39,48 @@
                     {% endfor %}
                 </select>
 
-                <label for="mon">Tuesday:</label>
+                <label for="tues">Tuesday:</label>
                 <select>
                     {% for recipe in all_recipes %}
                     <option>{{recipe.title}}</option>
                     {% endfor %}
                 </select>
 
-                <label for="mon">Wednesday:</label>
+                <label for="wed">Wednesday:</label>
                 <select>
                     {% for recipe in all_recipes %}
                     <option>{{recipe.title}}</option>
                     {% endfor %}
                 </select>
 
-                <label for="mon">Thursday:</label>
+                <label for="thurs">Thursday:</label>
                 <select>
                     {% for recipe in all_recipes %}
                     <option>{{recipe.title}}</option>
                     {% endfor %}
                 </select>
 
-                <label for="mon">Friday:</label>
+                <label for="fri">Friday:</label>
                 <select>
                     {% for recipe in all_recipes %}
                     <option>{{recipe.title}}</option>
                     {% endfor %}
                 </select>
 
-                <label for="mon">Saturday:</label>
+                <label for="sat">Saturday:</label>
                 <select>
                     {% for recipe in all_recipes %}
                     <option>{{recipe.title}}</option>
                     {% endfor %}
                 </select>
 
-                <label for="mon">Sunday:</label>
+                <label for="sun">Sunday:</label>
                 <select>
                     {% for recipe in all_recipes %}
                     <option>{{recipe.title}}</option>
                     {% endfor %}
 
-                <input type="submit" value="Add Menu"
+                <input type="submit" value="Add Menu">
                 </select>
             </form>
         </div>
