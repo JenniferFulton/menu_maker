@@ -10,8 +10,12 @@ def home_page(request):
         return redirect('/')
     
     active_user = User.objects.get(id = request.session['user'])
+    all_menus = Menu.objects.all()
+    menu = Menu.objects.last()
     context = {
-        'user': active_user
+        'user': active_user,
+        'all_menus' : all_menus,
+        'current_menu' : menu
     }
     return render(request,'home_page.html', context)
 
@@ -232,3 +236,12 @@ def add_menu(request, id):
             )
 
         return redirect('/planner')
+
+def view_menu(request, id):
+    #planner/view will allow user to add
+    #Checks if user is logged in first
+    if 'user' not in request.session:
+        return redirect('/')
+    
+    if request.method == "POST":
+        menu = Menu.objects.get(id=id)

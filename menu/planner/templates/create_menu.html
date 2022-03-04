@@ -35,6 +35,7 @@
                 <label for="mon">Monday:</label>
                 <select id="mon" name="mon">
                     {% for recipe in all_recipes %}
+                    <option></option>
                     <option value={{recipe.id}}>{{recipe.title}}</option>
                     {% endfor %}
                 </select>
