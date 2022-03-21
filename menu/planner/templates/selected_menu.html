@@ -44,13 +44,13 @@
                     <th>Sunday</th>
                 </thead>
                 <tbody>
-                    <td><a href = '/planner/recipe_info/{{current_menu.mon.id}}'>{{current_menu.mon.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{current_menu.tues.id}}'>{{current_menu.tues.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{current_menu.wed.id}}'>{{current_menu.wed.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{current_menu.thrus.id}}'>{{current_menu.thrus.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{current_menu.fri.id}}'>{{current_menu.fri.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{current_menu.sat.id}}'>{{current_menu.sat.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{current_menu.sun.id}}'>{{current_menu.sun.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{selected_menu.mon.id}}'>{{selected_menu.mon.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{selected_menu.tues.id}}'>{{selected_menu.tues.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{selectedt_menu.wed.id}}'>{{selected_menu.wed.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{selected_menu.thrus.id}}'>{{selected_menu.thrus.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{selected_menu.fri.id}}'>{{selected_menu.fri.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{selected_menu.sat.id}}'>{{selected_menu.sat.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{selected_menu.sun.id}}'>{{selected_menu.sun.title}}</a></td>
                 </tbody>
             </table>     
         </div>
@@ -58,16 +58,16 @@
         <button onclick='location.href="/planner/create_menu"'>Create New Menu</button>
         <button onclick='location.href="/planner/user_recipes/{{user.id}}"'>Browse Recipes</button>
 
-        <form action="/planner/view_menu/{{menu.id}}" method="POST">
+        <form action="planner/veiw_menu/{{menu.id}}" method="POST">
             <h3>Week of: <select>
                 {% for menu in all_menus %}
-                <p>{{menu.week_date}}</p>
+                    <option></option>
                     <option value="{{menu.id}}">{{menu.week_date}}</option>
                 {% endfor %}
             </select>
-            <input type="submit" value="View">
+            <input type="submit" value="View"> -->
         </form>
-
+        
         <!-- <div class="grocery_list">
             <h3>Grocery List:</h3>
             <ul>

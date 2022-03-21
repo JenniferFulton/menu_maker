@@ -244,4 +244,12 @@ def view_menu(request, id):
         return redirect('/')
     
     if request.method == "POST":
-        menu = Menu.objects.get(id=id)
+        selected_menu = Menu.objects.get(id=id)
+        active_user = User.objects.get(id = request.session['user'])
+        all_menus = Menu.objects.all()
+        context = {
+            'selected_menu' : selected_menu,
+            'user': active_user,
+            'all_menus' : all_menus,
+        }
+    return render(request, 'selected_menu.html', context)
