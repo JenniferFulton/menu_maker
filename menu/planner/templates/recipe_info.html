@@ -46,7 +46,7 @@
             </ol>
             {% for user in user_recipes %}
                 {% if user.id == recipe.id %}
-                    <a href="/planner/delete/{{recipe.id}}">Delete</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit</a>
+                    <a href="/planner/delete_recipe/{{recipe.id}}">Delete</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit</a>
                 {% endif %}
             {% endfor %}
         </div>

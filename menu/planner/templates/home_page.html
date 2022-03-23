@@ -5,16 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}"> 
 </head>
 <body>
     <div id="wrapper">
         <div class="nav_bar">
             <h3>Menu Maker</h3>
+            <!-- logout route clears session and returns to login page (functioning) -->
+            <button onclick='location.href="/logout"'>Logout</button>
             <!-- Button will take user back to the home page -->
             <button onclick='location.href="/planner"'>Home</button>
-            <!-- account route takes user to page to edit their account (functioning) -->
-            <a href='/account/{{user.id}}'>Edit Profile</a>
-
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
             <a href="/planner/all_recipes">All Recipes</a> |
             <!-- all_recipes will take you to all the recipes added by all users -->
@@ -22,14 +23,23 @@
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
             <a href="/planner/favorite_recipes">Favorite Recipes</a>
 
-            <!-- logout route clears session and returns to login page (functioning) -->
-            <button onclick='location.href="/logout"'>Logout</button>
         </div>
         
         <div class="title">
-            <h2>Welcome {{user.first_name}}!</h2>
+            <!-- account route takes user to page to edit their account (functioning) -->
+            <h2>Welcome <a href='/account/{{user.id}}'>{{user.first_name}}</a>!</h2>
             <p>Let's get planning</p>
         </div>
+
+        <form action="/planner/view_menu/{{menu.id}}" method="POST">
+            <h4>Week of: <select>
+                {% for menu in all_menus %}
+                <p>{{menu.week_date}}</p>
+                    <option value="{{menu.id}}">{{menu.week_date}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="View">
+        </form>
 
         <div class="week">
         <!-- this will display the week a looks view with the menu the user has select-->
@@ -58,15 +68,6 @@
         <button onclick='location.href="/planner/create_menu"'>Create New Menu</button>
         <button onclick='location.href="/planner/user_recipes/{{user.id}}"'>Browse Recipes</button>
 
-        <form action="/planner/view_menu/{{menu.id}}" method="POST">
-            <h3>Week of: <select>
-                {% for menu in all_menus %}
-                <p>{{menu.week_date}}</p>
-                    <option value="{{menu.id}}">{{menu.week_date}}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="View">
-        </form>
 
         <!-- <div class="grocery_list">
             <h3>Grocery List:</h3>
