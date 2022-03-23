@@ -54,3 +54,10 @@ button,form{
     text-align: center;
     text-emphasis: bold;
 }
+
+img{
+    border-radius: 8px;
+    width: 285px;
+    height: 269px;
+    margin-top: 30px;
+}
