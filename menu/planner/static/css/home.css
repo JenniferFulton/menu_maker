@@ -25,8 +25,53 @@ a{
     color: rgba(44, 79, 109, 0.699);
 }
 
+p{
+    margin-bottom: 10px;
+}
+
+.home{
+    margin-right: 30px;
+}
+
+h3{
+    display: inline;
+    margin-right: 75%;
+}
+
+.title{
+    text-align: center;
+    margin-top: 40px;
+}
+
+h2{
+    font-size: 40px;
+}
+
+img{
+    border-radius: 8px;
+    width: 285px;
+    height: 269px;
+    margin-top: 30px;
+}
+
+h4{
+    margin-left: 45px;
+}
+
+form{
+    margin-left: 43%;
+    margin-top: 20px;
+}
+
 table, th, td {
     border: 1px solid;
     padding: 10px;
     text-align: center;
+    margin: 10px;
+    margin-left: 23%;
+}
+
+.buttons{
+    margin-top: 20px;
+    margin-left: 33%;
 }

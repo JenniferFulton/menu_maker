@@ -14,25 +14,31 @@
             <h3>Menu Maker</h3>
             <!-- logout route clears session and returns to login page (functioning) -->
             <button onclick='location.href="/logout"'>Logout</button>
-            <!-- Button will take user back to the home page -->
-            <button onclick='location.href="/planner"'>Home</button>
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- <a href="/planner/all_recipes">All Recipes</a> | -->
             <!-- all_recipes will take you to all the recipes added by all users -->
-            <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
+            <!-- <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> | -->
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <a href="/planner/favorite_recipes">Favorite Recipes</a>
-
+            <!-- <a href="/planner/favorite_recipes">Favorite Recipes</a> -->
         </div>
         
         <div class="title">
             <!-- account route takes user to page to edit their account (functioning) -->
             <h2>Welcome <a href='/account/{{user.id}}'>{{user.first_name}}</a>!</h2>
             <p>Let's get planning</p>
+            <!-- Button will take user back to the home page -->
+            <button class="home" onclick='location.href="/planner"'>Home</button>
+        </div>
+
+        <div class="images">
+            <img src="{% static 'media/creamy_chicken.png' %}" alt="Creamy Chicken in Skillet">
+            <img src="{% static 'media/dumplings.png' %}" alt="Sesame Dumplings">
+            <img src="{% static 'media/avo_chicken.png' %}" alt="Grilled Chicken with Avocado Salsa">
+            <img src="{% static 'media/meatballs.png' %}" alt="Cheesey Meatballs">
         </div>
 
         <form action="/planner/view_menu/{{menu.id}}" method="POST">
-            <h4>Week of: <select>
+            <h4>Week of:</h4> <select>
                 {% for menu in all_menus %}
                 <p>{{menu.week_date}}</p>
                     <option value="{{menu.id}}">{{menu.week_date}}</option>
@@ -65,8 +71,12 @@
             </table>     
         </div>
 
-        <button onclick='location.href="/planner/create_menu"'>Create New Menu</button>
-        <button onclick='location.href="/planner/user_recipes/{{user.id}}"'>Browse Recipes</button>
+        <div class="buttons">
+            <button onclick='location.href="/planner/create_menu"'>Create New Menu</button>
+            <button onclick='location.href="/planner/user_recipes/{{user.id}}"'>Browse Recipes</button>
+        </div>
+
+        
 
 
         <!-- <div class="grocery_list">
