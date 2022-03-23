@@ -23,5 +23,48 @@ button,form{
 .messages{
     color:rgb(185, 58, 58);
     text-align: center;
-    text-emphasis: bold;
+    font-weight: 400px;
+
+}
+
+p{
+    text-decoration: underline;
+}
+
+img{
+    border-radius: 8px;
+    width: 285px;
+    height: 269px;
+    margin-top: 30px;
+}
+
+h1{
+    font-size: 50px;
+    /* text-align: center; */
+}
+
+.title{
+    text-align: center;
+}
+
+.register{
+    height: 310px;
+    width: 327px;
+    padding: 10px;
+    text-align: center;
+    margin-left: 33%;
+    margin-top: 20px;
+}
+
+form{
+    padding:20px
+}
+
+input{
+    padding: 5px;
+    margin: 5px;
+}
+
+button{
+    margin-left: 45%;
 }

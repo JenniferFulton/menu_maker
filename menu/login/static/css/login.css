@@ -20,7 +20,7 @@
 
 .login{
     margin-top: 60px;
-    margin-bottom: 40px;
+    margin-bottom: 5px;
     margin-left: 35%;
     width: 250px;
     padding: 10px;
@@ -37,6 +37,7 @@ input{
 }
 
 .register{
+    margin-top: 15px;
     text-align: center;
     margin-left: 33%;
     width: 305px;
@@ -54,7 +55,8 @@ button,form{
 .messages{
     color:rgb(185, 58, 58);
     text-align: center;
-    text-emphasis: bold;
+    margin-bottom: 10px;
+    
 }
 
 img{
