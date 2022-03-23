@@ -52,6 +52,7 @@ img{
     width: 285px;
     height: 269px;
     margin-top: 30px;
+    padding: 10px;
 }
 
 h4{
@@ -69,6 +70,7 @@ table, th, td {
     text-align: center;
     margin: 10px;
     margin-left: 23%;
+    margin-right: 23%;
 }
 
 .buttons{
