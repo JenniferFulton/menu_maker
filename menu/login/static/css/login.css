@@ -8,27 +8,26 @@
     width: auto;
     height: 2000px;
     background-color: rgba(122, 169, 211, 0.568);
+    font-family: Gurmukhi MN;
+    color: rgb(64, 93, 119);
 }
 
 .title{
     display: block;
     margin-left: 35%;
-    font-family: Gurmukhi MN;
 
 }
 
 .login{
     margin-top: 60px;
     margin-bottom: 40px;
-    margin-left: 40%;
+    margin-left: 35%;
     width: 250px;
-    padding: 20px;
-    font-family: Gurmukhi MN;
+    padding: 10px;
 }
 
 h2{
     margin-left: 60px;
-    color: blue;
 }
 
 input{
@@ -41,6 +40,17 @@ input{
     width: 250px;
 }
 
-button{
+button,form{
+    color: whitesmoke;
+    background-color:rgb(64, 93, 119);
+    padding: 5px 20px;
+    text-align: center;
+    border-radius: 4px;
     margin-left: 45px;
+}
+
+.messages{
+    color:rgb(185, 58, 58);
+    text-align: center;
+    text-emphasis: bold;
 }

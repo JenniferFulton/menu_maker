@@ -5,25 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}"> 
 </head>
 <body>
     <div id=wrapper>
         <div class='register'>
             <div class="title">
-                <h2>Welcome to Menu Maker!</h2>
+                <h1>Welcome to Menu Maker!</h1>
                 <h3>***DESCRIPTION OF PROJECT***</h3>
                 <p>To Join Register Below</p>
             </div>
-        
-            <!-- will display messages if user does not meet registration requirements -->
-            {% if messages %}
-            <ul class='messages'>
-                {% for message in messages %}
-                    <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-                {% endfor %}    
-            </ul>
-            {% endif %}
-        
 
             <!-- take user back to login page -->
             <button onclick='location.href="/"'>Back</button>
@@ -49,6 +41,15 @@
                 <input type='submit' value='Register'>
             </form>
         </div>
+
+        <!-- will display messages if user does not meet registration requirements -->
+        {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+            {% endfor %}    
+        </ul>
+        {% endif %}
     </div>
 </body>
 </html>

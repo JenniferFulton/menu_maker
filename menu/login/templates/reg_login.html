@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login to Menu Maker</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/reg_log.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/login.css' %}"> 
 </head>
 <body>
     <div id=wrapper>
@@ -14,15 +14,6 @@
             <h1>Welcome Back to Menu Maker</h1>
             <h3>Lets get planning!</h3>
         </div>
-
-        <!-- error messages will appear here if email and password don't match or user is not registered -->
-        {% if messages %}
-        <ul class='messages'>
-            {% for message in messages %}
-                <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-            {% endfor %}    
-        </ul>
-        {% endif %}
 
         <div class='login'>
             <!-- login form -->
@@ -38,10 +29,19 @@
                 <input type='submit' value='Log In'>
             </form>
         </div>
+
+        <!-- error messages will appear here if email and password don't match or user is not registered -->
+        {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+            {% endfor %}    
+        </ul>
+        {% endif %}
             
         <!-- for new users to register -->
         <div class="register">
-            <h3>New to Menu Maker?</h3>
+            <h2>New to Menu Maker?</h2>
             <button onclick='location.href="/registration"'>Register Here!</button>
         </div>
     </div>
