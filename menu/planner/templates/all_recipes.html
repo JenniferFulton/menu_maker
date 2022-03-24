@@ -64,13 +64,13 @@
         <h2>All Recipes on Menu Maker</h2>
         {% for recipe in all_recipes %}
         <div class="recipe">
-            <h3>{{recipe.title}}</h3>
+            <h4>{{recipe.title}}</h4>
             <p>{{recipe.description}}</p>
             <!-- Link to view recipe (functioning) -->
             <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a>  
             {% for user in user_recipes %}
                 {% if user.id == recipe.id %}
-                    | <a href="/planner/delete_recipe/{{recipe.id}}">Delete</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit</a>
+                    | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit</a>
                 {% endif %}
             {% endfor %}
         </div>

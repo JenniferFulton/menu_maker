@@ -5,21 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/all_recipes.css' %}"> 
 </head>
 <body>
     <div id="wrapper">
         <div class="nav_bar">
             <h3>Menu Maker</h3>
-            <!-- Button will take user back to the home page -->
-            <button onclick='location.href="/planner"'>Home</button>
-
-            <!-- all_recipes will take you to all the recipes added by all users -->
-            <a href="/planner/all_recipes">All Recipes</a> |
-            <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <a href="/planner/favorite_recipes">Favorite Recipes</a>
-
             <!-- logout route clears session and returns to login page (functioning) -->
             <button onclick='location.href="/logout"'>Logout</button>
+        </div>
+        
+        <div class="recipe_nav">
+            <!-- favorite_recipes will take the user to the recipes they have favorited -->
+            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- all_recipes will take you to all the recipes added by all users -->
+            <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
+            <!-- favorite_recipes will take the user to the recipes they have favorited -->
+            <a href="/planner/favorite_recipes">Favorite Recipes</a>
+            <!-- Button will take user back to the home page -->
+        </div>
+        <button class="home" onclick='location.href="/planner"'>Home</button>
+
+        <div class="images">
+            <img src="{% static 'media/buffalo.png' %}" alt="Buffalo Chicken Sandwich">
+            <img src="{% static 'media/teriyaki.png' %}" alt="Teriyaki Noodles with Chicken">
+            <img src="{% static 'media/toastada.png' %}" alt="Toastadas">
+            <img src="{% static 'media/gnocchi.png' %}" alt="Creamy Gnocchi Soup">
         </div>
 
         <!-- error messages will appear here-->
@@ -58,8 +70,8 @@
             </form>
         </div>
 
+        <h2>{{user.first_name}}'s Recipes</h2>
         <div class="recipe">
-            <h2>{{user.first_name}}'s Recipes</h2>
             {% for recipe in user.recipes.all %}
                 <h3>{{recipe.title}}</h3>
                 <p>{{recipe.description}}</p>

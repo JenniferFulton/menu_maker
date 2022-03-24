@@ -6,7 +6,7 @@
 #wrapper{
     padding: 40px;
     width: auto;
-    height: 2000px;
+    height: auto;
     background-color: rgba(122, 169, 211, 0.568);
     font-family: Gurmukhi MN;
     color: rgb(64, 93, 119);
@@ -64,4 +64,20 @@ img{
 h2{
     text-align: center;
     text-decoration: underline;
+}
+
+.recipe{
+    border-style: solid;
+    text-align: center;
+    margin: 20px;
+    height: auto;
+    width: 500px;
+    padding: 15px;
+    background-color:rgba(64, 93, 119, 0.315);
+    margin-left: 28%;
+}
+
+h4{
+    font-size: 20px;
+    color: rgb(44, 65, 83);
 }
