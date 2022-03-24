@@ -5,19 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Account</title>
-    <!-- {% load static %}
-    <link rel="stylesheet" href="{% static 'css/edit.css' %}">   -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/edit.css' %}">  
 </head>
 <body>
     <div id=wrapper>
-        <h2>Edit My Account</h2>
+        <div class="nav_bar">
+            <h3>Menu Maker</h3>
+            <!-- logout route clears session and returns to login page (functioning) -->
+            <button onclick='location.href="/logout"'>Logout</button>
+        </div>
+        
+        <div class="title">
+            <!-- account route takes user to page to edit their account (functioning) -->
+            <h2>Welcome <a href='/account/{{user.id}}'>{{user.first_name}}</a>!</h2>
+            <p>Edit your account</p>
+            <!-- Button will take user back to the home page -->
+            <button class="home" onclick='location.href="/planner"'>Home</button>
+        </div>
 
-        <div class = 'navigate'>
-            <!-- takes user back to their home page -->
-            <a href="/planner">Back</a>
-
-            <!-- logout route clears session and returns to login page -->
-            <button type="button"><a href="/logout">Logout</a></button>
+        <div class="images">
+            <img src="{% static 'media/creamy_chicken.png' %}" alt="Creamy Chicken in Skillet">
+            <img src="{% static 'media/dumplings.png' %}" alt="Sesame Dumplings">
+            <img src="{% static 'media/avo_chicken.png' %}" alt="Grilled Chicken with Avocado Salsa">
+            <img src="{% static 'media/meatballs.png' %}" alt="Cheesey Meatballs">
         </div>
 
         <!-- error messages will appear here is user does not meet user requirements -->
