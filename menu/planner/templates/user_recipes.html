@@ -71,14 +71,13 @@
         </div>
 
         <h2>{{user.first_name}}'s Recipes</h2>
+        {% for recipe in user.recipes.all %}
         <div class="recipe">
-            {% for recipe in user.recipes.all %}
-                <h3>{{recipe.title}}</h3>
+                <h4>{{recipe.title}}</h4>
                 <p>{{recipe.description}}</p>
-
                 <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit Recipe</a> | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a>
-            {% endfor %}
         </div>
+        {% endfor %}
 </div>
 </body>
 </html>
