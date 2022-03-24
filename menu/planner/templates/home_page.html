@@ -14,12 +14,6 @@
             <h3>Menu Maker</h3>
             <!-- logout route clears session and returns to login page (functioning) -->
             <button onclick='location.href="/logout"'>Logout</button>
-            <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <!-- <a href="/planner/all_recipes">All Recipes</a> | -->
-            <!-- all_recipes will take you to all the recipes added by all users -->
-            <!-- <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> | -->
-            <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <!-- <a href="/planner/favorite_recipes">Favorite Recipes</a> -->
         </div>
         
         <div class="title">
@@ -31,10 +25,10 @@
         </div>
 
         <div class="images">
-            <img src="{% static 'media/creamy_chicken.png' %}" alt="Creamy Chicken in Skillet">
-            <img src="{% static 'media/dumplings.png' %}" alt="Sesame Dumplings">
-            <img src="{% static 'media/avo_chicken.png' %}" alt="Grilled Chicken with Avocado Salsa">
-            <img src="{% static 'media/meatballs.png' %}" alt="Cheesey Meatballs">
+            <img src="{% static 'media/lemon_chick.png' %}" alt="Creamy Lemon Skillet Chicken">
+            <img src="{% static 'media/dimsum.png' %}" alt="Green Onion Dimsum">
+            <img src="{% static 'media/tacos.png' %}" alt="Pork Tacos">
+            <img src="{% static 'media/pasta.png' %}" alt="Pasta Carbonara">
         </div>
 
         <form action="/planner/view_menu/{{menu.id}}" method="POST">
