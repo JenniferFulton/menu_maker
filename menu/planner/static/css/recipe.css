@@ -43,8 +43,10 @@ h3{
 /* ABOVE WILL BE STANDARD FOR ALL PAGES */
 
 .recipe{
-    margin-left: 35%;
+    margin-left: 27%;
     margin-top: 50px;
+    height: auto;
+    width: 460px;
 }
 
 h1{
@@ -54,5 +56,21 @@ h1{
 
 img{
     height: 200px;
-    opacity: 0.5%;
+    opacity: 50%;
+    padding: 15px;
+    margin-left: 112px;
+}
+
+ul,ol,p{
+    margin-left: 15%;
+}
+
+h5{
+    margin-top: 40px;
+    margin-left: 70px;
+    font-size: 20px;
+}
+
+ol{
+    margin-bottom: 40px;
 }
