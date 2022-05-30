@@ -74,6 +74,7 @@ class Recipe(models.Model):
     ingredients = models.TextField()
     directions = models.TextField()
     entry = models.ManyToManyField(User,related_name= "recipes")
+    favorite = models.ManyToManyField(User,related_name="liked")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = RecipeManager()

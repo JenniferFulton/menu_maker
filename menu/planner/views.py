@@ -203,6 +203,15 @@ def update_recipe(request, id):
 
             return redirect('/planner/edit_recipe/' + str(id))
 
+def add_favorite(request,id):
+    if 'user' not in request.session:
+        return redirect('/')
+
+    active_user = User.objects.get(id = request.session['user'])
+    liked_recipe = Recipe.objects.get(id=id)
+    active_user.liked.add(liked_recipe)
+    return redirect('/planner/favorite_recipes')
+
 def create_menu(request):
     #planner/create_menu will render a page that has a form to make a new menu for the week
     #Checks if user is logged in first
