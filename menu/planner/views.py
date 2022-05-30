@@ -210,7 +210,7 @@ def add_favorite(request,id):
     active_user = User.objects.get(id = request.session['user'])
     liked_recipe = Recipe.objects.get(id=id)
     active_user.liked.add(liked_recipe)
-    return redirect('/planner/favorite_recipes')
+    return redirect('/planner/all_recipes')
 
 def create_menu(request):
     #planner/create_menu will render a page that has a form to make a new menu for the week
@@ -245,7 +245,7 @@ def add_menu(request, id):
             )
 
         active_user = User.objects.get(id = request.session['user'])
-        menu_added = Recipe.objects.last()
+        menu_added = Menu.objects.last()
         active_user.menus.add(menu_added)
         return redirect('/planner')
 
