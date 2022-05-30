@@ -68,6 +68,7 @@
             <p>{{recipe.description}}</p>
             <!-- Link to view recipe (functioning) -->
             <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a>  
+            <button class="like" onclick='location.href="/planner/add_favorite/{{recipe.id}}"'>Like</button>
             {% for user in user_recipes %}
                 {% if user.id == recipe.id %}
                     | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit</a>
