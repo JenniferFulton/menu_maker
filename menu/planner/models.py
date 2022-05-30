@@ -88,6 +88,7 @@ class Menu(models.Model):
     fri = models.ForeignKey(Recipe, related_name="fri_menus", null=True, on_delete=None)
     sat = models.ForeignKey(Recipe, related_name="sat_menus", null=True, on_delete=None)
     sun = models.ForeignKey(Recipe, related_name="sun_menus", null=True, on_delete=None)
+    menu_created = models.ManyToManyField(User, related_name="menus")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = MenuManager()

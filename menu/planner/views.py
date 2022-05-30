@@ -244,6 +244,9 @@ def add_menu(request, id):
             sun = Recipe.objects.get(id=request.POST['sun']),
             )
 
+        active_user = User.objects.get(id = request.session['user'])
+        menu_added = Recipe.objects.last()
+        active_user.menus.add(menu_added)
         return redirect('/planner')
 
 def view_menu(request, id):
