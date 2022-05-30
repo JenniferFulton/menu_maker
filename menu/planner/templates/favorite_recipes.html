@@ -61,9 +61,14 @@
             </form>
         </div>
 
+        <h2>{{user.first_name}}'s Favorite Recipes</h2>
+        {% for recipe in user.liked.all %}
         <div class="recipe">
-            <h2>{{user.first_name}}'s Favorite Recipes</h2>
+                <h4>{{recipe.title}}</h4>
+                <p>{{recipe.description}}</p>
+                <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> 
         </div>
+        {% endfor %}
     </div>
 </body>
 </html>
