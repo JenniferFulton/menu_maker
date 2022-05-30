@@ -65,9 +65,10 @@
         {% for recipe in all_recipes %}
         <div class="recipe">
             <h4>{{recipe.title}}</h4>
+            <button class="like" onclick='location.href="/planner/add_favorite/{{recipe.id}}"'>Like</button>
             <p>{{recipe.description}}</p>
             <!-- Link to view recipe (functioning) -->
-            <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> | <a class="like" href="/planner/add_favorite/{{recipe.id}}">Like</a>
+            <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a>
             {% for user in user_recipes %}
                 {% if user.id == recipe.id %}
                     | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit</a>
