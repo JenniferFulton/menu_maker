@@ -24,19 +24,6 @@ def home_page(request):
     }
     return render(request,'home_page.html', context)
 
-def groceries(request):
-    # planner/grocery_list will redirect to page with grocery list on it
-    #Checks if user is logged in first
-    if 'user' not in request.session:
-        return redirect('/')
-    
-    active_user = User.objects.get(id = request.session['user'])
-    context = {
-        'user' : active_user
-        # all ingredients for the week will be here
-    }
-    return render(request,'grocery_list.html', context)
-
 def user_recipes(request, id):
     #planner/user_recipes/id will redirect to a page, with a form to add another recipe, and display recipes user has added 
     #Checks if user is logged in first
@@ -284,3 +271,16 @@ def view_menu(request, id):
             'all_menus' : all_menus,
         }
         return render(request, 'selected_menu.html', context)
+
+def groceries(request):
+# planner/grocery_list will redirect to page with grocery list on it
+#Checks if user is logged in first
+    if 'user' not in request.session:
+        return redirect('/')
+
+    active_user = User.objects.get(id = request.session['user'])
+    context = {
+        'user' : active_user
+        # all ingredients for the week will be here
+    }
+    return render(request,'grocery_list.html', context)
