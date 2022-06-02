@@ -32,10 +32,10 @@
         </div>
 
         <form action="/planner/view_menu/{{menu.id}}" method="POST">
-            <h4>Week of:</h4> <select>
-                {% for menu in all_menus %}
-                <p>{{menu.week_date}}</p>
-                    <option value="{{menu.id}}">{{menu.week_date}}</option>
+            <h4>Week of:</h4>
+            <select>
+                {% for menu in user.menus.all %}
+                <option value={{menu.id}}>{{menu.week_date}}</option>
                 {% endfor %}
             </select>
             <input type="submit" value="View">
@@ -69,18 +69,6 @@
             <button onclick='location.href="/planner/create_menu"'>Create New Menu</button>
             <button onclick='location.href="/planner/user_recipes/{{user.id}}"'>Browse Recipes</button>
         </div>
-
-        
-
-
-        <!-- <div class="grocery_list">
-            <h3>Grocery List:</h3>
-            <ul>
-                <li>Loop through items on the list</li>
-            </ul>
-            <button>Quick Add</button>
-            <button onclick='location.href="/planner/grocery_list"'>See Full List</button>
-        </div> -->
 
     </div>
 </body>

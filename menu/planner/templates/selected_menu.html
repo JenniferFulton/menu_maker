@@ -5,31 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}"> 
 </head>
 <body>
     <div id="wrapper">
         <div class="nav_bar">
             <h3>Menu Maker</h3>
-            <!-- Button will take user back to the home page -->
-            <button onclick='location.href="/planner"'>Home</button>
-            <!-- account route takes user to page to edit their account (functioning) -->
-            <a href='/account/{{user.id}}'>Edit Profile</a>
-
-            <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <a href="/planner/all_recipes">All Recipes</a> |
-            <!-- all_recipes will take you to all the recipes added by all users -->
-            <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
-            <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <a href="/planner/favorite_recipes">Favorite Recipes</a>
-
             <!-- logout route clears session and returns to login page (functioning) -->
             <button onclick='location.href="/logout"'>Logout</button>
         </div>
         
         <div class="title">
-            <h2>Welcome {{user.first_name}}!</h2>
+            <!-- account route takes user to page to edit their account (functioning) -->
+            <h2>Welcome <a href='/account/{{user.id}}'>{{user.first_name}}</a>!</h2>
             <p>Let's get planning</p>
+            <!-- Button will take user back to the home page -->
+            <button class="home" onclick='location.href="/planner"'>Home</button>
         </div>
+
+        <div class="images">
+            <img src="{% static 'media/lemon_chick.png' %}" alt="Creamy Lemon Skillet Chicken">
+            <img src="{% static 'media/dimsum.png' %}" alt="Green Onion Dimsum">
+            <img src="{% static 'media/tacos.png' %}" alt="Pork Tacos">
+            <img src="{% static 'media/pasta.png' %}" alt="Pasta Carbonara">
+        </div>
+
+        <form action="/planner/view_menu/{{menu.id}}" method="POST">
+            <h4>Week of:</h4>
+            <select>
+                {% for menu in user.menus.all %}
+                <option value={{menu.id}}>{{menu.week_date}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="View">
+        </form>
 
         <div class="week">
         <!-- this will display the week a looks view with the menu the user has select-->
@@ -44,30 +54,25 @@
                     <th>Sunday</th>
                 </thead>
                 <tbody>
-                    <td><a href = '/planner/recipe_info/{{selected_menu.mon.id}}'>{{selected_menu.mon.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{selected_menu.tues.id}}'>{{selected_menu.tues.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{selectedt_menu.wed.id}}'>{{selected_menu.wed.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{selected_menu.thrus.id}}'>{{selected_menu.thrus.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{selected_menu.fri.id}}'>{{selected_menu.fri.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{selected_menu.sat.id}}'>{{selected_menu.sat.title}}</a></td>
-                    <td><a href = '/planner/recipe_info/{{selected_menu.sun.id}}'>{{selected_menu.sun.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{current_menu.mon.id}}'>{{current_menu.mon.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{current_menu.tues.id}}'>{{current_menu.tues.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{current_menu.wed.id}}'>{{current_menu.wed.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{current_menu.thrus.id}}'>{{current_menu.thrus.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{current_menu.fri.id}}'>{{current_menu.fri.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{current_menu.sat.id}}'>{{current_menu.sat.title}}</a></td>
+                    <td><a href = '/planner/recipe_info/{{current_menu.sun.id}}'>{{current_menu.sun.title}}</a></td>
                 </tbody>
             </table>     
         </div>
 
-        <button onclick='location.href="/planner/create_menu"'>Create New Menu</button>
-        <button onclick='location.href="/planner/user_recipes/{{user.id}}"'>Browse Recipes</button>
+        <div class="buttons">
+            <button onclick='location.href="/planner/create_menu"'>Create New Menu</button>
+            <button onclick='location.href="/planner/user_recipes/{{user.id}}"'>Browse Recipes</button>
+        </div>
 
-        <form action="planner/veiw_menu/{{menu.id}}" method="POST">
-            <h3>Week of: <select>
-                {% for menu in all_menus %}
-                    <option></option>
-                    <option value="{{menu.id}}">{{menu.week_date}}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="View"> -->
-        </form>
         
+
+
         <!-- <div class="grocery_list">
             <h3>Grocery List:</h3>
             <ul>

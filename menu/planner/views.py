@@ -2,12 +2,16 @@ from django.shortcuts import render, redirect
 from login.models import *
 from .models import *
 from django.contrib import messages
+import requests
 
 def home_page(request):
     #planner/ route will redirect user to home page once logged in or registered
     #Checks if user is logged in first 
     if 'user' not in request.session:
         return redirect('/')
+
+    # response = requests.get('https://maps.googleapis.com/maps/api/place/textsearch/json?query=grocery%20in%20Wilmington&key=')
+    # data = response.json()
     
     active_user = User.objects.get(id = request.session['user'])
     all_menus = Menu.objects.all()
@@ -15,7 +19,8 @@ def home_page(request):
     context = {
         'user': active_user,
         'all_menus' : all_menus,
-        'current_menu' : menu
+        'current_menu' : menu,
+        # 'grocery_name': data["business_status"]
     }
     return render(request,'home_page.html', context)
 
@@ -118,6 +123,17 @@ def add_recipe(request, id):
             active_user.recipes.add(recipe_added)
             return redirect('/planner/user_recipes/'+ str(id))
 
+# def remove_recipe(request, id):
+#     #Will remove the relationship between Recipe and User before deleting 
+#     #Checks if user is logged in frist
+#     if 'user' not in request.session:
+#         return redirect('/')
+
+#     to_delete = Recipe.objects.get(id=id)
+#     active_user = User.objects.get(id = request.session['user'])
+#     to_delete.entry.remove(active_user)
+#     return redirect('/planner/delete_recipe/' + str(id))
+
 def delete_recipe(request, id):
     #planner/delete_recipe/id will delete a user's recipe (can only delete their own)
     #Checks if user is logged in frist
@@ -125,6 +141,7 @@ def delete_recipe(request, id):
         return redirect('/')
 
     to_delete = Recipe.objects.get(id=id)
+    print(type(to_delete))
     to_delete.delete()
     return redirect('/planner/all_recipes')
 
@@ -204,6 +221,8 @@ def update_recipe(request, id):
             return redirect('/planner/edit_recipe/' + str(id))
 
 def add_favorite(request,id):
+    # Will add a recipe to user's favorited recipes
+    #Checks if user is logged in first
     if 'user' not in request.session:
         return redirect('/')
 
@@ -256,12 +275,12 @@ def view_menu(request, id):
         return redirect('/')
     
     if request.method == "POST":
-        selected_menu = Menu.objects.get(id=id)
+        current_menu = Menu.objects.get(id=id)
         active_user = User.objects.get(id = request.session['user'])
         all_menus = Menu.objects.all()
         context = {
-            'selected_menu' : selected_menu,
+            'current_menu' : current_menu,
             'user': active_user,
             'all_menus' : all_menus,
         }
-    return render(request, 'selected_menu.html', context)
+        return render(request, 'selected_menu.html', context)
