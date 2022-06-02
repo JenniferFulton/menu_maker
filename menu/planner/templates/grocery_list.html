@@ -12,25 +12,20 @@
     <div id="wrapper">
         <div class="nav_bar">
             <h3>Menu Maker</h3>
-            <!-- Button will take user back to the home page -->
-            <button onclick='location.href="/planner"'>Home</button>
-
+            <!-- logout route clears session and returns to login page (functioning) -->
+            <button onclick='location.href="/logout"'>Logout</button>
+        </div>
+        
+        <div class="recipe_nav">
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
             <a href="/planner/all_recipes">All Recipes</a> |
             <!-- all_recipes will take you to all the recipes added by all users -->
             <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
             <a href="/planner/favorite_recipes">Favorite Recipes</a>
-
-            <!-- logout route clears session and returns to login page (functioning) -->
-            <button onclick='location.href="/logout"'>Logout</button>
+            <!-- Button will take user back to the home page -->
         </div>
-        
-        <h1>{{user.first_name}}'s Grocery List</h1>
-        <div class="list">
-            <!-- grocery list will go here -->
-        </div>
-
+        <button class="home" onclick='location.href="/planner"'>Home</button>
     </div>
 </body>
 </html>
