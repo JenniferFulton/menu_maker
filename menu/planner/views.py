@@ -9,20 +9,28 @@ def home_page(request):
     #Checks if user is logged in first 
     if 'user' not in request.session:
         return redirect('/')
-
-    # response = requests.get('https://maps.googleapis.com/maps/api/place/textsearch/json?query=grocery%20in%20Wilmington&key=')
-    # data = response.json()
     
     active_user = User.objects.get(id = request.session['user'])
-    all_menus = Menu.objects.all()
     menu = Menu.objects.last()
     context = {
         'user': active_user,
-        'all_menus' : all_menus,
         'current_menu' : menu,
-        # 'grocery_name': data["business_status"]
     }
     return render(request,'home_page.html', context)
+
+def view_menu(request):
+    #Checks if user is logged in first 
+    if 'user' not in request.session:
+        return redirect('/')
+
+    if request.method == "POST":
+        active_user = User.objects.get(id = request.session['user'])
+        menu = Menu.objects.get(id = request.POST['view_menu'])
+        context = {
+            'user': active_user,
+            'current_menu' : menu,
+        }
+        return render(request,'selected_menu.html', context)
 
 def user_recipes(request, id):
     #planner/user_recipes/id will redirect to a page, with a form to add another recipe, and display recipes user has added 

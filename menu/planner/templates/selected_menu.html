@@ -31,9 +31,10 @@
             <img src="{% static 'media/pasta.png' %}" alt="Pasta Carbonara">
         </div>
 
-        <form action="/planner/view_menu/{{menu.id}}" method="POST">
-            <h4>Week of:</h4>
-            <select>
+        <form action="/planner/view_menu" method="POST">
+            {% csrf_token %}
+            <label for="view_menu">Week of:</label>
+            <select id="view_menu" name="view_menu">
                 {% for menu in user.menus.all %}
                 <option value={{menu.id}}>{{menu.week_date}}</option>
                 {% endfor %}
@@ -68,20 +69,9 @@
         <div class="buttons">
             <button onclick='location.href="/planner/create_menu"'>Create New Menu</button>
             <button onclick='location.href="/planner/user_recipes/{{user.id}}"'>Browse Recipes</button>
+            <button onclick='location.href="/planner/grocery_list"'>Grocery List</button>
+            
         </div>
-
-        
-
-
-        <!-- <div class="grocery_list">
-            <h3>Grocery List:</h3>
-            <ul>
-                <li>Loop through items on the list</li>
-            </ul>
-            <button>Quick Add</button>
-            <button onclick='location.href="/planner/grocery_list"'>See Full List</button>
-        </div> -->
-
     </div>
 </body>
 </html>
