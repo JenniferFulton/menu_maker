@@ -273,6 +273,15 @@ def view_menu(request, id):
         return render(request, 'selected_menu.html', context)
 
 produce = ['apple', 'orange']
+snacks = []
+bakery = []
+intl = []
+meat = ['chicken breat']
+bread = []
+bake_spice = []
+frozen = []
+dairy = ['milk', 'cheddar cheese']
+other = []
 
 def groceries(request):
 # planner/grocery_list will redirect to page with grocery list on it
@@ -281,10 +290,20 @@ def groceries(request):
         return redirect('/')
 
     active_user = User.objects.get(id = request.session['user'])
+    foods = Food.objects.all()
     context = {
+        'all_foods': foods,
         'user' : active_user,
         'produce': produce,
-        
+        'snacks': snacks,
+        'bakery': bakery,
+        'intl': intl,
+        'meat': meat,
+        'bread': bread,
+        'bake_spice': bake_spice,
+        'frozen': frozen,
+        'dairy': dairy,
+        'other': other,
     }
     return render(request,'grocery_list.html', context)
 
