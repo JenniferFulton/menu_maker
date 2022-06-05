@@ -263,23 +263,6 @@ def add_menu(request, id):
         active_user.menus.add(menu_added)
         return redirect('/planner')
 
-def view_menu(request, id):
-    #planner/view will allow user to add
-    #Checks if user is logged in first
-    if 'user' not in request.session:
-        return redirect('/')
-    
-    if request.method == "POST":
-        current_menu = Menu.objects.get(id=id)
-        active_user = User.objects.get(id = request.session['user'])
-        all_menus = Menu.objects.all()
-        context = {
-            'current_menu' : current_menu,
-            'user': active_user,
-            'all_menus' : all_menus,
-        }
-        return render(request, 'selected_menu.html', context)
-
 produce = []
 snacks = []
 bakery = []
@@ -299,6 +282,7 @@ def groceries(request):
 
     active_user = User.objects.get(id = request.session['user'])
     foods = Food.objects.all()
+    menu = Menu.objects.last()
     context = {
         'all_foods': foods,
         'user' : active_user,
@@ -312,6 +296,7 @@ def groceries(request):
         'frozen': frozen,
         'dairy': dairy,
         'other': other,
+        'current_menu': menu,
     }
     return render(request,'grocery_list.html', context)
 

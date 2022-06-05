@@ -27,6 +27,29 @@
         </div>
         <button class="home" onclick='location.href="/planner"'>Home</button>
 
+        <div class="week">
+            <!-- this will display the week a looks view with the menu the user has select-->
+                <table> 
+                    <thead>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                        <th>Sunday</th>
+                    </thead>
+                    <tbody>
+                        <td><a href = '/planner/recipe_info/{{current_menu.mon.id}}'>{{current_menu.mon.title}}</a></td>
+                        <td><a href = '/planner/recipe_info/{{current_menu.tues.id}}'>{{current_menu.tues.title}}</a></td>
+                        <td><a href = '/planner/recipe_info/{{current_menu.wed.id}}'>{{current_menu.wed.title}}</a></td>
+                        <td><a href = '/planner/recipe_info/{{current_menu.thrus.id}}'>{{current_menu.thrus.title}}</a></td>
+                        <td><a href = '/planner/recipe_info/{{current_menu.fri.id}}'>{{current_menu.fri.title}}</a></td>
+                        <td><a href = '/planner/recipe_info/{{current_menu.sat.id}}'>{{current_menu.sat.title}}</a></td>
+                        <td><a href = '/planner/recipe_info/{{current_menu.sun.id}}'>{{current_menu.sun.title}}</a></td>
+                    </tbody>
+                </table>     
+            </div>
 
         <div class="add_food">
             <h3>Add a Food</h3>
