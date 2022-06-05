@@ -328,8 +328,33 @@ def add_grocery(request):
         if to_add.category == "Produce":
             produce.append(to_add)
 
+        if to_add.category == "Snacks":
+            snacks.append(to_add)
+        
+        if to_add.category == "Bakery":
+            bakery.append(to_add)
+        
+        if to_add.category == "International":
+            intl.append(to_add)
+
         if to_add.category == "Meat":
             meat.append(to_add)
+        
+        if to_add.category == "Bread":
+            bread.append(to_add)
+        
+        if to_add.category == "Baking & Spices":
+            bake_spice.append(to_add)
+        
+        if to_add.category == "Frozen":
+            frozen.append(to_add)
+        
+        if to_add.category == "Dairy":
+            dairy.append(to_add)
+        
+        if to_add.category == "Other":
+            other.append(to_add)
+        
         return redirect('/planner/grocery_list')
 
 def remove_grocery(request,id):
@@ -339,9 +364,33 @@ def remove_grocery(request,id):
     to_remove = Food.objects.get(id=id)
     if to_remove.category == "Produce":
         produce.remove(to_remove)
+
+    if to_remove.category == "Snacks":
+        snacks.remove(to_remove)
     
+    if to_remove.category == "Bakery":
+        bakery.remove(to_remove)
+    
+    if to_remove.category == "International":
+        intl.remove(to_remove)
+
     if to_remove.category == "Meat":
         meat.remove(to_remove)
+    
+    if to_remove.category == "Bread":
+        bread.remove(to_remove)
+    
+    if to_remove.category == "Baking & Spices":
+        bake_spice.remove(to_remove)
+    
+    if to_remove.category == "Frozen":
+        frozen.remove(to_remove)
+    
+    if to_remove.category == "Dairy":
+        dairy.remove(to_remove)
+    
+    if to_remove.category == "Other":
+        other.remove(to_remove)
     return redirect('/planner/grocery_list')
     
 

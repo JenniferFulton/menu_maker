@@ -81,58 +81,64 @@
 
             <div class="snacks">
                 <h4>Snacks</h4>
-                <form action="/planner/add_grocery/{{grocery.id}}">
+                <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
-                    <select id={{grocery.id}}>
+                    <select id="add_grocery" name="add_grocery">
+                        <option> </option>
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Snacks" %}
-                                <option> </option>
-                                <option>{{grocery.name}}</option>
+                                <option value={{grocery.id}}>{{grocery.name}}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
                     <input type="submit" value="Add">
                 </form>
                 {% for food in snacks %}
-                <a href="/planner/remove_grocery/{{food.id}}">{{food}}</a>
+                <ul>
+                    <li><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></li>
+                </ul>
                 {% endfor %}
             </div>
 
             <div class="bakery">
                 <h4>Bakery</h4>
-                <form action="/planner/add_grocery/{{grocery.id}}">
+                <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
-                    <select>
+                    <select id="add_grocery" name="add_grocery">
+                        <option> </option>
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Bakery" %}
-                                <option> </option>
-                                <option id={{grocery.id}}>{{grocery.name}}</option>
+                                <option value={{grocery.id}}>{{grocery.name}}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
                     <input type="submit" value="Add">
                 </form>
                 {% for food in bakery %}
-                <a href="/planner/remove_grocery/{{food.id}}">{{food}}</a>
+                <ul>
+                    <li><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></li>
+                </ul>
                 {% endfor %}
             </div>
 
             <div class="intl">
                 <h4>International</h4>
-                <form action="/planner/add_grocery/{{grocery.id}}">
+                <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
-                    <select id={{grocery.id}}>
+                    <select id="add_grocery" name="add_grocery">
+                        <option> </option>
                         {% for grocery in all_foods %}
                             {% if grocery.category == "International" %}
-                                <option> </option>
-                                <option>{{grocery.name}}</option>
+                                <option value={{grocery.id}}>{{grocery.name}}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
                     <input type="submit" value="Add">
                 </form>
                 {% for food in intl %}
-                <a href="/planner/remove_grocery/{{food.id}}">{{food}}</a>
+                <ul>
+                    <li><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></li>
+                </ul>
                 {% endfor %}
             </div>
 
@@ -159,96 +165,106 @@
 
             <div class="bread">
                 <h4>Bread</h4>
-                <form action="/planner/add_grocery/{{grocery.id}}">
+                <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
-                    <select id={{grocery.id}}>
+                    <select id="add_grocery" name="add_grocery">
+                        <option> </option>
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Bread" %}
-                                <option> </option>
-                                <option>{{grocery.name}}</option>
+                                <option value={{grocery.id}}>{{grocery.name}}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
                     <input type="submit" value="Add">
                 </form>
                 {% for food in bread %}
-                <a href="/planner/remove_grocery/{{food.id}}">{{food}}</a>
+                <ul>
+                    <li><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></li>
+                </ul>
                 {% endfor %}
             </div>
 
             <div class="bake_spice">
                 <h4>Baking & Spices</h4>
-                <form action="/planner/add_grocery/{{grocery.id}}">
+                <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
-                    <select id={{grocery.id}}>
+                    <select id="add_grocery" name="add_grocery">
+                        <option> </option>
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Baking & Spices" %}
-                                <option> </option>
-                                <option>{{grocery.name}}</option>
+                                <option value={{grocery.id}}>{{grocery.name}}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
                     <input type="submit" value="Add">
                 </form>
                 {% for food in bake_spice %}
-                <a href="/planner/remove_grocery/{{food.id}}">{{food}}</a>
+                <ul>
+                    <li><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></li>
+                </ul>
                 {% endfor %}
             </div>
 
             <div class="frozen">
                 <h4>Frozen</h4>
-                <form action="/planner/add_grocery/{{grocery.id}}">
+                <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
-                    <select id={{grocery.id}}>
+                    <select id="add_grocery" name="add_grocery">
+                        <option> </option>
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Frozen" %}
-                                <option> </option>
-                                <option>{{grocery.name}}</option>
+                                <option value={{grocery.id}}>{{grocery.name}}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
                     <input type="submit" value="Add">
                 </form>
                 {% for food in frozen %}
-                <a href="/planner/remove_grocery/{{food.id}}">{{food}}</a>
+                <ul>
+                    <li><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></li>
+                </ul>
                 {% endfor %}
             </div>
 
             <div class="dairy">
                 <h4>Dairy</h4>
-                <form action="/planner/add_grocery/{{grocery.id}}">
+                <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
-                    <select id={{grocery.id}}>
+                    <select id="add_grocery" name="add_grocery">
+                        <option> </option>
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Dairy" %}
-                                <option> </option>
-                                <option>{{grocery.name}}</option>
+                                <option value={{grocery.id}}>{{grocery.name}}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
                     <input type="submit" value="Add">
                 </form>
                 {% for food in dairy %}
-                <a href="/planner/remove_grocery/{{food.id}}">{{food}}</a>
+                <ul>
+                    <li><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></li>
+                </ul>
                 {% endfor %}
             </div>
 
             <div class="other">
                 <h4>Other</h4>
-                <form action="/planner/add_grocery/{{grocery.id}}">
+                <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
-                    <select id={{grocery.id}}>
+                    <select id="add_grocery" name="add_grocery">
+                        <option> </option>
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Other" %}
-                                <option> </option>
-                                <option>{{grocery.name}}</option>
+                                <option value={{grocery.id}}>{{grocery.name}}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
                     <input type="submit" value="Add">
                 </form>
-                {% for food in other%}
-                <a href="/planner/remove_grocery/{{food.id}}">{{food}}</a>
+                {% for food in other %}
+                <ul>
+                    <li><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></li>
+                </ul>
                 {% endfor %}
             </div>
         </div>
