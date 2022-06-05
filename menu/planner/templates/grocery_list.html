@@ -26,6 +26,17 @@
             <!-- Button will take user back to the home page -->
         </div>
         <button class="home" onclick='location.href="/planner"'>Home</button>
+
+        <h2>{{user.first_name}}'s Grocery List</h2>
+        {% for food in produce %}
+        <p>{{food}}</p>
+        {% endfor %}
+
+        <div class="create_food">
+            <form action="/planner/create_food/" method="POST">
+
+            </form>
+        </div>
     </div>
 </body>
 </html>

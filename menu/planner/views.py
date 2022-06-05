@@ -272,6 +272,8 @@ def view_menu(request, id):
         }
         return render(request, 'selected_menu.html', context)
 
+produce = ['apple', 'orange']
+
 def groceries(request):
 # planner/grocery_list will redirect to page with grocery list on it
 #Checks if user is logged in first
@@ -280,7 +282,21 @@ def groceries(request):
 
     active_user = User.objects.get(id = request.session['user'])
     context = {
-        'user' : active_user
-        # all ingredients for the week will be here
+        'user' : active_user,
+        'produce': produce,
+        
     }
     return render(request,'grocery_list.html', context)
+
+def create_food(request):
+    #Checks if user is logged in first
+    if 'user' not in request.session:
+        return redirect('/')
+    
+    if request.method == "POST":
+        Food.objects.create(
+            name = request.post['name'],
+            category = request.post['category']
+        )
+        return redirect('/planner/grocery_list')
+

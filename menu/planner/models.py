@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from login.models import User
 
@@ -92,3 +93,9 @@ class Menu(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = MenuManager()
+
+class Food(models.Model):
+    name = models.CharField(max_length=100)
+    category = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
