@@ -295,8 +295,8 @@ def create_food(request):
     
     if request.method == "POST":
         Food.objects.create(
-            name = request.post['name'],
-            category = request.post['category']
+            name = request.POST['name'],
+            category = request.POST['category']
         )
         return redirect('/planner/grocery_list')
 
