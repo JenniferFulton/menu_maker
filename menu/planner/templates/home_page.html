@@ -34,9 +34,9 @@
         <form action="/planner/view_menu/{{menu.id}}" method="POST">
             <h4>Week of:</h4>
             
-            <select value={{menu.id}}>
+            <select>
                 {% for menu in user.menus.all %}
-                <option>{{menu.week_date}}</option>
+                <option value={{menu.id}}>{{menu.week_date}}</option>
                 {% endfor %}
             </select>
             <input type="submit" value="View">

@@ -272,15 +272,15 @@ def view_menu(request, id):
         }
         return render(request, 'selected_menu.html', context)
 
-produce = ['apple', 'orange']
+produce = []
 snacks = []
 bakery = []
 intl = []
-meat = ['chicken breat']
+meat = []
 bread = []
 bake_spice = []
 frozen = []
-dairy = ['milk', 'cheddar cheese']
+dairy = []
 other = []
 
 def groceries(request):
@@ -318,4 +318,26 @@ def create_food(request):
             category = request.POST['category']
         )
         return redirect('/planner/grocery_list')
+
+def add_grocery(request):
+    if 'user' not in request.session:
+        return redirect('/')
+
+    if request.method == "POST":
+        to_add = Food.objects.get(id=request.POST['add_grocery'])
+        if to_add.category == "Produce":
+            produce.append(to_add.name)
+        return redirect('/planner/grocery_list')
+
+def remove_grocery(request, id):
+    if 'user' not in request.session:
+        return redirect('/')
+    
+    to_remove = Food.objects.get(id=id)
+    if to_remove.category == "Produce":
+        produce.append(to_remove)
+    return redirect('/planner/grocery_list')
+    
+
+
 

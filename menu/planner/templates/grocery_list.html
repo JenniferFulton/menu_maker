@@ -60,13 +60,13 @@
 
             <div class="produce">
                 <h4>Produce</h4>
-                <form action="/planner/add_grocery/{{grocery.id}}">
+                <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
-                    <select id={{grocery.id}}>
+                    <select id="add_grocery" name="add_grocery">
+                        <option> </option>
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Produce" %}
-                                <option> </option>
-                                <option>{{grocery.name}}</option>
+                                <option value={{grocery.id}}>{{grocery.name}}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
@@ -102,11 +102,11 @@
                 <h4>Bakery</h4>
                 <form action="/planner/add_grocery/{{grocery.id}}">
                     {% csrf_token %}
-                    <select id={{grocery.id}}>
+                    <select>
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Bakery" %}
                                 <option> </option>
-                                <option>{{grocery.name}}</option>
+                                <option id={{grocery.id}}>{{grocery.name}}</option>
                             {% endif %}
                         {% endfor %}
                     </select>

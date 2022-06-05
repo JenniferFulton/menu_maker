@@ -18,4 +18,7 @@ urlpatterns = [
     path('view_menu/<int:id>', views.view_menu),
     path('grocery_list', views.groceries),
     path('create_food', views.create_food),
+    path('add_grocery', views.add_grocery),
+    path('remove_grocery/<int:id>', views.remove_grocery),
+
 ]
