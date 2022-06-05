@@ -326,16 +326,22 @@ def add_grocery(request):
     if request.method == "POST":
         to_add = Food.objects.get(id=request.POST['add_grocery'])
         if to_add.category == "Produce":
-            produce.append(to_add.name)
+            produce.append(to_add)
+
+        if to_add.category == "Meat":
+            meat.append(to_add)
         return redirect('/planner/grocery_list')
 
-def remove_grocery(request, id):
+def remove_grocery(request,id):
     if 'user' not in request.session:
         return redirect('/')
     
     to_remove = Food.objects.get(id=id)
     if to_remove.category == "Produce":
-        produce.append(to_remove)
+        produce.remove(to_remove)
+    
+    if to_remove.category == "Meat":
+        meat.remove(to_remove)
     return redirect('/planner/grocery_list')
     
 
