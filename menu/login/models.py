@@ -22,12 +22,17 @@ class UserManager(models.Manager):
         if len(check_user) != 0:
             errors['duplicate_email'] = 'Email already registered, please use a different email to resister'
         
-
         if len(postData['password']) < 8:
             errors['password'] = 'Password must be atleast 8 characters'
 
         if postData['password'] != postData['confirm_pw']:
             errors['confirm_pw'] = 'Passwords do not match'
+        
+        if len(postData['city']) <= 2:
+            errors['city'] = 'Please enter a valid city'
+        
+        if len(postData['state']) != 2:
+            errors['state'] = "Please enter your state's initals. Ex: MD for Maryland"
         
         return errors
     
@@ -66,6 +71,12 @@ class UserManager(models.Manager):
         if len(check_user) != 0:
             errors['duplicate_email'] = 'Email already registered, please use a different email to resister'
         
+        if len(postData['new_city']) <= 2:
+            errors['city'] = 'Please enter a valid city'
+        
+        if len(postData['new_state']) != 2:
+            errors['state'] = "Please enter your state's initals. Ex: MD for Maryland"
+        
         return errors
 
 class User(models.Model):
@@ -73,6 +84,8 @@ class User(models.Model):
     last_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=50)
+    city = models.CharField(max_length=100, null=True)
+    state = models.CharField(max_length=2, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now_add=True, null=True)
     objects = UserManager()
