@@ -11,7 +11,7 @@ def home_page(request):
         return redirect('/')
     
     active_user = User.objects.get(id = request.session['user'])
-    menu = Menu.objects.last()
+    menu = Menu.objects.all()
     context = {
         'user': active_user,
         'current_menu' : menu,
@@ -284,7 +284,7 @@ def groceries(request):
 
     active_user = User.objects.get(id = request.session['user'])
     foods = Food.objects.all()
-    menu = Menu.objects.last()
+    menu = Menu.objects.all()
     context = {
         'all_foods': foods,
         'user' : active_user,
@@ -308,6 +308,12 @@ def create_food(request):
         return redirect('/')
     
     if request.method == "POST":
+        errors = Food.objects.food_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/planner/grocery_list')
+
         Food.objects.create(
             name = request.POST['name'],
             category = request.POST['category']

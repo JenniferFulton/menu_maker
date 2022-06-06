@@ -67,6 +67,18 @@ class RecipeManager(models.Manager):
         
         return errors
 
+class FoodManager(models.Manager):
+    def food_validator(self, postData):
+        #validates a recipe that a user is updating
+        errors = {}
+
+        if len(postData['name']) <= 2:
+            errors['name'] = 'Name of your must be atleast 2 characters'
+        if len(postData['category']) == 0:
+            errors['category'] = 'Please choose a category for your food item'
+        
+        return errors
+
 class Recipe(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
@@ -99,3 +111,4 @@ class Food(models.Model):
     category = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    objects = FoodManager()
