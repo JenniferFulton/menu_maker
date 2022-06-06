@@ -41,22 +41,22 @@
             <form action='/planner/update/{{recipe.id}}' method="POST">
                 {% csrf_token %}
                 <label for='new_title'>Title of Recipe:</label>
-                <input type='text' id='new_title' name='new_title' placeholder={{recipe.title}}>
+                <textarea type='text' id='new_title' name='new_title'>{{recipe.title}}</textarea>
 
                 <label for='new_description'>Description of Recipe:</label>
-                <input type='text' id='new_description' name='new_description' placeholder="{{recipe.description}}">
+                <textarea type='text' id='new_description' name='new_description'>{{recipe.description}}</textarea>
 
                 <label for='new_prep'>Prep Time:</label>
-                <input type='text' id='new_prep' name='new_prep' placeholder={{recipe.prep}}>
+                <textarea type='text' id='new_prep' name='new_prep'>{{recipe.prep}}</textarea>
 
                 <label for='new_cook'>Cook Time:</label>
-                <input type='text' id='new_cook' name='new_cook' placeholder={{recipe.cook}}>
+                <textarea type='text' id='new_cook' name='new_cook'>{{recipe.cook}}</textarea>
 
                 <!-- ***instruction and direction placeholders are arrays*** -->
                 <label for='new_ingredients'>Ingredients:</label>
-                <textarea id='new_ingredients' name='new_ingredients'>{% for character in recipe.ingredients %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</textarea>
+                <textarea id='new_ingredients' name='new_ingredients' cols="30" rows="5">{% for character in recipe.ingredients %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</textarea>
                 <label for='new_directions'>Directions:</label>
-                <textarea type='text' id='new_directions' name='new_directions'>{% for character in recipe.directions %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</textarea>
+                <textarea type='text' id='new_directions' name='new_directions' cols="30" rows="10">{% for character in recipe.directions %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</textarea>
 
                 <input type='submit' value = "Update">
             </form>
