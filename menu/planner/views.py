@@ -164,9 +164,11 @@ def edit_recipe(request, id):
 
     active_user = User.objects.get(id = request.session['user'])
     current_recipe = Recipe.objects.get(id=id)
+    ingredients = current_recipe.ingredients
     context = {
         'user' : active_user,
         'recipe' : current_recipe,
+        'ingredients': ingredients,
     }
     return render(request, 'edit_recipe.html', context)
 
