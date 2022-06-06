@@ -65,3 +65,12 @@ h2{
     text-align: center;
     text-decoration: underline;
 }
+
+table, th, td {
+    border: 1px solid;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    margin-left: 23%;
+    margin-right: 23%;
+}

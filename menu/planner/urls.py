@@ -19,5 +19,7 @@ urlpatterns = [
     path('create_food', views.create_food),
     path('add_grocery', views.add_grocery),
     path('remove_grocery/<int:id>', views.remove_grocery),
+    path('grocery/view_menu', views.grocery_menu),
+    path('previous_menu', views.previous_menu),
 
 ]

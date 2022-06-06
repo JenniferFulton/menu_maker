@@ -236,9 +236,11 @@ def create_menu(request):
     
     active_user = User.objects.get(id = request.session['user'])
     all_recipes = Recipe.objects.all()
+    menu = Menu.objects.all()
     context = {
         'user': active_user,
-        'all_recipes': all_recipes
+        'all_recipes': all_recipes,
+        'current_menu': menu
     }
     return render(request, 'create_menu.html', context)
 
@@ -264,6 +266,22 @@ def add_menu(request, id):
         menu_added = Menu.objects.last()
         active_user.menus.add(menu_added)
         return redirect('/planner')
+
+def previous_menu(request):
+#Checks if user is logged in first 
+    if 'user' not in request.session:
+        return redirect('/')
+
+    if request.method == "POST":
+        active_user = User.objects.get(id = request.session['user'])
+        all_recipes = Recipe.objects.all()
+        menu = Menu.objects.get(id = request.POST['view_menu'])
+        context = {
+            'user': active_user,
+            'all_recipes': all_recipes,
+            'current_menu' : menu,
+        }
+        return render(request,'create_menu.html', context)
 
 produce = []
 snacks = []
@@ -393,6 +411,33 @@ def remove_grocery(request,id):
     if to_remove.category == "Other":
         other.remove(to_remove)
     return redirect('/planner/grocery_list')
+
+def grocery_menu(request):
+    #Checks if user is logged in first 
+    if 'user' not in request.session:
+        return redirect('/')
+
+    if request.method == "POST":
+        foods = Food.objects.all()
+        active_user = User.objects.get(id = request.session['user'])
+        menu = Menu.objects.get(id = request.POST['view_menu'])
+        context = {
+            'user': active_user,
+            'current_menu' : menu,
+            'all_foods': foods,
+            'user' : active_user,
+            'produce': produce,
+            'snacks': snacks,
+            'bakery': bakery,
+            'intl': intl,
+            'meat': meat,
+            'bread': bread,
+            'bake_spice': bake_spice,
+            'frozen': frozen,
+            'dairy': dairy,
+            'other': other,
+        }
+        return render(request,'grocery_list.html', context)
     
 
 

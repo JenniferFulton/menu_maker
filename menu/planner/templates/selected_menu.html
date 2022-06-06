@@ -35,6 +35,7 @@
             {% csrf_token %}
             <label for="view_menu">Week of:</label>
             <select id="view_menu" name="view_menu">
+                <option> </option>
                 {% for menu in user.menus.all %}
                 <option value={{menu.id}}>{{menu.week_date}}</option>
                 {% endfor %}
