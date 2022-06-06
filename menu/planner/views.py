@@ -288,6 +288,16 @@ def previous_menu(request):
         }
         return render(request,'create_menu.html', context)
 
+def delete_menu(request, id):
+    #Checks if user is logged in first 
+    if 'user' not in request.session:
+        return redirect('/')
+    
+    to_delete = Menu.objects.get(id=id)
+    to_delete.delete()
+
+    return redirect('/planner')
+
 produce = []
 snacks = []
 bakery = []
