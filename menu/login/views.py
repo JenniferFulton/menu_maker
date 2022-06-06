@@ -25,6 +25,8 @@ def register(request):
             User.objects.create(
                 first_name = request.POST['first_name'],
                 last_name = request.POST['last_name'],
+                city = request.POST['city'],
+                state = request.POST['state'],
                 email = request.POST['email'],
                 password = hashed_pw,
             )
@@ -87,6 +89,8 @@ def edit_account(request,id):
             to_edit.first_name = request.POST['new_first_name']
             to_edit.last_name = request.POST['new_last_name']
             to_edit.email = request.POST['new_email']
+            to_edit.city = request.POST['new_city']
+            to_edit.state = request.POST['new_state']
             to_edit.save()
             messages.success(request, 'Successfully updated your profile!')
         return redirect('/account/'+str(id))
