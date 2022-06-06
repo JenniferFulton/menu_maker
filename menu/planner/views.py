@@ -251,6 +251,11 @@ def add_menu(request, id):
         return redirect('/')
     
     if request.method == "POST":
+        errors = Menu.objects.menu_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/planner/create_menu')
         Menu.objects.create(
             week_date = request.POST['week_date'],
             mon = Recipe.objects.get(id=request.POST['mon']),

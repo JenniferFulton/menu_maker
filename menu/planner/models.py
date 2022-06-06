@@ -1,6 +1,7 @@
 from unicodedata import category
 from django.db import models
 from login.models import User
+import datetime
 
 class RecipeManager(models.Manager):
     def newRecipe_validator(self, postData):
@@ -79,6 +80,37 @@ class FoodManager(models.Manager):
         
         return errors
 
+class MenuManager(models.Manager):
+    def menu_validator(self, postData):
+        #validates a recipe that a user is updating
+        errors = {}
+
+        if len(postData['week_date']) == 0:
+            errors['week_date'] = 'Please choose a date'
+
+        if len(postData['mon']) == 0:
+            errors['mon'] = 'Please choose a recipe for Monday'
+
+        if len(postData['tues']) == 0:
+            errors['tues'] = 'Please choose a recipe for Tuesday'
+
+        if len(postData['wed']) == 0:
+            errors['wed'] = 'Please choose a recipe for Wednesday'
+
+        if len(postData['thurs']) == 0:
+            errors['thurs'] = 'Please choose a recipe for Thursday'
+
+        if len(postData['fri']) == 0:
+            errors['fri'] = 'Please choose a recipe for Friday'
+
+        if len(postData['sat']) == 0:
+            errors['sat'] = 'Please choose a recipe for Saturday'
+
+        if len(postData['sun']) == 0:
+            errors['sun'] = 'Please choose a recipe for Sunday'
+        
+        return errors
+
 class Recipe(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
@@ -104,7 +136,7 @@ class Menu(models.Model):
     menu_created = models.ManyToManyField(User, related_name="menus")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    # objects = MenuManager()
+    objects = MenuManager()
 
 class Food(models.Model):
     name = models.CharField(max_length=100)
