@@ -57,11 +57,16 @@ img{
 
 h4{
     margin-left: 45px;
+    text-decoration: underline;
 }
 
 form{
     margin-left: 43%;
     margin-top: 20px;
+    /* border-style: solid;
+    border-color:rgb(64, 93, 119);
+    width: 220px;
+    padding: 10px; */
 }
 
 table, th, td {
@@ -76,4 +81,13 @@ table, th, td {
 .buttons{
     margin-top: 20px;
     margin-left: 27%;
+}
+
+h4{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.delete{
+    margin-left: 49%;
 }
