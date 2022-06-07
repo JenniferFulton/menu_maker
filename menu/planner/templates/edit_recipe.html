@@ -31,7 +31,7 @@
         {% if messages %}
         <ul class='messages'>
             {% for message in messages %}
-                <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
             {% endfor %}    
         </ul>
         {% endif %}
@@ -54,9 +54,9 @@
 
                 <!-- ***instruction and direction placeholders are arrays*** -->
                 <label for='new_ingredients'>Ingredients:</label>
-                <textarea id='new_ingredients' name='new_ingredients' cols="30" rows="5">{% for character in recipe.ingredients %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</textarea>
+                <textarea id='new_ingredients' name='new_ingredients' cols="24" rows="5">{% for character in recipe.ingredients %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</textarea>
                 <label for='new_directions'>Directions:</label>
-                <textarea type='text' id='new_directions' name='new_directions' cols="30" rows="10">{% for character in recipe.directions %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</textarea>
+                <textarea type='text' id='new_directions' name='new_directions' cols="23" rows="15">{% for character in recipe.directions %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</textarea>
 
                 <input type='submit' value = "Update">
             </form>

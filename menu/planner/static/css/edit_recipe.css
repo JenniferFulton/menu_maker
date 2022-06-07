@@ -18,9 +18,9 @@ form{
     padding: 5px 20px;
     text-align: center;
     border-radius: 4px;
-    height: 315px;
-    width: 182px;
-    margin-left: 41%;
+    height: auto;
+    width: 183px;
+    margin-left: 39%;
     margin-top: 20px;
     margin-bottom: 30px;
 }
@@ -64,4 +64,10 @@ img{
 h2{
     text-align: center;
     text-decoration: underline;
+}
+
+.messages{
+    color:rgb(185, 58, 58);
+    text-align: center;
+    margin-bottom: 10px;
 }
