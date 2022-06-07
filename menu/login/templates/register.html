@@ -16,6 +16,9 @@
             <p>To Join Register Below</p>
         </div>
 
+        <!-- take user back to login page -->
+        <button onclick='location.href="/"'>Back</button>
+
         <div class="images">
             <img src="{% static 'media/creamy_chicken.png' %}" alt="Creamy Chicken in Skillet">
             <img src="{% static 'media/dumplings.png' %}" alt="Sesame Dumplings">
@@ -60,9 +63,6 @@
             {% endfor %}    
         </ul>
         {% endif %}
-
-        <!-- take user back to login page -->
-        <button onclick='location.href="/"'>Back</button>
     </div>
 </body>
 </html>
