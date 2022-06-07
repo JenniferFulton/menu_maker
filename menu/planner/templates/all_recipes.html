@@ -52,10 +52,10 @@
 
 
                 <label for='ingredients'>Ingredients:</label>
-                <textarea type='text' id='ingredients' name='ingredients' placeholder='Ex:1 tbsp Olive Oil' cols="30" rows="5"></textarea>
+                <textarea type='text' id='ingredients' name='ingredients' placeholder='Ex:1 tbsp Olive Oil' cols="24" rows="5"></textarea>
 
                 <label for='directions'>Directions:</label>
-                <textarea type='text' id='directions' name='directions' placeholder='Ex:Preheat oven to 400' cols="30" rows="10"></textarea>
+                <textarea type='text' id='directions' name='directions' placeholder='Ex:Preheat oven to 400' cols="23" rows="15"></textarea>
 
                 <input type='submit' value = "Add Recipe">
             </form>
@@ -66,7 +66,7 @@
         <div class="recipe">
             <h4>{{recipe.title}}</h4>
             <button class="like" onclick='location.href="/planner/add_favorite/{{recipe.id}}"'>Like</button>
-            <button class="edit" onclick='location.href="/planner/update_recipe/{{recipe.id}}"'>EDIT</button>
+            <!-- <button class="edit" onclick='location.href="/planner/update_recipe/{{recipe.id}}"'>EDIT</button> -->
 
             <p>{{recipe.description}}</p>
             <!-- Link to view recipe (functioning) -->

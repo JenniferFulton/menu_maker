@@ -18,8 +18,8 @@ form{
     padding: 5px 20px;
     text-align: center;
     border-radius: 4px;
-    height: 486px;
-    width: 226px;
+    width: 183px;
+    height: auto;
     margin-left: 41%;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -83,5 +83,11 @@ h4{
 }
 
 .like{
-    margin-right: 30px
+    margin-right: 46px
+}
+
+.messages{
+    color:rgb(185, 58, 58);
+    text-align: center;
+    margin-bottom: 10px;
 }

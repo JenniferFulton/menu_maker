@@ -38,7 +38,7 @@
         {% if messages %}
         <ul class='messages'>
             {% for message in messages %}
-                <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
             {% endfor %}    
         </ul>
         {% endif %}
@@ -61,10 +61,10 @@
 
 
                 <label for='ingredients'>Ingredients:</label>
-                <textarea type='text' id='ingredients' name='ingredients' placeholder='Ex:1 tbsp Olive Oil' cols="30" rows="5"></textarea>
+                <textarea type='text' id='ingredients' name='ingredients' placeholder='Ex:1 tbsp Olive Oil' cols="24" rows="5"></textarea>
 
                 <label for='directions'>Directions:</label>
-                <textarea type='text' id='directions' name='directions' placeholder='Ex:Preheat oven to 400' cols="30" rows="10"></textarea>
+                <textarea type='text' id='directions' name='directions' placeholder='Ex:Preheat oven to 400' cols="23" rows="15"></textarea>
 
                 <input type='submit' value = "Add Recipe">
             </form>
@@ -74,9 +74,9 @@
         {% for recipe in user.recipes.all %}
         <div class="recipe">
                 <h4>{{recipe.title}}</h4>
+                <button class="like" onclick='location.href="/planner/add_favorite/{{recipe.id}}"'>Like</button>
                 <p>{{recipe.description}}</p>
                 <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit Recipe</a> | <a href="/planner/delete_recipe/{{recipe.id}}">Delete Recipe</a>
-                <button class="like" onclick='location.href="/planner/add_favorite/{{recipe.id}}"'>Like</button>
         </div>
         {% endfor %}
 </div>
