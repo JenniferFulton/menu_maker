@@ -35,7 +35,7 @@
         {% if messages %}
         <ul class='messages'>
             {% for message in messages %}
-                <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
             {% endfor %}  
         </ul>
         {% endif %}  
@@ -61,8 +61,6 @@
 
                 <input type='submit' value = "Update">
             </form>
-
-            <p>{{user.city}}</p>
         </div>
     </div>
 </body>
