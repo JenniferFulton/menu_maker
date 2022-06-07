@@ -34,17 +34,16 @@
             <img src="{% static 'media/gnocchi.png' %}" alt="Creamy Gnocchi Soup">
         </div>
 
-        <!-- error messages will appear here-->
-        {% if messages %}
-        <ul class='messages'>
-            {% for message in messages %}
-                <li {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-            {% endfor %}    
-        </ul>
-        {% endif %}
-
         <div class="menu">
             <h2>Create a Menu For The Week</h2>
+            <!-- error messages will appear here-->
+            {% if messages %}
+            <ul class='messages'>
+                {% for message in messages %}
+                    <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+                {% endfor %}    
+            </ul>
+        {% endif %}
             <form action="/planner/add_menu/{{user.id}}" method="POST">
                 {% csrf_token %}
 
@@ -112,7 +111,7 @@
 
             <h2>View Previous Menus</h2>
             
-            <form action="/planner/previous_menu" method="POST">
+            <form class="view" action="/planner/previous_menu" method="POST">
                 {% csrf_token %}
                 <label for="view_menu">Week of:</label>
                 <select id="view_menu" name="view_menu">
