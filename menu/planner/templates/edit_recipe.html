@@ -27,17 +27,16 @@
         </div>
         <button class="home" onclick='location.href="/planner"'>Home</button>
 
-        <!-- error messages will appear here (functioning)-->
-        {% if messages %}
-        <ul class='messages'>
-            {% for message in messages %}
-                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
-            {% endfor %}    
-        </ul>
-        {% endif %}
-
         <div class = 'add_recipe'>
             <h2>Edit Your Recipe: {{recipe.title}}</h2>
+            <!-- error messages will appear here (functioning)-->
+            {% if messages %}
+            <ul class='messages'>
+                {% for message in messages %}
+                    <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+                {% endfor %}    
+            </ul>
+            {% endif %}
             <form action='/planner/update/{{recipe.id}}' method="POST">
                 {% csrf_token %}
                 <label for='new_title'>Title of Recipe:</label>
