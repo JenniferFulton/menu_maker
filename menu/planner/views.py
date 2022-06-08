@@ -317,7 +317,7 @@ def groceries(request,city,state):
     }
     return render(request,'grocery_list.html', context)
 
-def create_food(request):
+def create_food(request,city,state):
     #'create_food' creates a food that can be used in the grocery list
     if 'user' not in request.session:
         return redirect('/')
@@ -333,9 +333,9 @@ def create_food(request):
             name = request.POST['name'],
             category = request.POST['category']
         )
-        return redirect('/planner/grocery_list')
+        return redirect(f'/planner/grocery_list/{city}/{state}')
 
-def add_grocery(request):
+def add_grocery(request,city,state):
     # 'add_grocery' adds food into the array associated with the category
     if 'user' not in request.session:
         return redirect('/')
@@ -372,9 +372,9 @@ def add_grocery(request):
         if to_add.category == "Other":
             other.append(to_add)
         
-        return redirect('/planner/grocery_list')
+        return redirect(f'/planner/grocery_list/{city}/{state}')
 
-def remove_grocery(request,id):
+def remove_grocery(request,id,city,state):
     # 'remove_grocery/id' removes food into the array associated with the category
     if 'user' not in request.session:
         return redirect('/')
@@ -409,7 +409,7 @@ def remove_grocery(request,id):
     
     if to_remove.category == "Other":
         other.remove(to_remove)
-    return redirect('/planner/grocery_list')
+    return redirect(f'/planner/grocery_list/{city}/{state}')
 
 def grocery_menu(request,city,state):
     #'grocery/view_menu' will display the menu selected by the user on the grocery list
