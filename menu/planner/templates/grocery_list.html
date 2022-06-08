@@ -345,14 +345,15 @@
                 </ul>
                 {% endfor %}
             </div>
-
-            <div class="'grocery_stores">
-                <h4>Grocery Stores Near {{user.city}},{{user.state}}</h4>
-                {% for result in results %}
+        </div>
+        <h1>Grocery Stores Near {{user.city}},{{user.state}}</h1>
+        <div class="grocery_stores">
+            {% for result in results %}
+            <div class="store">
                 <strong>{{result.name}}</strong>
                 <p>{{result.formatted_address}}</p>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
     </div>
 </body>

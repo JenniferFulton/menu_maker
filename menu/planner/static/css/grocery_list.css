@@ -89,3 +89,21 @@ table, th, td {
     background-color:rgba(64, 93, 119, 0.315);
     margin-left: 28%;
 }
+
+.grocery_stores{
+    border-style: dotted;
+    height: auto;
+    width: 50%;
+    margin-left: 25%;
+}
+
+h1{
+    text-decoration: underline;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.store{
+    padding: 5px;
+    text-align: center;
+}
