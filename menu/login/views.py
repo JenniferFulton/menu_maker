@@ -4,11 +4,11 @@ from django.contrib import messages
 import bcrypt
 
 def registration_login(request):
-    #root route will have a form for logging in
+    #root route has a form for logging in
     return render(request, 'reg_login.html')
 
 def registration(request):
-    #/registration will have a form for user registration 
+    #/registration has a form for a user to register
     return render(request, 'register.html')
 
 def register(request):
@@ -37,8 +37,7 @@ def register(request):
 
 def login(request):
     #'/login' will verify email and password to allow user to login
-    #if no errors return redirect('/success')
-    #if errors return redirect('/')
+    #if there are errors user will be redirected to login page
     if request.method == "POST":
         errors = User.objects.login_validator(request.POST)
         if len(errors) > 0:
@@ -52,18 +51,17 @@ def login(request):
             return redirect('/success')
 
 def success(request):
-    #'/success' will redirect to menu where the home page of the user will be with their menu for the week
+    #'/success' takes user to the home page after logging in
     if 'user' not in request.session:
         return redirect('/')
     else:
         return redirect('planner/')
 
 def my_account(request,id):
-    #Checks if user is logged in
+    #'/account/id' shows user information and allows user to update information
     if 'user' not in request.session:
         return redirect('/')
 
-    #Takes users to page where they can edit their profile
     logged_user = User.objects.get(id=id)
     context = {
         'user' : logged_user
@@ -71,12 +69,12 @@ def my_account(request,id):
     return render(request, 'edit_account.html', context)
 
 def edit_account(request,id):
-    #Checks if user is logged in
+    #'/edit/id' updates user information
+    #if there are errors user will be redirected to editing page
     if 'user' not in request.session:
         return redirect('/')
     
     if request.method == "POST":
-        # Checking for errors in user entry
         errors = User.objects.update_validator(request.POST)
         to_edit = User.objects.get(id=id)
         if len(errors) > 0:
@@ -84,7 +82,6 @@ def edit_account(request,id):
                 messages.error(request, value)
             return redirect('/account/'+str(id))
 
-        # If no errors, edit user
         else:
             to_edit.first_name = request.POST['new_first_name']
             to_edit.last_name = request.POST['new_last_name']
@@ -96,5 +93,6 @@ def edit_account(request,id):
         return redirect('/account/'+str(id))
 
 def logout(request):
+    #'/logout' logs out current user
     request.session.clear()
     return redirect('/')
