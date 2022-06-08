@@ -16,7 +16,7 @@ urlpatterns = [
     path('add_menu/<int:id>', views.add_menu),
     path('delete_menu/<int:id>', views.delete_menu),
     path('view_menu', views.view_menu),
-    path('grocery_list', views.groceries),
+    path('grocery_list/<str:city>/<str:state>', views.groceries),
     path('create_food', views.create_food),
     path('add_grocery', views.add_grocery),
     path('remove_grocery/<int:id>', views.remove_grocery),

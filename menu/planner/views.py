@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from login.models import *
 from .models import *
 from django.contrib import messages
-# import requests
+import requests
 
 # Authentication is checked on every route in the planner app
 
@@ -289,7 +289,7 @@ frozen = []
 dairy = []
 other = []
 
-def groceries(request):
+def groceries(request,city,state):
 # 'grocery_list' displays a working grocery list
     if 'user' not in request.session:
         return redirect('/')
@@ -297,6 +297,8 @@ def groceries(request):
     active_user = User.objects.get(id = request.session['user'])
     foods = Food.objects.all()
     menu = Menu.objects.all()
+    response = requests.get(f'https://maps.googleapis.com/maps/api/place/textsearch/json?query=grocery%20in%20{city},{state}&key=')
+    data = response.json()
     context = {
         'all_foods': foods,
         'user' : active_user,
@@ -311,6 +313,7 @@ def groceries(request):
         'dairy': dairy,
         'other': other,
         'current_menu': menu,
+        'results': data['results']
     }
     return render(request,'grocery_list.html', context)
 
