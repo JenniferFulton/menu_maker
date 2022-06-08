@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect
 from login.models import *
 from .models import *
 from django.contrib import messages
-import requests
+# import requests
+
+# Authentication is checked on every route in the planner app
 
 def home_page(request):
-    #planner/ route will redirect user to home page once logged in or registered
-    #Checks if user is logged in first 
+    #'planner/' takes user to the home page
     if 'user' not in request.session:
         return redirect('/')
     
@@ -19,7 +20,7 @@ def home_page(request):
     return render(request,'home_page.html', context)
 
 def view_menu(request):
-    #Checks if user is logged in first 
+    # '/view_menu' allows user to see menu on the home page they selected from a drop down selection
     if 'user' not in request.session:
         return redirect('/')
 
@@ -30,11 +31,10 @@ def view_menu(request):
             'user': active_user,
             'current_menu' : menu,
         }
-        return render(request,'selected_menu.html', context)
+        return render(request,'home_page.html', context)
 
 def user_recipes(request, id):
-    #planner/user_recipes/id will redirect to a page, with a form to add another recipe, and display recipes user has added 
-    #Checks if user is logged in first
+    #'user_recipes/id' displays recipes added by user who is logged in. Can also add new recipe from this page
     if 'user' not in request.session:
         return redirect('/')
     
@@ -45,8 +45,7 @@ def user_recipes(request, id):
     return render(request,'user_recipes.html',context)
 
 def all_recipes(request):
-    #planner/all_recipes will redirect to a page to all the recipes added by all users, with a form to add another recipe
-    #Checks if user is logged in first
+    #'all_recipes' displays recipes added by all users, with a form to add another recipe. Can also add new recipe from this page
     if 'user' not in request.session:
         return redirect('/')
     
@@ -61,8 +60,7 @@ def all_recipes(request):
     return render(request,'all_recipes.html',context)
 
 def favorite_recipes(request):
-    #planner/favorite_recipes will redirect to a page to all the recipes a user has favorited, with a form to add another recipe
-    #Checks if user is logged in first
+    #'favorite_recipes' displays all the recipes a user has favorited/liked. Can also add new recipe from this page
     if 'user' not in request.session:
         return redirect('/')
     
@@ -73,8 +71,7 @@ def favorite_recipes(request):
     return render(request,'favorite_recipes.html',context)
     
 def add_recipe(request, id):
-    #planner/add_recipe/id will add recipe after validations and redirect user to their recipes 
-    #Checks if user is logged in first 
+    #'add_recipe/id' will add recipe after validations and redirect to user's recipe page 
     if 'user' not in request.session:
         return redirect('/')
 
@@ -118,20 +115,8 @@ def add_recipe(request, id):
             active_user.recipes.add(recipe_added)
             return redirect('/planner/user_recipes/'+ str(id))
 
-# def remove_recipe(request, id):
-#     #Will remove the relationship between Recipe and User before deleting 
-#     #Checks if user is logged in frist
-#     if 'user' not in request.session:
-#         return redirect('/')
-
-#     to_delete = Recipe.objects.get(id=id)
-#     active_user = User.objects.get(id = request.session['user'])
-#     to_delete.entry.remove(active_user)
-#     return redirect('/planner/delete_recipe/' + str(id))
-
 def delete_recipe(request, id):
-    #planner/delete_recipe/id will delete a user's recipe (can only delete their own)
-    #Checks if user is logged in frist
+    #'delete_recipe/id' will delete a user's recipe (can only delete their own)
     if 'user' not in request.session:
         return redirect('/')
 
@@ -141,8 +126,7 @@ def delete_recipe(request, id):
     return redirect('/planner/all_recipes')
 
 def recipe_info(request, id):
-    #planner/recipe_info will diaply all info about a recipe
-    #Checks if user is logged in first
+    #'recipe_info' displays information about selected recipe
     if 'user' not in request.session:
         return redirect('/')
     
@@ -157,8 +141,7 @@ def recipe_info(request, id):
     return render(request, 'recipe_info.html', context)
 
 def edit_recipe(request, id):
-    #planner/edit_recipe will render a page that has a form to edit a recipe (can only edit a recipe if they are the creator)
-    #Checks if user is logged in first
+    #'edit_recipe/id' displays a form to edit a recipe (can only edit a recipe if they are the creator)
     if 'user' not in request.session:
         return redirect('/')
 
@@ -173,8 +156,7 @@ def edit_recipe(request, id):
     return render(request, 'edit_recipe.html', context)
 
 def update_recipe(request, id):
-    #planner/update_recipe/id will update a recipe that is trying to be edited after running it thorugh validations
-    #Checks if user is logged in first
+    #'update_recipe/id' updates a recipe after validations
     if 'user' not in request.session:
         return redirect('/')
     
@@ -218,8 +200,7 @@ def update_recipe(request, id):
             return redirect('/planner/edit_recipe/' + str(id))
 
 def add_favorite(request,id):
-    # Will add a recipe to user's favorited recipes
-    #Checks if user is logged in first
+    # 'add_favorite/id' adds a recipe to user's favorited recipes
     if 'user' not in request.session:
         return redirect('/')
 
@@ -229,8 +210,7 @@ def add_favorite(request,id):
     return redirect('/planner/all_recipes')
 
 def create_menu(request):
-    #planner/create_menu will render a page that has a form to make a new menu for the week
-    #Checks if user is logged in first
+    #'create_menu' displays a form to make a new menu for the week
     if 'user' not in request.session:
         return redirect('/')
     
@@ -245,8 +225,7 @@ def create_menu(request):
     return render(request, 'create_menu.html', context)
 
 def add_menu(request, id):
-    #planner/add_menu Will add a menu
-    #Checks if user is logged in first
+    #'add_menu' creates a new menu
     if 'user' not in request.session:
         return redirect('/')
     
@@ -273,7 +252,7 @@ def add_menu(request, id):
         return redirect('/planner')
 
 def previous_menu(request):
-#Checks if user is logged in first 
+    #'previous_menu' displays a menu that the user has selected to view
     if 'user' not in request.session:
         return redirect('/')
 
@@ -289,7 +268,7 @@ def previous_menu(request):
         return render(request,'create_menu.html', context)
 
 def delete_menu(request, id):
-    #Checks if user is logged in first 
+    #'delete_menu/id' will delete a user's menu (can only delete their own)
     if 'user' not in request.session:
         return redirect('/')
     
@@ -298,6 +277,7 @@ def delete_menu(request, id):
 
     return redirect('/planner')
 
+# arrays created for the grocery list
 produce = []
 snacks = []
 bakery = []
@@ -310,8 +290,7 @@ dairy = []
 other = []
 
 def groceries(request):
-# planner/grocery_list will redirect to page with grocery list on it
-#Checks if user is logged in first
+# 'grocery_list' displays a working grocery list
     if 'user' not in request.session:
         return redirect('/')
 
@@ -336,7 +315,7 @@ def groceries(request):
     return render(request,'grocery_list.html', context)
 
 def create_food(request):
-    #Checks if user is logged in first
+    #'create_food' creates a food that can be used in the grocery list
     if 'user' not in request.session:
         return redirect('/')
     
@@ -354,6 +333,7 @@ def create_food(request):
         return redirect('/planner/grocery_list')
 
 def add_grocery(request):
+    # 'add_grocery' adds food into the array associated with the category
     if 'user' not in request.session:
         return redirect('/')
 
@@ -392,6 +372,7 @@ def add_grocery(request):
         return redirect('/planner/grocery_list')
 
 def remove_grocery(request,id):
+    # 'remove_grocery/id' removes food into the array associated with the category
     if 'user' not in request.session:
         return redirect('/')
     
@@ -428,7 +409,7 @@ def remove_grocery(request,id):
     return redirect('/planner/grocery_list')
 
 def grocery_menu(request):
-    #Checks if user is logged in first 
+    #'grocery/view_menu' will display the menu selected by the user on the grocery list
     if 'user' not in request.session:
         return redirect('/')
 
