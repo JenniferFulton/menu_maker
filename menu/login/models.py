@@ -1,11 +1,11 @@
+from atexit import register
 from django.db import models
 import re
 import bcrypt
-import datetime
 
 class UserManager(models.Manager):
     def register_validator(self, postData):
-    #Validate user entry upon registration 
+    #Validate user information on registration 
         errors = {}
         check_user = User.objects.filter(email = postData['email'])
 
@@ -37,7 +37,7 @@ class UserManager(models.Manager):
         return errors
     
     def login_validator(self, postData):
-    #Validates a user trying to log in 
+    #Validates a user attempting to log in 
         errors = {}
         check_user = User.objects.filter(email = postData['logemail'])
 
@@ -54,8 +54,9 @@ class UserManager(models.Manager):
         return errors
     
     def update_validator(self, postData):
-    #Validates user entry when they update their profile 
+    #Validates user information when they update their profile 
         errors = {}
+        # current_user = User.objects.get(id=request.session['user'])
         check_user = User.objects.filter(email = postData['new_email'])
 
         if len(postData['new_first_name']) < 2:
@@ -70,6 +71,7 @@ class UserManager(models.Manager):
         
         if len(check_user) != 0:
             errors['duplicate_email'] = 'Email already registered, please use a different email to resister'
+            # need to allow user to use same address they originally registered with
         
         if len(postData['new_city']) <= 2:
             errors['city'] = 'Please enter a valid city'
