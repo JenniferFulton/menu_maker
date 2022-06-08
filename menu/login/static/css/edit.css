@@ -1,3 +1,5 @@
+/* Stylesheet for edit_account where user can edit their account */
+
 *{ 
     margin: 0px;
     padding: 0px;
@@ -72,5 +74,4 @@ input{
     color:rgb(185, 58, 58);
     text-align: center;
     margin-bottom: 10px;
-    
 }

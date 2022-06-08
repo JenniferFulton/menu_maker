@@ -12,12 +12,12 @@
     <div id=wrapper>
         <div class="nav_bar">
             <h3>Menu Maker</h3>
-            <!-- logout route clears session and returns to login page (functioning) -->
+            <!-- logout route clears session and returns to login page -->
             <button onclick='location.href="/logout"'>Logout</button>
         </div>
         
         <div class="title">
-            <!-- account route takes user to page to edit their account (functioning) -->
+            <!-- account route takes user to page to edit their account -->
             <h2>Welcome <a href='/account/{{user.id}}'>{{user.first_name}}</a>!</h2>
             <p>Edit your account</p>
             <!-- Button will take user back to the home page -->
@@ -31,7 +31,7 @@
             <img src="{% static 'media/meatballs.png' %}" alt="Cheesey Meatballs">
         </div>
 
-        <!-- error messages will appear here is user does not meet user requirements -->
+        <!-- error messages will appear here is user does not meet registration requirements -->
         {% if messages %}
         <ul class='messages'>
             {% for message in messages %}
