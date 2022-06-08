@@ -12,19 +12,19 @@
     <div id="wrapper">
         <div class="nav_bar">
             <h3>Menu Maker</h3>
-            <!-- logout route clears session and returns to login page (functioning) -->
+            <!-- logout route clears session and returns to login page -->
             <button onclick='location.href="/logout"'>Logout</button>
         </div>
         
         <div class="recipe_nav">
-            <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <a href="/planner/all_recipes">All Recipes</a> |
             <!-- all_recipes will take you to all the recipes added by all users -->
+            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- user_recipes will take you to all the recipes added by user who is logged in -->
             <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
             <a href="/planner/favorite_recipes">Favorite Recipes</a>
-            <!-- Button will take user back to the home page -->
         </div>
+        <!-- Button will take user back to the home page -->
         <button class="home" onclick='location.href="/planner"'>Home</button>
 
         <div class="images">
@@ -34,16 +34,19 @@
             <img src="{% static 'media/gnocchi.png' %}" alt="Creamy Gnocchi Soup">
         </div>
 
+        <!-- Form to create a new weekly menu -->
         <div class="menu">
             <h2>Create a Menu For The Week</h2>
-            <!-- error messages will appear here-->
+
+            <!-- error messages will appear here if new menu doesn't pass verification-->
             {% if messages %}
             <ul class='messages'>
                 {% for message in messages %}
                     <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
                 {% endfor %}    
             </ul>
-        {% endif %}
+            {% endif %}
+
             <form action="/planner/add_menu/{{user.id}}" method="POST">
                 {% csrf_token %}
 
@@ -109,8 +112,8 @@
                 </select>
             </form>
 
+            <!-- Dropdown selection to view previous menus (user only views menus they created) -->
             <h2>View Previous Menus</h2>
-            
             <form class="view" action="/planner/previous_menu" method="POST">
                 {% csrf_token %}
                 <label for="view_menu">Week of:</label>
@@ -123,8 +126,8 @@
                 <input type="submit" value="View">
             </form>
     
+            <!-- Displays the week the user has selected-->
             <div class="week">
-            <!-- this will display the week a looks view with the menu the user has select-->
                 <h4>Week of: {{current_menu.week_date}}</h4>
                 <table> 
                     <thead>

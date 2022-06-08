@@ -12,12 +12,12 @@
     <div id="wrapper">
         <div class="nav_bar">
             <h3>Menu Maker</h3>
-            <!-- logout route clears session and returns to login page (functioning) -->
+            <!-- logout route clears session and returns to login page -->
             <button onclick='location.href="/logout"'>Logout</button>
         </div>
         
         <div class="title">
-            <!-- account route takes user to page to edit their account (functioning) -->
+            <!-- account route takes user to page to edit their account  -->
             <h2>Welcome <a href='/account/{{user.id}}'>{{user.first_name}}</a>!</h2>
             <p>Let's get planning</p>
             <!-- Button will take user back to the home page -->
@@ -31,6 +31,7 @@
             <img src="{% static 'media/pasta.png' %}" alt="Pasta Carbonara">
         </div>
 
+        <!-- Dropdown selection to view menus (user only views menus they created) -->
         <form action="/planner/view_menu" method="POST">
             {% csrf_token %}
             <label for="view_menu">Week of:</label>
@@ -43,8 +44,8 @@
             <input type="submit" value="View">
         </form>
 
+        <!-- Displays the week the user has selected-->
         <div class="week">
-        <!-- this will display the week a looks view with the menu the user has select-->
             <h4>Week of: {{current_menu.week_date}}</h4>
             <button class="delete" onclick='location.href="/planner/delete_menu/{{current_menu.id}}"'>Delete</button>
             <table> 
@@ -69,6 +70,7 @@
             </table>     
         </div>
 
+        <!-- Allows user to create a menu, view recipes and view their grocery list -->
         <div class="buttons">
             <button onclick='location.href="/planner/create_menu"'>Create New Menu</button>
             <button onclick='location.href="/planner/user_recipes/{{user.id}}"'>Browse Recipes</button>

@@ -12,24 +12,26 @@
     <div id="wrapper">
         <div class="nav_bar">
             <h3>Menu Maker</h3>
-            <!-- logout route clears session and returns to login page (functioning) -->
+            <!-- logout route clears session and returns to login page -->
             <button onclick='location.href="/logout"'>Logout</button>
         </div>
         
         <div class="recipe_nav">
-            <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <a href="/planner/all_recipes">All Recipes</a> |
             <!-- all_recipes will take you to all the recipes added by all users -->
+            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- user_recipes will take you to all the recipes added by user who is logged in -->
             <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
             <a href="/planner/favorite_recipes">Favorite Recipes</a>
-            <!-- Button will take user back to the home page -->
         </div>
+        <!-- Button will take user back to the home page -->
         <button class="home" onclick='location.href="/planner"'>Home</button>
 
+        <!-- Form to edit a recipe -->
         <div class = 'add_recipe'>
             <h2>Edit Your Recipe: {{recipe.title}}</h2>
-            <!-- error messages will appear here (functioning)-->
+
+            <!-- error messages will appear if recipe update does not pass verification-->
             {% if messages %}
             <ul class='messages'>
                 {% for message in messages %}
@@ -37,6 +39,7 @@
                 {% endfor %}    
             </ul>
             {% endif %}
+
             <form action='/planner/update/{{recipe.id}}' method="POST">
                 {% csrf_token %}
                 <label for='new_title'>Title of Recipe:</label>
@@ -51,7 +54,7 @@
                 <label for='new_cook'>Cook Time:</label>
                 <textarea type='text' id='new_cook' name='new_cook'>{{recipe.cook}}</textarea>
 
-                <!-- ***instruction and direction placeholders are arrays*** -->
+                <!-- *** needs commas between ingredients and directions *** -->
                 <label for='new_ingredients'>Ingredients:</label>
                 <textarea id='new_ingredients' name='new_ingredients' cols="24" rows="5">{% for character in recipe.ingredients %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</textarea>
                 <label for='new_directions'>Directions:</label>

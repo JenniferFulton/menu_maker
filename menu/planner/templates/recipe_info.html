@@ -17,16 +17,17 @@
         </div>
         
         <div class="recipe_nav">
-            <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <a href="/planner/all_recipes">All Recipes</a> |
             <!-- all_recipes will take you to all the recipes added by all users -->
+            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- user_recipes will take you to all the recipes added by user who is logged in -->
             <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
             <a href="/planner/favorite_recipes">Favorite Recipes</a>
-            <!-- Button will take user back to the home page -->
         </div>
+        <!-- Button will take user back to the home page -->
         <button class="home" onclick='location.href="/planner"'>Home</button>
 
+        <!-- Displays recipe selected by the user -->
         <div class="recipe">
             <h1>{{recipe.title}}</h1>
             <h4>{{recipe.description}}</h4>
@@ -48,6 +49,7 @@
                 <li>{% else %}{{character}}{% endif %}{% endif %}{% endfor %}
                 </li>
             </ol>
+            <!-- If the recipe has been added by the user logged in they are allowed to edit/delete recipe -->
             {% for user in user_recipes %}
                 {% if user.id == recipe.id %}
                     <a href="/planner/delete_recipe/{{recipe.id}}">Delete</a> | <a href="/planner/edit_recipe/{{recipe.id}}">Edit</a>

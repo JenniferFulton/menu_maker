@@ -12,19 +12,19 @@
     <div id="wrapper">
         <div class="nav_bar">
             <h3>Menu Maker</h3>
-            <!-- logout route clears session and returns to login page (functioning) -->
+            <!-- logout route clears session and returns to login page -->
             <button onclick='location.href="/logout"'>Logout</button>
         </div>
         
         <div class="recipe_nav">
-            <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <a href="/planner/all_recipes">All Recipes</a> |
             <!-- all_recipes will take you to all the recipes added by all users -->
+            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- user_recipes will take you to all the recipes added by user who is logged in -->
             <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
             <a href="/planner/favorite_recipes">Favorite Recipes</a>
-            <!-- Button will take user back to the home page -->
         </div>
+        <!-- Button will take user back to the home page -->
         <button class="home" onclick='location.href="/planner"'>Home</button>
 
         <div class="images">
@@ -34,6 +34,7 @@
             <img src="{% static 'media/gnocchi.png' %}" alt="Creamy Gnocchi Soup">
         </div>
 
+        <!-- Form for adding a recipe -->
         <div class = 'add_recipe'>
             <h2>Add a Recipe</h2>
             <form action='/planner/add_recipe/{{user.id}}' method="POST">
@@ -61,11 +62,13 @@
             </form>
         </div>
 
+        <!-- Displays recipes only liked/favorited by the User who is logged in  -->
         <h2>{{user.first_name}}'s Favorite Recipes</h2>
         {% for recipe in user.liked.all %}
         <div class="recipe">
                 <h4>{{recipe.title}}</h4>
                 <p>{{recipe.description}}</p>
+                <!-- Link to view recipe -->
                 <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> 
         </div>
         {% endfor %}

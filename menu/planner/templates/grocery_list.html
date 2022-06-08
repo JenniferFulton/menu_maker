@@ -17,16 +17,17 @@
         </div>
         
         <div class="recipe_nav">
-            <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <a href="/planner/all_recipes">All Recipes</a> |
             <!-- all_recipes will take you to all the recipes added by all users -->
+            <a href="/planner/all_recipes">All Recipes</a> |
+            <!-- user_recipes will take you to all the recipes added by user who is logged in -->
             <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
             <a href="/planner/favorite_recipes">Favorite Recipes</a>
-            <!-- Button will take user back to the home page -->
         </div>
+        <!-- Button will take user back to the home page -->
         <button class="home" onclick='location.href="/planner"'>Home</button>
 
+        <!-- Dropdown selection to view menus (user only views menus they created) -->
         <form class="view" action="/planner/grocery/view_menu" method="POST">
             {% csrf_token %}
             <label for="view_menu">Week of:</label>
@@ -39,8 +40,8 @@
             <input type="submit" value="View">
         </form>
 
+        <!-- Displays the week the user has selected-->
         <div class="week">
-        <!-- this will display the week a looks view with the menu the user has select-->
             <h3 class="title">Week of: {{current_menu.week_date}}</h3>
             <table> 
                 <thead>
@@ -64,7 +65,11 @@
             </table>     
         </div>
 
-            <!-- error messages will appear here (functioning)-->
+        <!-- Form to add a food for the grocery list -->
+        <div class="add_food">
+            <h3 class="title">Add a Food</h3>
+
+            <!-- error messages will appear here if food added does not pass verificatino -->
             {% if messages %}
             <ul class='messages'>
                 {% for message in messages %}
@@ -73,9 +78,6 @@
             </ul>
             {% endif %}
 
-
-            <div class="add_food">
-            <h3 class="title">Add a Food</h3>
             <form class="create_food" action="/planner/create_food" method="POST">
                 {% csrf_token %}
                 
@@ -101,14 +103,17 @@
             </form>
         </div>
 
+        <!-- Displays grocery list with the option to add food to the list -->
         <h3 class="title">{{user.first_name}}'s Grocery List</h3>
         <div class="list">
             <div class="food">
                 <h4>Produce</h4>
+                <!-- Adds food to the list -->
                 <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
                     <select id="add_grocery" name="add_grocery">
                         <option> </option>
+                        <!-- Only displays foods within category -->
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Produce" %}
                                 <option value={{grocery.id}}>{{grocery.name}}</option>
@@ -119,6 +124,7 @@
                 </form>
                 {% for food in produce %}
                 <ul>
+                    <!-- displays and deletes food from the list when clicked  -->
                     <p><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></p>
                 </ul>
                 {% endfor %}
@@ -126,10 +132,12 @@
 
             <div class="food">
                 <h4>Snacks</h4>
+                <!-- Adds food to the list -->
                 <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
                     <select id="add_grocery" name="add_grocery">
                         <option> </option>
+                        <!-- Only displays foods within category -->
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Snacks" %}
                                 <option value={{grocery.id}}>{{grocery.name}}</option>
@@ -140,17 +148,20 @@
                 </form>
                 {% for food in snacks %}
                 <ul>
+                    <!-- displays and deletes food from the list when clicked  -->
                     <p><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></p>
                 </ul>
                 {% endfor %}
             </div>
 
-            <div class="food"">
+            <div class="food">
                 <h4>Bakery</h4>
+                <!-- Adds food to the list -->
                 <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
                     <select id="add_grocery" name="add_grocery">
                         <option> </option>
+                        <!-- Only displays foods within category -->
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Bakery" %}
                                 <option value={{grocery.id}}>{{grocery.name}}</option>
@@ -161,6 +172,7 @@
                 </form>
                 {% for food in bakery %}
                 <ul>
+                    <!-- displays and deletes food from the list when clicked  -->
                     <p><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></p>
                 </ul>
                 {% endfor %}
@@ -168,10 +180,12 @@
 
             <div class="food">
                 <h4>International</h4>
+                <!-- Adds food to the list -->
                 <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
                     <select id="add_grocery" name="add_grocery">
                         <option> </option>
+                        <!-- Only displays foods within category -->
                         {% for grocery in all_foods %}
                             {% if grocery.category == "International" %}
                                 <option value={{grocery.id}}>{{grocery.name}}</option>
@@ -182,6 +196,7 @@
                 </form>
                 {% for food in intl %}
                 <ul>
+                    <!-- displays and deletes food from the list when clicked  -->
                     <p><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></p>
                 </ul>
                 {% endfor %}
@@ -189,10 +204,12 @@
 
             <div class="food">
                 <h4>Meat</h4>
+                <!-- Adds food to the list -->
                 <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
                     <select id="add_grocery" name="add_grocery">
                         <option> </option>
+                        <!-- Only displays foods within category -->
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Meat" %}
                                 <option value={{grocery.id}}>{{grocery.name}}</option>
@@ -203,6 +220,7 @@
                 </form>
                 {% for food in meat %}
                 <ul>
+                    <!-- displays and deletes food from the list when clicked  -->
                     <p><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></p>
                 </ul>
                 {% endfor %}
@@ -210,10 +228,12 @@
 
             <div class="food">
                 <h4>Bread</h4>
+                <!-- Adds food to the list -->
                 <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
                     <select id="add_grocery" name="add_grocery">
                         <option> </option>
+                        <!-- Only displays foods within category -->
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Bread" %}
                                 <option value={{grocery.id}}>{{grocery.name}}</option>
@@ -224,6 +244,7 @@
                 </form>
                 {% for food in bread %}
                 <ul>
+                    <!-- displays and deletes food from the list when clicked  -->
                     <p><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></p>
                 </ul>
                 {% endfor %}
@@ -231,10 +252,12 @@
 
             <div class="food">
                 <h4>Baking & Spices</h4>
+                <!-- Adds food to the list -->
                 <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
                     <select id="add_grocery" name="add_grocery">
                         <option> </option>
+                        <!-- Only displays foods within category -->
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Baking & Spices" %}
                                 <option value={{grocery.id}}>{{grocery.name}}</option>
@@ -245,6 +268,7 @@
                 </form>
                 {% for food in bake_spice %}
                 <ul>
+                    <!-- displays and deletes food from the list when clicked  -->
                     <p><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></p>
                 </ul>
                 {% endfor %}
@@ -252,10 +276,12 @@
 
             <div class="food">
                 <h4>Frozen</h4>
+                <!-- Adds food to the list -->
                 <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
                     <select id="add_grocery" name="add_grocery">
                         <option> </option>
+                        <!-- Only displays foods within category -->
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Frozen" %}
                                 <option value={{grocery.id}}>{{grocery.name}}</option>
@@ -266,6 +292,7 @@
                 </form>
                 {% for food in frozen %}
                 <ul>
+                    <!-- displays and deletes food from the list when clicked  -->
                     <p><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></p>
                 </ul>
                 {% endfor %}
@@ -273,10 +300,12 @@
 
             <div class="food">
                 <h4>Dairy</h4>
+                <!-- Adds food to the list -->
                 <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
                     <select id="add_grocery" name="add_grocery">
                         <option> </option>
+                        <!-- Only displays foods within category -->
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Dairy" %}
                                 <option value={{grocery.id}}>{{grocery.name}}</option>
@@ -287,6 +316,7 @@
                 </form>
                 {% for food in dairy %}
                 <ul>
+                    <!-- displays and deletes food from the list when clicked  -->
                     <p><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></p>
                 </ul>
                 {% endfor %}
@@ -294,10 +324,12 @@
 
             <div class="food">
                 <h4>Other</h4>
+                <!-- Adds food to the list -->
                 <form action="/planner/add_grocery" method="POST">
                     {% csrf_token %}
                     <select id="add_grocery" name="add_grocery">
                         <option> </option>
+                        <!-- Only displays foods within category -->
                         {% for grocery in all_foods %}
                             {% if grocery.category == "Other" %}
                                 <option value={{grocery.id}}>{{grocery.name}}</option>
@@ -308,6 +340,7 @@
                 </form>
                 {% for food in other %}
                 <ul>
+                    <!-- displays and deletes food from the list when clicked  -->
                     <p><a href="/planner/remove_grocery/{{food.id}}">{{food.name}}</a></p>
                 </ul>
                 {% endfor %}
