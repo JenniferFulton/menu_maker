@@ -411,7 +411,7 @@ def remove_grocery(request,id):
         other.remove(to_remove)
     return redirect('/planner/grocery_list')
 
-def grocery_menu(request):
+def grocery_menu(request,city,state):
     #'grocery/view_menu' will display the menu selected by the user on the grocery list
     if 'user' not in request.session:
         return redirect('/')
@@ -420,6 +420,8 @@ def grocery_menu(request):
         foods = Food.objects.all()
         active_user = User.objects.get(id = request.session['user'])
         menu = Menu.objects.get(id = request.POST['view_menu'])
+        response = requests.get(f'https://maps.googleapis.com/maps/api/place/textsearch/json?query=grocery%20in%20{city},{state}&key=')
+        data = response.json()
         context = {
             'user': active_user,
             'current_menu' : menu,
@@ -435,6 +437,7 @@ def grocery_menu(request):
             'frozen': frozen,
             'dairy': dairy,
             'other': other,
+            'results': data['results']
         }
         return render(request,'grocery_list.html', context)
     

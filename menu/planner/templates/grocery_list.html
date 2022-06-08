@@ -28,7 +28,7 @@
         <button class="home" onclick='location.href="/planner"'>Home</button>
 
         <!-- Dropdown selection to view menus (user only views menus they created) -->
-        <form class="view" action="/planner/grocery/view_menu" method="POST">
+        <form class="view" action="/planner/grocery/view_menu/{{user.city}}/{{user.state}}" method="POST">
             {% csrf_token %}
             <label for="view_menu">Week of:</label>
             <select id="view_menu" name="view_menu">
