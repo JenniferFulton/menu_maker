@@ -224,7 +224,7 @@ def create_menu(request):
     }
     return render(request, 'create_menu.html', context)
 
-grocery_list = ['brussel sprouts','chicken']
+grocery_list = []
 def add_menu(request, id):
     #'add_menu' creates a new menu
     if 'user' not in request.session:
@@ -251,7 +251,14 @@ def add_menu(request, id):
         menu_added = Menu.objects.last()
         active_user.menus.add(menu_added)
 
+        grocery_list.clear()
         grocery_list.append(menu_added.mon.ingredients)
+        grocery_list.append(menu_added.tues.ingredients)
+        grocery_list.append(menu_added.wed.ingredients)
+        grocery_list.append(menu_added.thrus.ingredients)
+        grocery_list.append(menu_added.fri.ingredients)
+        grocery_list.append(menu_added.sat.ingredients)
+        grocery_list.append(menu_added.sun.ingredients)
         return redirect('/planner')
 
 def previous_menu(request):
@@ -431,16 +438,17 @@ def grocery_menu(request,city,state):
             'current_menu' : menu,
             'all_foods': foods,
             'user' : active_user,
-            'produce': produce,
-            'snacks': snacks,
-            'bakery': bakery,
-            'intl': intl,
-            'meat': meat,
-            'bread': bread,
-            'bake_spice': bake_spice,
-            'frozen': frozen,
-            'dairy': dairy,
-            'other': other,
+            # 'produce': produce,
+            # 'snacks': snacks,
+            # 'bakery': bakery,
+            # 'intl': intl,
+            # 'meat': meat,
+            # 'bread': bread,
+            # 'bake_spice': bake_spice,
+            # 'frozen': frozen,
+            # 'dairy': dairy,
+            # 'other': other,
+            'groceries': grocery_list,
             'results': data['results']
         }
         return render(request,'grocery_list.html', context)
