@@ -224,6 +224,7 @@ def create_menu(request):
     }
     return render(request, 'create_menu.html', context)
 
+grocery_list = ['brussel sprouts','chicken']
 def add_menu(request, id):
     #'add_menu' creates a new menu
     if 'user' not in request.session:
@@ -249,6 +250,8 @@ def add_menu(request, id):
         active_user = User.objects.get(id = request.session['user'])
         menu_added = Menu.objects.last()
         active_user.menus.add(menu_added)
+
+        grocery_list.append(menu_added.mon.ingredients)
         return redirect('/planner')
 
 def previous_menu(request):
@@ -278,16 +281,16 @@ def delete_menu(request, id):
     return redirect('/planner')
 
 # arrays created for the grocery list
-produce = []
-snacks = []
-bakery = []
-intl = []
-meat = []
-bread = []
-bake_spice = []
-frozen = []
-dairy = []
-other = []
+# produce = []
+# snacks = []
+# bakery = []
+# intl = []
+# meat = []
+# bread = []
+# bake_spice = []
+# frozen = []
+# dairy = []
+# other = []
 
 def groceries(request,city,state):
 # 'grocery_list' displays a working grocery list
@@ -302,17 +305,18 @@ def groceries(request,city,state):
     context = {
         'all_foods': foods,
         'user' : active_user,
-        'produce': produce,
-        'snacks': snacks,
-        'bakery': bakery,
-        'intl': intl,
-        'meat': meat,
-        'bread': bread,
-        'bake_spice': bake_spice,
-        'frozen': frozen,
-        'dairy': dairy,
-        'other': other,
+        # 'produce': produce,
+        # 'snacks': snacks,
+        # 'bakery': bakery,
+        # 'intl': intl,
+        # 'meat': meat,
+        # 'bread': bread,
+        # 'bake_spice': bake_spice,
+        # 'frozen': frozen,
+        # 'dairy': dairy,
+        # 'other': other,
         'current_menu': menu,
+        'groceries': grocery_list,
         'results': data['results']
     }
     return render(request,'grocery_list.html', context)
@@ -322,17 +326,17 @@ def create_food(request,city,state):
     if 'user' not in request.session:
         return redirect('/')
     
-    if request.method == "POST":
-        errors = Food.objects.food_validator(request.POST)
-        if len(errors) > 0:
-            for key, value in errors.items():
-                messages.error(request, value)
-            return redirect('/planner/grocery_list')
+    # if request.method == "POST":
+    #     errors = Food.objects.food_validator(request.POST)
+    #     if len(errors) > 0:
+    #         for key, value in errors.items():
+    #             messages.error(request, value)
+    #         return redirect('/planner/grocery_list')
 
-        Food.objects.create(
-            name = request.POST['name'],
-            category = request.POST['category']
-        )
+    #     Food.objects.create(
+    #         name = request.POST['name'],
+    #         category = request.POST['category']
+    #     )
         return redirect(f'/planner/grocery_list/{city}/{state}')
 
 def add_grocery(request,city,state):
@@ -340,37 +344,37 @@ def add_grocery(request,city,state):
     if 'user' not in request.session:
         return redirect('/')
 
-    if request.method == "POST":
-        to_add = Food.objects.get(id=request.POST['add_grocery'])
-        if to_add.category == "Produce":
-            produce.append(to_add)
+    # if request.method == "POST":
+        # to_add = Food.objects.get(id=request.POST['add_grocery'])
+        # if to_add.category == "Produce":
+        #     produce.append(to_add)
 
-        if to_add.category == "Snacks":
-            snacks.append(to_add)
+        # if to_add.category == "Snacks":
+        #     snacks.append(to_add)
         
-        if to_add.category == "Bakery":
-            bakery.append(to_add)
+        # if to_add.category == "Bakery":
+        #     bakery.append(to_add)
         
-        if to_add.category == "International":
-            intl.append(to_add)
+        # if to_add.category == "International":
+        #     intl.append(to_add)
 
-        if to_add.category == "Meat":
-            meat.append(to_add)
+        # if to_add.category == "Meat":
+        #     meat.append(to_add)
         
-        if to_add.category == "Bread":
-            bread.append(to_add)
+        # if to_add.category == "Bread":
+        #     bread.append(to_add)
         
-        if to_add.category == "Baking & Spices":
-            bake_spice.append(to_add)
+        # if to_add.category == "Baking & Spices":
+        #     bake_spice.append(to_add)
         
-        if to_add.category == "Frozen":
-            frozen.append(to_add)
+        # if to_add.category == "Frozen":
+        #     frozen.append(to_add)
         
-        if to_add.category == "Dairy":
-            dairy.append(to_add)
+        # if to_add.category == "Dairy":
+        #     dairy.append(to_add)
         
-        if to_add.category == "Other":
-            other.append(to_add)
+        # if to_add.category == "Other":
+        #     other.append(to_add)
         
         return redirect(f'/planner/grocery_list/{city}/{state}')
 
@@ -379,36 +383,36 @@ def remove_grocery(request,id,city,state):
     if 'user' not in request.session:
         return redirect('/')
     
-    to_remove = Food.objects.get(id=id)
-    if to_remove.category == "Produce":
-        produce.remove(to_remove)
+    # to_remove = Food.objects.get(id=id)
+    # if to_remove.category == "Produce":
+    #     produce.remove(to_remove)
 
-    if to_remove.category == "Snacks":
-        snacks.remove(to_remove)
+    # if to_remove.category == "Snacks":
+    #     snacks.remove(to_remove)
     
-    if to_remove.category == "Bakery":
-        bakery.remove(to_remove)
+    # if to_remove.category == "Bakery":
+    #     bakery.remove(to_remove)
     
-    if to_remove.category == "International":
-        intl.remove(to_remove)
+    # if to_remove.category == "International":
+    #     intl.remove(to_remove)
 
-    if to_remove.category == "Meat":
-        meat.remove(to_remove)
+    # if to_remove.category == "Meat":
+    #     meat.remove(to_remove)
     
-    if to_remove.category == "Bread":
-        bread.remove(to_remove)
+    # if to_remove.category == "Bread":
+    #     bread.remove(to_remove)
     
-    if to_remove.category == "Baking & Spices":
-        bake_spice.remove(to_remove)
+    # if to_remove.category == "Baking & Spices":
+    #     bake_spice.remove(to_remove)
     
-    if to_remove.category == "Frozen":
-        frozen.remove(to_remove)
+    # if to_remove.category == "Frozen":
+    #     frozen.remove(to_remove)
     
-    if to_remove.category == "Dairy":
-        dairy.remove(to_remove)
+    # if to_remove.category == "Dairy":
+    #     dairy.remove(to_remove)
     
-    if to_remove.category == "Other":
-        other.remove(to_remove)
+    # if to_remove.category == "Other":
+    #     other.remove(to_remove)
     return redirect(f'/planner/grocery_list/{city}/{state}')
 
 def grocery_menu(request,city,state):

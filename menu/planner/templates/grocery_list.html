@@ -65,6 +65,10 @@
             </table>     
         </div>
 
+        {% for grocery in groceries %}
+            <p>{{grocery}}</p>
+        {% endfor %}
+
         <!-- Form to add a food for the grocery list -->
         <div class="add_food">
             <h3 class="title">Add a Food</h3>
@@ -103,7 +107,7 @@
             </form>
         </div>
 
-        <!-- Displays grocery list with the option to add food to the list -->
+        <!-- Displays grocery list with the option to add food to the list-->
         <h3 class="title">{{user.first_name}}'s Grocery List</h3>
         <div class="list">
             <div class="food">
@@ -357,6 +361,6 @@
             </div>
             {% endfor %}
         </div>
-    </div>
+    </div> -->
 </body>
 </html>
