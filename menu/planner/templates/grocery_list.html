@@ -78,26 +78,11 @@
             </ul>
             {% endif %}
 
-            <form class="create_food" action="/planner/create_food/{{user.city}}/{{user.state}}" method="POST">
+            <form class="create_food" action="/planner/add_grocery/{{user.city}}/{{user.state}}" method="POST">
                 {% csrf_token %}
                 
                 <label for='name'>Name:</label>
                 <input type='text' id='name' name='name'>
-
-                <label for="category">Category:</label>
-                <select id="category" name="category">
-                    <option> </option>
-                    <option>Produce</option>
-                    <option>Snacks</option>
-                    <option>Bakery</option>
-                    <option>International</option>
-                    <option>Meat</option>
-                    <option>Bread</option>
-                    <option>Baking & Spices</option>
-                    <option>Frozen</option>
-                    <option>Dairy</option>
-                    <option>Other</option>
-                </select>
 
                 <input type="submit" value="Add">
             </form>

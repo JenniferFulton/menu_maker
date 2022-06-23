@@ -333,6 +333,8 @@ def add_grocery(request,city,state):
     if 'user' not in request.session:
         return redirect('/')
 
+    if request.method == "POST":
+        items.append(request.POST['name'])
         
     return redirect(f'/planner/grocery_list/{city}/{state}')
 
