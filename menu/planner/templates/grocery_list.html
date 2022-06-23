@@ -22,7 +22,9 @@
             <!-- user_recipes will take you to all the recipes added by user who is logged in -->
             <a href="/planner/user_recipes/{{user.id}}">Your Recipes</a> |
             <!-- favorite_recipes will take the user to the recipes they have favorited -->
-            <a href="/planner/favorite_recipes">Favorite Recipes</a>
+            <a href="/planner/favorite_recipes">Favorite Recipes</a> |
+            <!-- grocery_list will take you to your current grocery list -->
+            <a href="/planner/grocery_list/{{user.city}}/{{user.state}}">Grocery List</a>
         </div>
         <!-- Button will take user back to the home page -->
         <button class="home" onclick='location.href="/planner"'>Home</button>
