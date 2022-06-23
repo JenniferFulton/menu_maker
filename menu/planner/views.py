@@ -209,6 +209,16 @@ def add_favorite(request,id):
     active_user.liked.add(liked_recipe)
     return redirect('/planner/all_recipes')
 
+def remove_favorite(request, id):
+    if 'user' not in request.session:
+        return redirect('/')
+
+    active_user = User.objects.get(id = request.session['user'])
+    unlike = Recipe.objects.get(id=id)
+    active_user.liked.remove(unlike)
+
+    return redirect('/planner/favorite_recipes')
+
 def create_menu(request):
     #'create_menu' displays a form to make a new menu for the week
     if 'user' not in request.session:

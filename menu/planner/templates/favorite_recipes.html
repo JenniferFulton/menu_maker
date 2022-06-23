@@ -72,6 +72,7 @@
                 <p>{{recipe.description}}</p>
                 <!-- Link to view recipe -->
                 <a href="/planner/recipe_info/{{recipe.id}}">View Recipe</a> 
+                <button class="unlike" onclick='location.href="/planner/remove_favorite/{{recipe.id}}"'>Unlike</button>
         </div>
         {% endfor %}
     </div>
