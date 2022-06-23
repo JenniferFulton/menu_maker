@@ -262,17 +262,24 @@ def add_menu(request, id):
         grocery_list.append(menu_added.sat.ingredients)
         grocery_list.append(menu_added.sun.ingredients)
 
+        items.clear()
         ingr = ''
         for grocery in grocery_list:
             for character in grocery:
                 if character != '[' and character != "'" and character != ']':
                     if character == ',':
-                        items.append(ingr)
-                        ingr = ''
+                        if items.count(ingr) != 0:
+                            ingr = ''
+                        else:
+                            items.append(ingr)
+                            ingr = ''
                     else:
                         ingr = ingr + character
-            items.append(ingr)
-            ingr = ''
+            if items.count(ingr) == 0:
+                items.append(ingr)
+                ingr = ''
+            else:
+                ingr = ''
         items.sort()
         return redirect('/planner')
 
