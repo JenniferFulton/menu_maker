@@ -65,11 +65,15 @@
             </table>     
         </div>
 
-        {% for grocery in groceries %}
-            <li contentEditable="true">{% for character in grocery %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}
-            </li>
-        <li contentEditable="true">{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</li>
+        <!-- {% for grocery in groceries %}
+            <li>{% for character in grocery %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}</li>
+            <li>{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</li> 
+        {% endfor %} -->
+
+        {% for item in groceries %}
+        <p>{{item}}</p>
         {% endfor %}
+
 
         <!-- Form to add a food for the grocery list -->
         <div class="add_food">

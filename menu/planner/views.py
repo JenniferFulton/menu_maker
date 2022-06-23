@@ -309,21 +309,27 @@ def groceries(request,city,state):
     menu = Menu.objects.all()
     response = requests.get(f'https://maps.googleapis.com/maps/api/place/textsearch/json?query=grocery%20in%20{city},{state}&key=')
     data = response.json()
+    ingr = ''
+    items = []
+    for grocery in grocery_list:
+        for character in grocery:
+            if character != '[' and character != "'" and character != ']':
+                if character == ',':
+                        items.append(ingr)
+                        ingr = ''
+                else:
+                    ingr = ingr + character
+        items.append(ingr)
+        ingr = ''
+    
+    items.sort()
+
+                
     context = {
         'all_foods': foods,
         'user' : active_user,
-        # 'produce': produce,
-        # 'snacks': snacks,
-        # 'bakery': bakery,
-        # 'intl': intl,
-        # 'meat': meat,
-        # 'bread': bread,
-        # 'bake_spice': bake_spice,
-        # 'frozen': frozen,
-        # 'dairy': dairy,
-        # 'other': other,
         'current_menu': menu,
-        'groceries': grocery_list,
+        'groceries': items,
         'results': data['results']
     }
     return render(request,'grocery_list.html', context)
@@ -385,41 +391,13 @@ def add_grocery(request,city,state):
         
         return redirect(f'/planner/grocery_list/{city}/{state}')
 
-def remove_grocery(request,id,city,state):
+def remove_grocery(request,id,city,state,item):
     # 'remove_grocery/id' removes food into the array associated with the category
     if 'user' not in request.session:
         return redirect('/')
     
-    # to_remove = Food.objects.get(id=id)
-    # if to_remove.category == "Produce":
-    #     produce.remove(to_remove)
+    grocery_list.remove(item)
 
-    # if to_remove.category == "Snacks":
-    #     snacks.remove(to_remove)
-    
-    # if to_remove.category == "Bakery":
-    #     bakery.remove(to_remove)
-    
-    # if to_remove.category == "International":
-    #     intl.remove(to_remove)
-
-    # if to_remove.category == "Meat":
-    #     meat.remove(to_remove)
-    
-    # if to_remove.category == "Bread":
-    #     bread.remove(to_remove)
-    
-    # if to_remove.category == "Baking & Spices":
-    #     bake_spice.remove(to_remove)
-    
-    # if to_remove.category == "Frozen":
-    #     frozen.remove(to_remove)
-    
-    # if to_remove.category == "Dairy":
-    #     dairy.remove(to_remove)
-    
-    # if to_remove.category == "Other":
-    #     other.remove(to_remove)
     return redirect(f'/planner/grocery_list/{city}/{state}')
 
 def grocery_menu(request,city,state):
