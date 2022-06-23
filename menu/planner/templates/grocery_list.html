@@ -65,13 +65,10 @@
             </table>     
         </div>
 
-        <!-- {% for grocery in groceries %}
-            <li>{% for character in grocery %}{% if character != '[' and character != "'" and character != ']'%}{% if character == ',' %}</li>
-            <li>{% else %}{{character}}{% endif %}{% endif %}{% endfor %}</li> 
-        {% endfor %} -->
+        <p>{{groceries}}</p>
 
         {% for item in groceries %}
-        <p>{{item}}</p>
+        <li><a href = '/planner/remove_grocery/{{user.city}}/{{user.state}}/{{item}}'>{{item}}</a></li>
         {% endfor %}
 
 

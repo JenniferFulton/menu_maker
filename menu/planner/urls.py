@@ -17,9 +17,9 @@ urlpatterns = [
     path('delete_menu/<int:id>', views.delete_menu),
     path('view_menu', views.view_menu),
     path('grocery_list/<str:city>/<str:state>', views.groceries),
-    path('create_food/<str:city>/<str:state>', views.create_food),
+    # path('create_food/<str:city>/<str:state>', views.create_food),
     path('add_grocery/<str:city>/<str:state>', views.add_grocery),
-    path('remove_grocery/<int:id>/<str:city>/<str:state>', views.remove_grocery),
+    path('remove_grocery/<str:city>/<str:state>/<str:item>', views.remove_grocery),
     path('grocery/view_menu/<str:city>/<str:state>', views.grocery_menu),
     path('previous_menu', views.previous_menu),
 ]
