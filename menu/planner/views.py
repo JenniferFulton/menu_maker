@@ -147,11 +147,22 @@ def edit_recipe(request, id):
 
     active_user = User.objects.get(id = request.session['user'])
     current_recipe = Recipe.objects.get(id=id)
-    ingredients = current_recipe.ingredients
+
+    ing_edit = []
+    for character in current_recipe.ingredients:
+        if character != '[' and character != "'" and character != ']':
+                ing_edit.append(character)
+    
+    direct_edit = []
+    for character in current_recipe.directions:
+        if character != '[' and character != "'" and character != ']':
+                direct_edit.append(character)
+
     context = {
         'user' : active_user,
         'recipe' : current_recipe,
-        'ingredients': ingredients,
+        'ingredients': ing_edit,
+        'directions': direct_edit,
     }
     return render(request, 'edit_recipe.html', context)
 
@@ -210,6 +221,7 @@ def add_favorite(request,id):
     return redirect('/planner/all_recipes')
 
 def remove_favorite(request, id):
+    # 'remove_favorite/id' allows user to remove a recipe from their favorited list
     if 'user' not in request.session:
         return redirect('/')
 
@@ -272,6 +284,7 @@ def add_menu(request, id):
         grocery_list.append(menu_added.sat.ingredients)
         grocery_list.append(menu_added.sun.ingredients)
 
+        # make ingredients seperate stings instead one big string
         items.clear()
         ingr = ''
         for grocery in grocery_list:
