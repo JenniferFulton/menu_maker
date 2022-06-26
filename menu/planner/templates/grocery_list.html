@@ -44,7 +44,7 @@
             </form>
 
             <!-- Displays the week the user has selected-->
-            <h3 class="title">Week of: {{current_menu.week_date}}</h3>
+            <h3 class="title">{{current_menu.week_date}}</h3>
             <table> 
                 <thead>
                     <th>Monday</th>
@@ -67,32 +67,31 @@
             </table>     
         </div>
 
-        <!-- Form to add a food for the grocery list -->
-        <div class="add_food">
-            <h3 class="title">Add a Food</h3>
-
-            <form class="create_food" action="/planner/add_grocery/{{user.city}}/{{user.state}}" method="POST">
-                {% csrf_token %}
-                
-                <label for='name'>Name:</label>
-                <input type='text' id='name' name='name'>
-
-                <input type="submit" value="Add">
-            </form>
-        </div>
-
-        <!-- error messages will appear here if food added does not pass verificatino -->
-        {% if messages %}
-        <ul class='messages'>
-            {% for message in messages %}
-                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
-            {% endfor %}    
-        </ul>
-        {% endif %}
-
-        <!-- displays groceries that have been added either by user or upon creation of a menu -->
         <div class = groceiries>
             <h1>{{user.first_name}}'s Grocery List</h1>
+            <!-- Form to add a food for the grocery list -->
+            <div class="add_food">
+                <h3 class="title">Add a Food</h3>
+                <form class="create_food" action="/planner/add_grocery/{{user.city}}/{{user.state}}" method="POST">
+                    {% csrf_token %}
+                    
+                    <label for='name'>Name:</label>
+                    <input type='text' id='name' name='name'>
+
+                    <input type="submit" value="Add">
+                </form>
+            </div>
+
+            <!-- error messages will appear here if food added does not pass verificatino -->
+            {% if messages %}
+            <ul class='messages'>
+                {% for message in messages %}
+                    <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+                {% endfor %}    
+            </ul>
+            {% endif %}
+            
+            <!-- displays groceries that have been added either by user or upon creation of a menu -->
             {% for item in groceries %}
                 <p><a href = '/planner/remove_grocery/{{user.city}}/{{user.state}}/{{item}}'>{{item}}</a></p>
             {% endfor %}
