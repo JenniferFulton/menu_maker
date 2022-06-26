@@ -21,7 +21,7 @@
 }
 
 .login{
-    margin-top: 60px;
+    margin-top: 200px;
     margin-bottom: 5px;
     margin-left: 35%;
     width: 250px;
@@ -57,7 +57,7 @@ button,form{
 .messages{
     color:rgb(185, 58, 58);
     text-align: center;
-    margin-bottom: 10px;
+    margin-top: 10px;
     
 }
 

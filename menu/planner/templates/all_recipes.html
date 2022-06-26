@@ -36,6 +36,15 @@
             <img src="{% static 'media/gnocchi.png' %}" alt="Creamy Gnocchi Soup">
         </div>
 
+        <!-- error messages will appear here is user does not meet registration requirements -->
+        {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+            {% endfor %}  
+        </ul>
+        {% endif %}  
+
         <!-- Form for adding a recipe -->
         <div class = 'add_recipe'>
             <h2>Add a Recipe</h2>

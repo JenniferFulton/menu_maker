@@ -13,7 +13,7 @@
         <div class="title">
             <h1>Welcome to Menu Maker!</h1>
             <h3>***DESCRIPTION OF PROJECT***</h3>
-            <p>To Join Register Below</p>
+            <h4>To Join Register Below</h4>
         </div>
 
         <!-- button to take user back to login page -->
@@ -25,6 +25,15 @@
             <img src="{% static 'media/avo_chicken.png' %}" alt="Grilled Chicken with Avocado Salsa">
             <img src="{% static 'media/meatballs.png' %}" alt="Cheesey Meatballs">
         </div>
+
+        <!-- will display messages if user does not meet registration requirements -->
+        {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+            {% endfor %}    
+        </ul>
+        {% endif %}
 
         <!-- registration form -->
         <div class='register'>
@@ -54,15 +63,6 @@
                 <input type='submit' value='Register'>
             </form>
         </div>
-
-        <!-- will display messages if user does not meet registration requirements -->
-        {% if messages %}
-        <ul class='messages'>
-            {% for message in messages %}
-                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
-            {% endfor %}    
-        </ul>
-        {% endif %}
     </div>
 </body>
 </html>

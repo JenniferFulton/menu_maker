@@ -90,12 +90,13 @@
             </form>
         </div>
 
-        <h3 class="title">{{user.first_name}}'s Grocery List</h3>
-        <ul class = groceiries>
+        <!-- displays groceries that have been added either by user or upon creation of a menu -->
+        <div class = groceiries>
+            <h1>{{user.first_name}}'s Grocery List</h1>
             {% for item in groceries %}
-                <li><a href = '/planner/remove_grocery/{{user.city}}/{{user.state}}/{{item}}'>{{item}}</a></li>
+                <p><a href = '/planner/remove_grocery/{{user.city}}/{{user.state}}/{{item}}'>{{item}}</a></p>
             {% endfor %}
-        </ul>
+        </div>
         
         <!-- Using Google Maps API, displays local grocery stores based on user's city and state -->
         <h1>Grocery Stores Near {{user.city}},{{user.state}}</h1>

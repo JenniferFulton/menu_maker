@@ -113,6 +113,7 @@ def add_recipe(request, id):
             active_user = User.objects.get(id = request.session['user'])
             recipe_added = Recipe.objects.last()
             active_user.recipes.add(recipe_added)
+            messages.success(request, 'Recipe successfully added!')
             return redirect('/planner/user_recipes/'+ str(id))
 
 def delete_recipe(request, id):
@@ -123,6 +124,7 @@ def delete_recipe(request, id):
     to_delete = Recipe.objects.get(id=id)
     print(type(to_delete))
     to_delete.delete()
+    messages.success(request, 'Recipe successfully deleted')
     return redirect('/planner/all_recipes')
 
 def recipe_info(request, id):
@@ -218,7 +220,8 @@ def add_favorite(request,id):
     active_user = User.objects.get(id = request.session['user'])
     liked_recipe = Recipe.objects.get(id=id)
     active_user.liked.add(liked_recipe)
-    return redirect('/planner/all_recipes')
+    messages.success(request, 'Recipe added to favorites!')
+    return redirect('/planner/favorite_recipes')
 
 def remove_favorite(request, id):
     # 'remove_favorite/id' allows user to remove a recipe from their favorited list
@@ -228,6 +231,7 @@ def remove_favorite(request, id):
     active_user = User.objects.get(id = request.session['user'])
     unlike = Recipe.objects.get(id=id)
     active_user.liked.remove(unlike)
+    messages.success(request, 'Recipe removed from favorites')
 
     return redirect('/planner/favorite_recipes')
 
@@ -304,6 +308,7 @@ def add_menu(request, id):
             else:
                 ingr = ''
         items.sort()
+        messages.success(request, 'Menu added and grocery list created!')
         return redirect('/planner')
 
 def previous_menu(request):
@@ -358,6 +363,7 @@ def add_grocery(request,city,state):
 
     if request.method == "POST":
         items.append(request.POST['name'])
+        messages.success(request, 'Item added')
         
     return redirect(f'/planner/grocery_list/{city}/{state}')
 
@@ -367,6 +373,7 @@ def remove_grocery(request,city,state,item):
         return redirect('/')
     
     items.remove(item)
+    messages.success(request, 'Item removed')
 
     return redirect(f'/planner/grocery_list/{city}/{state}')
 

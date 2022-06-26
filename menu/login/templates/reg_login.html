@@ -22,6 +22,15 @@
             <img src="{% static 'media/meatballs.png' %}" alt="Cheesey Meatballs">
         </div>
 
+        <!-- error messages will appear here if email and password don't match or user is not registered -->
+        {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+            {% endfor %}    
+        </ul>
+        {% endif %}
+
         <div class='login'>
             <!-- login form -->
             <h2>Login</h2>
@@ -36,15 +45,6 @@
                 <input type='submit' value='Log In'>
             </form>
         </div>
-
-        <!-- error messages will appear here if email and password don't match or user is not registered -->
-        {% if messages %}
-        <ul class='messages'>
-            {% for message in messages %}
-                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
-            {% endfor %}    
-        </ul>
-        {% endif %}
             
         <!-- button for new users to register -->
         <div class="register">

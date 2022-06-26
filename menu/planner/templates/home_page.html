@@ -44,6 +44,15 @@
             <input type="submit" value="View">
         </form>
 
+        <!-- error messages will appear here is user does not meet registration requirements -->
+        {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+            {% endfor %}  
+        </ul>
+        {% endif %}  
+
         <!-- Displays the week the user has selected-->
         <div class="week">
         <table> 
