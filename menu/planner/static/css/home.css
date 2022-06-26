@@ -107,4 +107,9 @@ form{
     margin-bottom: 30px;
 }
 
+.messages{
+    color:rgb(185, 58, 58);
+    text-align: center;
+    margin-bottom: 10px;
+}
 

@@ -14,6 +14,7 @@ urlpatterns = [
     path('update/<int:id>', views.update_recipe),
     path('add_favorite/<int:id>', views.add_favorite),
     path('create_menu', views.create_menu),
+    path('delete_menu', views.delete_menu),
     path('add_menu/<int:id>', views.add_menu),
     path('delete_menu/<int:id>', views.delete_menu),
     path('view_menu', views.view_menu),

@@ -334,6 +334,7 @@ def delete_menu(request, id):
     
     to_delete = Menu.objects.get(id=id)
     to_delete.delete()
+    messages.success(request, 'Menu deleted')
 
     return redirect('/planner')
 

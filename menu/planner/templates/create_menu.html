@@ -114,22 +114,22 @@
                 </select>
             </form>
 
-            <!-- Dropdown selection to view previous menus (user only views menus they created) -->
-            <h2>View Previous Menus</h2>
-            <form class="view" action="/planner/previous_menu" method="POST">
-                {% csrf_token %}
-                <label for="view_menu">Week of:</label>
-                <select id="view_menu" name="view_menu">
-                    <option> </option>
-                    {% for menu in user.menus.all %}
-                    <option value={{menu.id}}>{{menu.week_date}}</option>
-                    {% endfor %}
-                </select>
-                <input type="submit" value="View">
-            </form>
-    
-            <!-- Displays the week the user has selected-->
             <div class="week">
+                <!-- Dropdown selection to view previous menus (user only views menus they created) -->
+                <h2>View Previous Menus</h2>
+                <form class="view" action="/planner/previous_menu" method="POST">
+                    {% csrf_token %}
+                    <label for="view_menu">Week of:</label>
+                    <select id="view_menu" name="view_menu">
+                        <option> </option>
+                        {% for menu in user.menus.all %}
+                        <option value={{menu.id}}>{{menu.week_date}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="View">
+                </form>
+    
+                <!-- Displays the week the user has selected-->
                 <h4>Week of: {{current_menu.week_date}}</h4>
                 <table> 
                     <thead>
@@ -150,7 +150,8 @@
                         <td><a href = '/planner/recipe_info/{{current_menu.sat.id}}'>{{current_menu.sat.title}}</a></td>
                         <td><a href = '/planner/recipe_info/{{current_menu.sun.id}}'>{{current_menu.sun.title}}</a></td>
                     </tbody>
-                </table>     
+                </table>
+                <button class="home" onclick='location.href="/planner/delete_menu/{{current_menu.id}}"'>Delete Menu</button>     
             </div>
         </div>
     </div>

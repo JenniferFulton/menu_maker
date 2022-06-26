@@ -71,15 +71,6 @@
         <div class="add_food">
             <h3 class="title">Add a Food</h3>
 
-            <!-- error messages will appear here if food added does not pass verificatino -->
-            {% if messages %}
-            <ul class='messages'>
-                {% for message in messages %}
-                    <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
-                {% endfor %}    
-            </ul>
-            {% endif %}
-
             <form class="create_food" action="/planner/add_grocery/{{user.city}}/{{user.state}}" method="POST">
                 {% csrf_token %}
                 
@@ -89,6 +80,15 @@
                 <input type="submit" value="Add">
             </form>
         </div>
+
+        <!-- error messages will appear here if food added does not pass verificatino -->
+        {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <p {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+            {% endfor %}    
+        </ul>
+        {% endif %}
 
         <!-- displays groceries that have been added either by user or upon creation of a menu -->
         <div class = groceiries>
