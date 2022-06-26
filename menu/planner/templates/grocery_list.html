@@ -29,21 +29,21 @@
         <!-- Button will take user back to the home page -->
         <button class="home" onclick='location.href="/planner"'>Home</button>
 
-        <!-- Dropdown selection to view menus (user only views menus they created) -->
-        <form class="view" action="/planner/grocery/view_menu/{{user.city}}/{{user.state}}" method="POST">
-            {% csrf_token %}
-            <label for="view_menu">Week of:</label>
-            <select id="view_menu" name="view_menu">
-                <option> </option>
-                {% for menu in user.menus.all %}
-                <option value={{menu.id}}>{{menu.week_date}}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="View">
-        </form>
-
-        <!-- Displays the week the user has selected-->
         <div class="week">
+            <!-- Dropdown selection to view menus (user only views menus they created) -->
+            <form class="view" action="/planner/grocery/view_menu/{{user.city}}/{{user.state}}" method="POST">
+                {% csrf_token %}
+                <label for="view_menu">Week of:</label>
+                <select id="view_menu" name="view_menu">
+                    <option> </option>
+                    {% for menu in user.menus.all %}
+                    <option value={{menu.id}}>{{menu.week_date}}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="View">
+            </form>
+
+            <!-- Displays the week the user has selected-->
             <h3 class="title">Week of: {{current_menu.week_date}}</h3>
             <table> 
                 <thead>

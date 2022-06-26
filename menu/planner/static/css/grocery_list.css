@@ -47,7 +47,7 @@ table, th, td {
     padding: 10px;
     text-align: center;
     margin: 10px;
-    margin-left: 23%;
+    margin-left: 18%;
     margin-right: 23%;
 }
 
@@ -110,4 +110,13 @@ h1{
 
 p{
     text-align: center;
+}
+
+.week{
+    border-style: solid;
+    height: auto;
+    padding: 5px;
+    width: 1000px;
+    margin-left: 115px;
+    margin-top: 20px;
 }
