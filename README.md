@@ -1,7 +1,7 @@
 # menu_maker
-Menu Maker is a full-stack Django/Python project which users are able to plan their meals for the week. As a user you can add recipes and create a menu each week. You can also see and use the recipes all other users have added.
+Menu Maker is a full-stack Django/Python project which users are able to plan their meals for the week. As a user you can add recipes and create a menu each week. Once you've created a menu a grocery list will automatically populate for you!
 
-I decided to create a project that would help me in my every day life. Right now I use pen and paper to make a plan each week, ask my mom to send me recipes and search for recipes online often. I wanted to create a place where I could do all of that. My next step will be to make a grocery list for each week based on the ingredients in the recipes for that week.
+I decided to create a project that would help me in my every day life. I was creating a menu with pen and paper and searching multiple places for recipes. I wanted to create a place where I could do all of that.
 
 [Video Demonstration](https://youtu.be/151desr59os)
 
